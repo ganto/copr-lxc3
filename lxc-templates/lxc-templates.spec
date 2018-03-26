@@ -44,3 +44,6 @@ The modern approach to build container images is distrobuilder.
 %{_datadir}/lxc/templates/lxc-*      
 
 %changelog
+* Mon Mar 26 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0.beta1-0.1
+- Initial package
+
