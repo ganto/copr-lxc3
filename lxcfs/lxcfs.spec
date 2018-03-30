@@ -69,6 +69,9 @@ rm -f %{buildroot}%{_libdir}/%{name}/liblxcfs.la
 %dir %{_localstatedir}/lib/%{name}
 
 %changelog
+* Sat Mar 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
+- Update to 3.0.0
+
 * Mon Feb 05 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 2.0.8-0.2
 - Fix systemd scriptlets
 - Fix removal of static library
