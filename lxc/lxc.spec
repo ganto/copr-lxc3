@@ -271,6 +271,9 @@ make check
 
 
 %changelog
+* Sat Mar 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
+- Update to 3.0.0
+
 * Wed Oct 25 2017 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 2.1.1-0.1
 - Update to 2.1.1.
 
