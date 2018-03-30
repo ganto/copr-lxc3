@@ -34,3 +34,6 @@ BuildRequires:  python34-setuptools
 %{python3_sitearch}/*
 
 %changelog
+* Sat Mar 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.1-0.1
+- Initial package
+
