@@ -1,5 +1,5 @@
 Name:           lxc-templates
-Version:        3.0.0.beta1
+Version:        3.0.0
 Release:        0.1%{?dist}
 Summary:        Old style template scripts for LXC
 
@@ -26,7 +26,7 @@ Requires:       lxc-libs%{?_isa} >= %{version}
 The modern approach to build container images is distrobuilder.
 
 %prep
-%autosetup -n %{name}-%{name}-%{version}
+%autosetup -n %{name}-%{version}
 ./autogen.sh
 %configure
 
@@ -38,7 +38,7 @@ The modern approach to build container images is distrobuilder.
 
 %files
 %defattr(-,root,root)
-%doc MAINTAINERS
+%doc CONTRIBUTING MAINTAINERS
 %license COPYING
 %{_datadir}/lxc/config/* 
 %{_datadir}/lxc/templates/lxc-*      
