@@ -561,6 +561,10 @@ exit 0
 %doc doc/*
 
 %changelog
+* Mon Apr 02 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
+- Update to 3.0.0
+- Build with bundled go dependencies by default
+
 * Wed Jan 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 2.21-2
 - Fix build with bundled go modules
 - Correctly specify scriptlet dependencies
