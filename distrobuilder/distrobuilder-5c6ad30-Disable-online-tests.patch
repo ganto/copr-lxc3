@@ -1,0 +1,31 @@
+diff --git a/shared/util_test.go b/shared/util_test.go
+index fdaf068..a2e428d 100644
+--- a/shared/util_test.go
++++ b/shared/util_test.go
+@@ -3,14 +3,15 @@ package shared
+ import (
+ 	"log"
+ 	"os"
+-	"path"
+-	"path/filepath"
++/*	"path"
++	"path/filepath" */
+ 	"testing"
+ 
+-	lxd "github.com/lxc/lxd/shared"
++//	lxd "github.com/lxc/lxd/shared"
+ 	"gopkg.in/flosch/pongo2.v3"
+ )
+ 
++/* Disable online tests
+ func TestVerifyFile(t *testing.T) {
+ 	wd, err := os.Getwd()
+ 	if err != nil {
+@@ -115,6 +116,7 @@ func TestCreateGPGKeyring(t *testing.T) {
+ 	}
+ 	os.RemoveAll(path.Dir(keyring))
+ }
++*/
+ 
+ func TestRenderTemplate(t *testing.T) {
+ 	tests := []struct {
