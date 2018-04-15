@@ -1,0 +1,270 @@
+commit d36aa218a2d7b5303070e7d87c93daede6b864e8
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Fri Mar 30 13:40:38 2018 -0400
+
+    client: Improve remote operation errors
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/client/lxd_containers.go b/client/lxd_containers.go
+index fddbf0ac..b0ad0a8d 100644
+--- a/client/lxd_containers.go
++++ b/client/lxd_containers.go
+@@ -97,7 +97,7 @@ func (r *ProtocolLXD) tryCreateContainer(req api.ContainersPost, urls []string)
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			if operation == "" {
+ 				req.Source.Server = serverURL
+@@ -107,7 +107,7 @@ func (r *ProtocolLXD) tryCreateContainer(req api.ContainersPost, urls []string)
+ 
+ 			op, err := r.CreateContainer(req)
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -119,7 +119,7 @@ func (r *ProtocolLXD) tryCreateContainer(req api.ContainersPost, urls []string)
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -128,7 +128,7 @@ func (r *ProtocolLXD) tryCreateContainer(req api.ContainersPost, urls []string)
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed container creation:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed container creation", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+@@ -508,13 +508,13 @@ func (r *ProtocolLXD) tryMigrateContainer(source ContainerServer, name string, r
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			req.Target.Operation = fmt.Sprintf("%s/1.0/operations/%s", serverURL, url.QueryEscape(operation))
+ 
+ 			op, err := source.MigrateContainer(name, req)
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -526,7 +526,7 @@ func (r *ProtocolLXD) tryMigrateContainer(source ContainerServer, name string, r
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -535,7 +535,7 @@ func (r *ProtocolLXD) tryMigrateContainer(source ContainerServer, name string, r
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed container migration:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed container migration", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+@@ -1133,13 +1133,13 @@ func (r *ProtocolLXD) tryMigrateContainerSnapshot(source ContainerServer, contai
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			req.Target.Operation = fmt.Sprintf("%s/1.0/operations/%s", serverURL, url.QueryEscape(operation))
+ 
+ 			op, err := source.MigrateContainerSnapshot(containerName, name, req)
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -1151,7 +1151,7 @@ func (r *ProtocolLXD) tryMigrateContainerSnapshot(source ContainerServer, contai
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -1160,7 +1160,7 @@ func (r *ProtocolLXD) tryMigrateContainerSnapshot(source ContainerServer, contai
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed container migration:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed container migration", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+diff --git a/client/lxd_images.go b/client/lxd_images.go
+index 2f6f2e67..9eb7928c 100644
+--- a/client/lxd_images.go
++++ b/client/lxd_images.go
+@@ -479,13 +479,13 @@ func (r *ProtocolLXD) tryCopyImage(req api.ImagesPost, urls []string) (RemoteOpe
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			req.Source.Server = serverURL
+ 
+ 			op, err := r.CreateImage(req, nil)
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -497,7 +497,7 @@ func (r *ProtocolLXD) tryCopyImage(req api.ImagesPost, urls []string) (RemoteOpe
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -506,7 +506,7 @@ func (r *ProtocolLXD) tryCopyImage(req api.ImagesPost, urls []string) (RemoteOpe
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed remote image download:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed remote image download", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+diff --git a/client/lxd_storage_volumes.go b/client/lxd_storage_volumes.go
+index 1c240908..e0f5fb8d 100644
+--- a/client/lxd_storage_volumes.go
++++ b/client/lxd_storage_volumes.go
+@@ -132,14 +132,14 @@ func (r *ProtocolLXD) tryMigrateStoragePoolVolume(source ContainerServer, pool s
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			req.Target.Operation = fmt.Sprintf("%s/1.0/operations/%s", serverURL, url.QueryEscape(operation))
+ 
+ 			// Send the request
+ 			top, err := source.MigrateStoragePoolVolume(pool, req)
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -154,7 +154,7 @@ func (r *ProtocolLXD) tryMigrateStoragePoolVolume(source ContainerServer, pool s
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -163,7 +163,7 @@ func (r *ProtocolLXD) tryMigrateStoragePoolVolume(source ContainerServer, pool s
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed storage volume creation:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed storage volume creation", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+@@ -186,7 +186,7 @@ func (r *ProtocolLXD) tryCreateStoragePoolVolume(pool string, req api.StorageVol
+ 	// Forward targetOp to remote op
+ 	go func() {
+ 		success := false
+-		errors := []string{}
++		errors := map[string]error{}
+ 		for _, serverURL := range urls {
+ 			req.Source.Operation = fmt.Sprintf("%s/1.0/operations/%s", serverURL, url.QueryEscape(operation))
+ 
+@@ -211,7 +211,7 @@ func (r *ProtocolLXD) tryCreateStoragePoolVolume(pool string, req api.StorageVol
+ 
+ 			err = rop.targetOp.Wait()
+ 			if err != nil {
+-				errors = append(errors, fmt.Sprintf("%s: %v", serverURL, err))
++				errors[serverURL] = err
+ 				continue
+ 			}
+ 
+@@ -220,7 +220,7 @@ func (r *ProtocolLXD) tryCreateStoragePoolVolume(pool string, req api.StorageVol
+ 		}
+ 
+ 		if !success {
+-			rop.err = fmt.Errorf("Failed storage volume creation:\n - %s", strings.Join(errors, "\n - "))
++			rop.err = remoteOperationError("Failed storage volume creation", errors)
+ 		}
+ 
+ 		close(rop.chDone)
+diff --git a/client/util.go b/client/util.go
+index 256a184f..784aab9e 100644
+--- a/client/util.go
++++ b/client/util.go
+@@ -1,10 +1,12 @@
+ package lxd
+ 
+ import (
++	"fmt"
+ 	"io"
+ 	"net"
+ 	"net/http"
+ 	"net/url"
++	"strings"
+ 
+ 	"github.com/lxc/lxd/shared"
+ )
+@@ -85,3 +87,32 @@ type nullReadWriteCloser int
+ func (nullReadWriteCloser) Close() error                { return nil }
+ func (nullReadWriteCloser) Write(p []byte) (int, error) { return len(p), nil }
+ func (nullReadWriteCloser) Read(p []byte) (int, error)  { return 0, io.EOF }
++
++func remoteOperationError(msg string, errors map[string]error) error {
++	// Check if empty
++	if len(errors) == 0 {
++		return nil
++	}
++
++	// Check if all identical
++	var err error
++	for _, entry := range errors {
++		if err != nil && entry.Error() != err.Error() {
++			errorStrs := []string{}
++			for server, errorStr := range errors {
++				errorStrs = append(errorStrs, fmt.Sprintf("%s: %s", server, errorStr))
++			}
++
++			return fmt.Errorf("%s:\n - %s", msg, strings.Join(errorStrs, "\n - "))
++		}
++
++		err = entry
++	}
++
++	// Check if successful
++	if err == nil {
++		return nil
++	}
++
++	return fmt.Errorf("%s: %s", msg, err)
++}

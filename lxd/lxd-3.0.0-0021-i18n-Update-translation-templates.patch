@@ -1,0 +1,2676 @@
+commit 92c58ed172a661d41f8faf01498b5326cfe51c34
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Thu Apr 5 09:48:16 2018 -0400
+
+    i18n: Update translation templates
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/po/de.po b/po/de.po
+index 48d73453..a5ceec2a 100644
+--- a/po/de.po
++++ b/po/de.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2017-02-14 17:11+0000\n"
+ "Last-Translator: Tim Rose <tim@netlope.de>\n"
+ "Language-Team: German <https://hosted.weblate.org/projects/linux-containers/"
+@@ -255,7 +255,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -265,7 +265,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -493,7 +493,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -998,7 +998,7 @@ msgstr "kann nicht zum selben Container Namen kopieren"
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -1101,7 +1101,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1202,7 +1202,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "ungültiges Argument %s"
+@@ -1465,11 +1465,7 @@ msgstr "Veröffentliche Abbild"
+ msgid "Make the image public"
+ msgstr "Veröffentliche Abbild"
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1643,7 +1639,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr "Kein Zertifikat für diese Verbindung"
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2254,7 +2250,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2506,7 +2502,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2568,7 +2564,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, fuzzy, c-format
+ msgid "Unknown file type '%s'"
+ msgstr "Unbekannter Befehl %s für Abbild"
+diff --git a/po/el.po b/po/el.po
+index 105b95b3..bf44f0fe 100644
+--- a/po/el.po
++++ b/po/el.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2017-02-14 08:00+0000\n"
+ "Last-Translator: Simos Xenitellis <simos.65@gmail.com>\n"
+ "Language-Team: Greek <https://hosted.weblate.org/projects/linux-containers/"
+@@ -151,7 +151,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -161,7 +161,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -380,7 +380,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -864,7 +864,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -962,7 +962,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1061,7 +1061,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1302,11 +1302,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1467,7 +1463,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2048,7 +2044,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2285,7 +2281,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2347,7 +2343,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/es.po b/po/es.po
+index 58392b7e..4ab34f9b 100644
+--- a/po/es.po
++++ b/po/es.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2018-02-10 11:39+0000\n"
+ "Last-Translator: Allan Esquivel Sibaja <allan.esquivel.sibaja@gmail.com>\n"
+ "Language-Team: Spanish <https://hosted.weblate.org/projects/linux-containers/"
+@@ -208,7 +208,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr "%s no es un directorio"
+@@ -218,7 +218,7 @@ msgstr "%s no es un directorio"
+ msgid "%v (interrupt two more times to force)"
+ msgstr "%v (interrumpe dos o más tiempos a la fuerza)"
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr "%s no es un tipo de archivo soportado."
+@@ -437,7 +437,7 @@ msgstr "No se puede especificar un remote diferente para renombrar."
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -921,7 +921,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -1019,7 +1019,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1118,7 +1118,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1360,11 +1360,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1525,7 +1521,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ #, fuzzy
+ msgid "Missing target directory"
+ msgstr "%s no es un directorio"
+@@ -2106,7 +2102,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2343,7 +2339,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2405,7 +2401,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/fa.po b/po/fa.po
+index 7d4fd90a..387ce6ca 100644
+--- a/po/fa.po
++++ b/po/fa.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/fi.po b/po/fi.po
+index 3ee6144d..56e674ce 100644
+--- a/po/fi.po
++++ b/po/fi.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/fr.po b/po/fr.po
+index d70e4c84..bd2adfd9 100644
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2018-03-06 13:50+0000\n"
+ "Last-Translator: Alban Vidal <alban.vidal@zordhak.fr>\n"
+ "Language-Team: French <https://hosted.weblate.org/projects/linux-containers/"
+@@ -247,7 +247,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr "%s (%d de plus)"
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr "%s n'est pas un répertoire"
+@@ -257,7 +257,7 @@ msgstr "%s n'est pas un répertoire"
+ msgid "%v (interrupt two more times to force)"
+ msgstr "%v (interrompre encore deux fois pour forcer)"
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr "'%s' n'est pas un format de fichier pris en charge."
+@@ -483,7 +483,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ #, fuzzy
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr "impossible de spécifier uid/gid/mode en mode récursif"
+@@ -1017,7 +1017,7 @@ msgstr "Profil à appliquer au nouveau conteneur"
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -1122,7 +1122,7 @@ msgstr "IPv6"
+ msgid "ISSUE DATE"
+ msgstr "DATE D'ÉMISSION"
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ #, fuzzy
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+@@ -1228,7 +1228,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "nombre d'arguments incorrect pour la sous-comande"
+@@ -1535,11 +1535,7 @@ msgstr "Rendre l'image publique"
+ msgid "Make the image public"
+ msgstr "Rendre l'image publique"
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1713,7 +1709,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr "Copie de l'image : %s"
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ #, fuzzy
+ msgid "Missing target directory"
+ msgstr "%s n'est pas un répertoire"
+@@ -2332,7 +2328,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ #, fuzzy
+ msgid "Show less common commands"
+ msgstr "Afficher les commandes moins communes"
+@@ -2587,7 +2583,7 @@ msgstr "Pour créer un réseau, utiliser : lxc network create"
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ "Pour démarrer votre premier conteneur, essayer : lxc launch ubuntu:16.04"
+@@ -2650,7 +2646,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/hi.po b/po/hi.po
+index b7d898d5..b3f2761a 100644
+--- a/po/hi.po
++++ b/po/hi.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/id.po b/po/id.po
+index 401f2c07..0017e106 100644
+--- a/po/id.po
++++ b/po/id.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/it.po b/po/it.po
+index f16d9fab..94007c52 100644
+--- a/po/it.po
++++ b/po/it.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2017-08-18 14:22+0000\n"
+ "Last-Translator: Alberto Donato <alberto.donato@gmail.com>\n"
+ "Language-Team: Italian <https://hosted.weblate.org/projects/linux-containers/"
+@@ -173,7 +173,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr "%s (altri %d)"
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -183,7 +183,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr "%v (interrompi altre due volte per forzare)"
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr "'%s' non è un tipo di file supportato."
+@@ -403,7 +403,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -888,7 +888,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -987,7 +987,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1087,7 +1087,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "numero errato di argomenti del sottocomando"
+@@ -1331,11 +1331,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1498,7 +1494,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2080,7 +2076,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2320,7 +2316,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2382,7 +2378,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/ja.po b/po/ja.po
+index 68617c92..faab0935 100644
+--- a/po/ja.po
++++ b/po/ja.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2018-03-01 17:11+0000\n"
+ "Last-Translator: KATOH Yasufumi <karma@jazz.email.ne.jp>\n"
+ "Language-Team: Japanese <https://hosted.weblate.org/projects/linux-"
+@@ -151,7 +151,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr "%s (他%d個)"
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr "%s はディレクトリではありません"
+@@ -162,7 +162,7 @@ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ "%v (強制的に中断したい場合はあと2回Ctrl-Cを入力/SIGINTを送出してください)"
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr "'%s' はサポートされないタイプのファイルです。"
+@@ -388,7 +388,7 @@ msgstr "リネームの場合は異なるリモートを指定できません。
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ #, fuzzy
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr "再帰 (recursive) モードでは uid/gid/mode を指定できません"
+@@ -921,7 +921,7 @@ msgstr "新しいコンテナ名が取得できません"
+ msgid "Failed to remove alias %s"
+ msgstr "エイリアス %s の削除に失敗しました"
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr "パス %s にアクセスできませんでした: %s"
+@@ -1022,7 +1022,7 @@ msgstr "IPV6"
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1123,7 +1123,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "不正な引数 %s"
+@@ -1467,11 +1467,7 @@ msgstr "イメージを public にする"
+ msgid "Make the image public"
+ msgstr "イメージを public にする"
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1648,7 +1644,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr "ストレージボリュームの移動中: %s"
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ #, fuzzy
+ msgid "Missing target directory"
+ msgstr "%s はディレクトリではありません"
+@@ -2260,7 +2256,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ #, fuzzy
+ msgid "Show less common commands"
+ msgstr "全てのコマンドを表示します (主なコマンドだけではなく)"
+@@ -2517,7 +2513,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr "コンソールから切り離すには <ctrl>+a q を押します"
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ "初めてコンテナを起動するには、\"lxc launch ubuntu:16.04\" と実行してみてくだ"
+@@ -2583,7 +2579,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr "未知のファイルタイプ '%s'"
+diff --git a/po/lxd.pot b/po/lxd.pot
+index 2307e107..688ed11b 100644
+--- a/po/lxd.pot
++++ b/po/lxd.pot
+@@ -7,7 +7,7 @@
+ msgid   ""
+ msgstr  "Project-Id-Version: lxd\n"
+         "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-        "POT-Creation-Date: 2018-04-02 19:23-0400\n"
++        "POT-Creation-Date: 2018-04-05 09:48-0400\n"
+         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+         "Language-Team: LANGUAGE <LL@li.org>\n"
+@@ -141,7 +141,7 @@ msgstr  ""
+ msgid   "%s (%d more)"
+ msgstr  ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid   "%s is not a directory"
+ msgstr  ""
+@@ -151,7 +151,7 @@ msgstr  ""
+ msgid   "%v (interrupt two more times to force)"
+ msgstr  ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid   "'%s' isn't a supported file type."
+ msgstr  ""
+@@ -366,7 +366,7 @@ msgstr  ""
+ msgid   "Can't specify column L when not clustered"
+ msgstr  ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid   "Can't supply uid/gid/mode in recursive mode"
+ msgstr  ""
+ 
+@@ -790,7 +790,7 @@ msgstr  ""
+ msgid   "Failed to remove alias %s"
+ msgstr  ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid   "Failed to walk path for %s: %s"
+ msgstr  ""
+@@ -888,7 +888,7 @@ msgstr  ""
+ msgid   "ISSUE DATE"
+ msgstr  ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid   "If this is your first time running LXD on this machine, you should also run: lxd init"
+ msgstr  ""
+ 
+@@ -983,7 +983,7 @@ msgstr  ""
+ msgid   "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr  ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid   "Invalid number of arguments"
+ msgstr  ""
+ 
+@@ -1218,11 +1218,7 @@ msgstr  ""
+ msgid   "Make the image public"
+ msgstr  ""
+ 
+-#: lxc/network.go:32
+-msgid   "Manage an attach containers to networks"
+-msgstr  ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid   "Manage and attach containers to networks"
+ msgstr  ""
+ 
+@@ -1364,7 +1360,7 @@ msgstr  ""
+ msgid   "Missing source volume name"
+ msgstr  ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid   "Missing target directory"
+ msgstr  ""
+ 
+@@ -1936,7 +1932,7 @@ msgstr  ""
+ msgid   "Show image properties"
+ msgstr  ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid   "Show less common commands"
+ msgstr  ""
+ 
+@@ -2168,7 +2164,7 @@ msgstr  ""
+ msgid   "To detach from the console, press: <ctrl>+a q"
+ msgstr  ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid   "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr  ""
+ 
+@@ -2229,7 +2225,7 @@ msgstr  ""
+ msgid   "Unknown column shorthand char '%c' in '%s'"
+ msgstr  ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid   "Unknown file type '%s'"
+ msgstr  ""
+diff --git a/po/nb_NO.po b/po/nb_NO.po
+index 500baba2..21ec75a4 100644
+--- a/po/nb_NO.po
++++ b/po/nb_NO.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/nl.po b/po/nl.po
+index b3580362..0cc14041 100644
+--- a/po/nl.po
++++ b/po/nl.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/pa.po b/po/pa.po
+index b8877fe6..821fc3f1 100644
+--- a/po/pa.po
++++ b/po/pa.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/pl.po b/po/pl.po
+index 4f3b37f6..6acad9d6 100644
+--- a/po/pl.po
++++ b/po/pl.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index 5922ae51..eb9601b8 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2018-03-08 09:21+0000\n"
+ "Last-Translator: Paulo Coghi <paulo@coghi.com.br>\n"
+ "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+@@ -165,7 +165,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -175,7 +175,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -393,7 +393,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -876,7 +876,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -974,7 +974,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1073,7 +1073,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1314,11 +1314,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1478,7 +1474,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2058,7 +2054,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2295,7 +2291,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2357,7 +2353,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/ru.po b/po/ru.po
+index 666da6ff..bfa37b15 100644
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: 2017-09-05 16:48+0000\n"
+ "Last-Translator: Ilya Yakimavets <ilya.yakimavets@backend.expert>\n"
+ "Language-Team: Russian <https://hosted.weblate.org/projects/linux-containers/"
+@@ -234,7 +234,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -244,7 +244,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -466,7 +466,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -960,7 +960,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -1058,7 +1058,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1159,7 +1159,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1403,11 +1403,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1573,7 +1569,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr "Копирование образа: %s"
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2161,7 +2157,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2400,7 +2396,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2462,7 +2458,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/sr.po b/po/sr.po
+index 2c688a3c..04e18c42 100644
+--- a/po/sr.po
++++ b/po/sr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/sv.po b/po/sv.po
+index 73976c95..2d678191 100644
+--- a/po/sv.po
++++ b/po/sv.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/tr.po b/po/tr.po
+index 9bce0e52..c043a3ac 100644
+--- a/po/tr.po
++++ b/po/tr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/uk.po b/po/uk.po
+index 8cc228ad..bc247120 100644
+--- a/po/uk.po
++++ b/po/uk.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/zh.po b/po/zh.po
+index 53f8bb3c..34f6b713 100644
+--- a/po/zh.po
++++ b/po/zh.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""
+diff --git a/po/zh_Hans.po b/po/zh_Hans.po
+index 45ff2723..772d29f0 100644
+--- a/po/zh_Hans.po
++++ b/po/zh_Hans.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-04-02 19:23-0400\n"
++"POT-Creation-Date: 2018-04-05 09:48-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -148,7 +148,7 @@ msgstr ""
+ msgid "%s (%d more)"
+ msgstr ""
+ 
+-#: lxc/file.go:677
++#: lxc/file.go:676
+ #, c-format
+ msgid "%s is not a directory"
+ msgstr ""
+@@ -158,7 +158,7 @@ msgstr ""
+ msgid "%v (interrupt two more times to force)"
+ msgstr ""
+ 
+-#: lxc/file.go:614
++#: lxc/file.go:613
+ #, c-format
+ msgid "'%s' isn't a supported file type."
+ msgstr ""
+@@ -376,7 +376,7 @@ msgstr ""
+ msgid "Can't specify column L when not clustered"
+ msgstr ""
+ 
+-#: lxc/file.go:399
++#: lxc/file.go:398
+ msgid "Can't supply uid/gid/mode in recursive mode"
+ msgstr ""
+ 
+@@ -859,7 +859,7 @@ msgstr ""
+ msgid "Failed to remove alias %s"
+ msgstr ""
+ 
+-#: lxc/file.go:609
++#: lxc/file.go:608
+ #, c-format
+ msgid "Failed to walk path for %s: %s"
+ msgstr ""
+@@ -957,7 +957,7 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:268
++#: lxc/main.go:279
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+@@ -1056,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:350
++#: lxc/main.go:361
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1297,11 +1297,7 @@ msgstr ""
+ msgid "Make the image public"
+ msgstr ""
+ 
+-#: lxc/network.go:32
+-msgid "Manage an attach containers to networks"
+-msgstr ""
+-
+-#: lxc/network.go:31
++#: lxc/network.go:31 lxc/network.go:32
+ msgid "Manage and attach containers to networks"
+ msgstr ""
+ 
+@@ -1461,7 +1457,7 @@ msgstr ""
+ msgid "Missing source volume name"
+ msgstr ""
+ 
+-#: lxc/file.go:446
++#: lxc/file.go:445
+ msgid "Missing target directory"
+ msgstr ""
+ 
+@@ -2041,7 +2037,7 @@ msgstr ""
+ msgid "Show image properties"
+ msgstr ""
+ 
+-#: lxc/main.go:62
++#: lxc/main.go:204 lxc/main.go:205
+ msgid "Show less common commands"
+ msgstr ""
+ 
+@@ -2278,7 +2274,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:269
++#: lxc/main.go:280
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2336,7 @@ msgstr ""
+ msgid "Unknown column shorthand char '%c' in '%s'"
+ msgstr ""
+ 
+-#: lxc/file.go:596
++#: lxc/file.go:595
+ #, c-format
+ msgid "Unknown file type '%s'"
+ msgstr ""

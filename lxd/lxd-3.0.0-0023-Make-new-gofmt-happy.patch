@@ -1,0 +1,27 @@
+commit 0ab8eba336fe8a8653ad8f1e850064ee3d3ee598
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Thu Apr 5 15:16:06 2018 -0400
+
+    Make new gofmt happy
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/lxd/db/migration_test.go b/lxd/db/migration_test.go
+index fe7da56d..72469a8b 100644
+--- a/lxd/db/migration_test.go
++++ b/lxd/db/migration_test.go
+@@ -105,13 +105,7 @@ func TestImportPreClusteringData(t *testing.T) {
+ 		// The other config keys are node-specific.
+ 		config, err = query.SelectConfig(tx.Tx(), "storage_pools_config", "node_id=?", 1)
+ 		require.NoError(t, err)
+-		assert.Equal(t,
+-			map[string]string{
+-				"source": "/foo/bar",
+-				"size":   "123",
+-				"volatile.initial_source": "/foo/bar",
+-				"zfs.pool_name":           "mypool",
+-			}, config)
++		assert.Equal(t, map[string]string{"source": "/foo/bar", "size": "123", "volatile.initial_source": "/foo/bar", "zfs.pool_name": "mypool"}, config)
+ 
+ 		// Storage volumes have now a node_id key set to 1 (the ID of
+ 		// the default node).

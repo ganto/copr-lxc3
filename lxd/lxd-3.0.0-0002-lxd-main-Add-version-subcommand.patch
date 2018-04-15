@@ -1,0 +1,61 @@
+commit a8f1074c969f6066fb6362f73187fb8693c536df
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Fri Mar 30 11:13:09 2018 -0400
+
+    lxd/main: Add version subcommand
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/lxd/main.go b/lxd/main.go
+index 8501dbc6..983f1812 100644
+--- a/lxd/main.go
++++ b/lxd/main.go
+@@ -147,6 +147,10 @@ func main() {
+ 	sqlCmd := cmdSql{global: &globalCmd}
+ 	app.AddCommand(sqlCmd.Command())
+ 
++	// version sub-command
++	versionCmd := cmdVersion{global: &globalCmd}
++	app.AddCommand(versionCmd.Command())
++
+ 	// waitready sub-command
+ 	waitreadyCmd := cmdWaitready{global: &globalCmd}
+ 	app.AddCommand(waitreadyCmd.Command())
+diff --git a/lxd/main_version.go b/lxd/main_version.go
+new file mode 100644
+index 00000000..9396b336
+--- /dev/null
++++ b/lxd/main_version.go
+@@ -0,0 +1,32 @@
++package main
++
++import (
++	"fmt"
++
++	"github.com/spf13/cobra"
++
++	cli "github.com/lxc/lxd/shared/cmd"
++	"github.com/lxc/lxd/shared/version"
++)
++
++type cmdVersion struct {
++	global *cmdGlobal
++}
++
++func (c *cmdVersion) Command() *cobra.Command {
++	cmd := &cobra.Command{}
++	cmd.Use = "version"
++	cmd.Short = "Show the server version"
++	cmd.Long = cli.FormatSection("Description",
++		`Show the server version`)
++
++	cmd.RunE = c.Run
++
++	return cmd
++}
++
++func (c *cmdVersion) Run(cmd *cobra.Command, args []string) error {
++	fmt.Println(version.Version)
++
++	return nil
++}

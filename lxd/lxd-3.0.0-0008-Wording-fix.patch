@@ -1,0 +1,23 @@
+commit 854aa3270f5244f75c36e3d47beb39dc7bb2f097
+Author: Dean Henrichsmeyer <dean@beret.net>
+Date:   Fri Mar 30 17:12:36 2018 -0500
+
+    Wording fix.
+    
+    Signed-off-by: Dean Henrichsmeyer <dean@beret.net>
+
+diff --git a/doc/clustering.md b/doc/clustering.md
+index a77f9bb7..ef1e4670 100644
+--- a/doc/clustering.md
++++ b/doc/clustering.md
+@@ -37,8 +37,8 @@ available on your network.
+ 
+ You can now join further nodes to the cluster. Note however that these
+ nodes should be brand new LXD instances, or alternatively you should
+-clear their contents them up before joining, since any existing data 
+-on them will be lost.
++clear their contents before joining, since any existing data on them
++will be lost.
+ 
+ To add an additional node, run `lxd init` and answer `yes` to the question
+ about whether to use clustering. Choose a node name that is different from

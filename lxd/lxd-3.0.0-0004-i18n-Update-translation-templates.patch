@@ -1,0 +1,5311 @@
+commit a3224b53ddf5eb5dc5cf8573d4d3ec946a389e44
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Fri Mar 30 11:26:26 2018 -0400
+
+    i18n: Update translation templates
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/po/de.po b/po/de.po
+index 4f88700b..136c83ca 100644
+--- a/po/de.po
++++ b/po/de.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2017-02-14 17:11+0000\n"
+ "Last-Translator: Tim Rose <tim@netlope.de>\n"
+ "Language-Team: German <https://hosted.weblate.org/projects/linux-containers/"
+@@ -416,7 +416,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr "Ungültige Abbild Eigenschaft: %s\n"
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -511,6 +511,11 @@ msgstr "Fingerabdruck des Zertifikats: % x\n"
+ msgid "Client certificate stored at server: "
+ msgstr "Gespeichertes Nutzerzertifikat auf dem Server: "
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -754,7 +759,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr "Kein Zertifikat für diese Verbindung"
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -797,7 +802,7 @@ msgstr "Kein Zertifikat für diese Verbindung"
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -1022,7 +1027,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ #, fuzzy
+ msgid "Force the container to shutdown"
+ msgstr "Herunterfahren des Containers erzwingen."
+@@ -1096,13 +1101,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ #, fuzzy
+ msgid "Ignore the container state"
+ msgstr "Herunterfahren des Containers erzwingen."
+@@ -1197,7 +1202,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "ungültiges Argument %s"
+@@ -1677,7 +1682,7 @@ msgstr "Kein Zertifikat für diese Verbindung"
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ #, fuzzy
+ msgid "Must supply container name for: "
+ msgstr "der Name des Ursprung Containers muss angegeben werden"
+@@ -2109,7 +2114,7 @@ msgstr "Herunterfahren des Containers erzwingen."
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -2163,6 +2168,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ #, fuzzy
+ msgid "Set container device configuration keys"
+@@ -2256,6 +2266,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2319,7 +2333,7 @@ msgstr "Größe: %.2vMB\n"
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, fuzzy, c-format
+ msgid "Some containers failed to %s"
+ msgstr "Anhalten des Containers fehlgeschlagen!"
+@@ -2333,7 +2347,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr "kann nicht zum selben Container Namen kopieren"
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2343,7 +2357,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ #, fuzzy
+ msgid "Stop containers"
+ msgstr "Anhalten des Containers fehlgeschlagen!"
+@@ -2401,7 +2415,7 @@ msgstr "Profil %s erstellt\n"
+ msgid "Storage volume moved successfully!"
+ msgstr "Profil %s erstellt\n"
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ #, fuzzy
+ msgid "Store the container state"
+ msgstr "Herunterfahren des Containers erzwingen."
+@@ -2478,7 +2492,7 @@ msgstr "entfernte Instanz %s existiert nicht"
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ #, fuzzy
+ msgid "Time to wait for the container before killing it"
+ msgstr "Wartezeit bevor der Container gestoppt wird."
+@@ -2500,7 +2514,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2526,7 +2540,7 @@ msgstr "kann nicht zum selben Container Namen kopieren"
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2886,7 +2900,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, fuzzy, c-format
+ msgid "error: %v"
+ msgstr "Fehler: %v\n"
+@@ -3477,7 +3491,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ #, fuzzy
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+@@ -3506,6 +3520,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3534,6 +3552,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/el.po b/po/el.po
+index 5734fb1a..8f4719f9 100644
+--- a/po/el.po
++++ b/po/el.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2017-02-14 08:00+0000\n"
+ "Last-Translator: Simos Xenitellis <simos.65@gmail.com>\n"
+ "Language-Team: Greek <https://hosted.weblate.org/projects/linux-containers/"
+@@ -308,7 +308,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -398,6 +398,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -627,7 +632,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -670,7 +675,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -885,7 +890,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -957,13 +962,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1056,7 +1061,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1497,7 +1502,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1910,7 +1915,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1962,6 +1967,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2050,6 +2060,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2111,7 +2125,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2124,7 +2138,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2134,7 +2148,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2188,7 +2202,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2259,7 +2273,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2279,7 +2293,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2305,7 +2319,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2645,7 +2659,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3194,7 +3208,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3219,6 +3233,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3247,6 +3265,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/es.po b/po/es.po
+index 03532f3e..8d369c9a 100644
+--- a/po/es.po
++++ b/po/es.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2018-02-10 11:39+0000\n"
+ "Last-Translator: Allan Esquivel Sibaja <allan.esquivel.sibaja@gmail.com>\n"
+ "Language-Team: Spanish <https://hosted.weblate.org/projects/linux-containers/"
+@@ -366,7 +366,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr "Propiedad mala: %s"
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr "Ambas: todas y el nombre del contenedor dado"
+ 
+@@ -455,6 +455,11 @@ msgstr "Certificado de la huella digital: %s"
+ msgid "Client certificate stored at server: "
+ msgstr "Certificado del cliente almacenado en el servidor:"
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -685,7 +690,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -728,7 +733,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -942,7 +947,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -1014,13 +1019,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1113,7 +1118,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1556,7 +1561,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1968,7 +1973,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -2020,6 +2025,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2108,6 +2118,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2169,7 +2183,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2182,7 +2196,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2192,7 +2206,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2246,7 +2260,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2317,7 +2331,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2337,7 +2351,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2363,7 +2377,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2704,7 +2718,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3253,7 +3267,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3278,6 +3292,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3306,6 +3324,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ #, fuzzy
+ msgid "volume"
+diff --git a/po/fa.po b/po/fa.po
+index 4ab1465f..30ba18b7 100644
+--- a/po/fa.po
++++ b/po/fa.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/fi.po b/po/fi.po
+index 879b5e03..efb3f316 100644
+--- a/po/fi.po
++++ b/po/fi.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/fr.po b/po/fr.po
+index 44f7f35e..36be3f8b 100644
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2018-03-06 13:50+0000\n"
+ "Last-Translator: Alban Vidal <alban.vidal@zordhak.fr>\n"
+ "Language-Team: French <https://hosted.weblate.org/projects/linux-containers/"
+@@ -409,7 +409,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr "Mauvaise propriété : %s"
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -503,6 +503,11 @@ msgstr "Empreinte du certificat : %s"
+ msgid "Client certificate stored at server: "
+ msgstr "Certificat client enregistré sur le serveur : "
+ 
++#: lxc/version.go:37
++#, fuzzy, c-format
++msgid "Client version: %s\n"
++msgstr "Afficher la version du client"
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -766,7 +771,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr "Copie de l'image : %s"
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -809,7 +814,7 @@ msgstr "Copie de l'image : %s"
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -1039,7 +1044,7 @@ msgstr "Forcer l'allocation d'un pseudo-terminal"
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr "Forcer le conteneur à s'arrêter"
+ 
+@@ -1117,7 +1122,7 @@ msgstr "IPv6"
+ msgid "ISSUE DATE"
+ msgstr "DATE D'ÉMISSION"
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ #, fuzzy
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+@@ -1126,7 +1131,7 @@ msgstr ""
+ "Si c'est la première fois que vous lancez LXD, vous devriez aussi lancer : "
+ "sudo lxd init"
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ #, fuzzy
+ msgid "Ignore the container state"
+ msgstr "Ignorer l'état du conteneur (seulement pour start)"
+@@ -1223,7 +1228,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "nombre d'arguments incorrect pour la sous-comande"
+@@ -1748,7 +1753,7 @@ msgstr "Copie de l'image : %s"
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr "Vous devez fournir le nom d'un conteneur pour : "
+ 
+@@ -2181,7 +2186,7 @@ msgstr "Forcer l'arrêt du conteneur (seulement pour stop)"
+ msgid "Retrieving image: %s"
+ msgstr "Récupération de l'image : %s"
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -2236,6 +2241,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr "Protocole du serveur (lxd ou simplestreams)"
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ #, fuzzy
+ msgid "Set container device configuration keys"
+@@ -2336,6 +2346,11 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr "Afficher les commandes moins communes"
+ 
++#: lxc/version.go:21 lxc/version.go:22
++#, fuzzy
++msgid "Show local and remote versions"
++msgstr "Afficher la version du client"
++
+ #: lxc/network.go:988 lxc/network.go:989
+ #, fuzzy
+ msgid "Show network configurations"
+@@ -2402,7 +2417,7 @@ msgstr "Taille : %.2f Mo"
+ msgid "Snapshots:"
+ msgstr "Instantanés :"
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, fuzzy, c-format
+ msgid "Some containers failed to %s"
+ msgstr "L'arrêt du conteneur a échoué !"
+@@ -2416,7 +2431,7 @@ msgstr "Source :"
+ msgid "Start containers"
+ msgstr "Création du conteneur"
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr "Démarrage de %s"
+@@ -2426,7 +2441,7 @@ msgstr "Démarrage de %s"
+ msgid "Status: %s"
+ msgstr "État : %s"
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ #, fuzzy
+ msgid "Stop containers"
+ msgstr "L'arrêt du conteneur a échoué !"
+@@ -2483,7 +2498,7 @@ msgstr "Image copiée avec succès !"
+ msgid "Storage volume moved successfully!"
+ msgstr "Image copiée avec succès !"
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ #, fuzzy
+ msgid "Store the container state"
+ msgstr "Forcer l'arrêt du conteneur (seulement pour stop)"
+@@ -2561,7 +2576,7 @@ msgstr "le périphérique indiqué ne correspond pas au réseau"
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr "Il n'existe pas d'\"image\".  Vouliez-vous un alias ?"
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr "Temps d'attente du conteneur avant de le tuer"
+ 
+@@ -2581,7 +2596,7 @@ msgstr "Pour créer un réseau, utiliser : lxc network create"
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ "Pour démarrer votre premier conteneur, essayer : lxc launch ubuntu:16.04"
+@@ -2608,7 +2623,7 @@ msgstr "Transfert de l'image : %s"
+ msgid "Transferring image: %s"
+ msgstr "Transfert de l'image : %s"
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr "Essayer `lxc info --show-log %s` pour plus d'informations"
+@@ -2977,7 +2992,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr "activé"
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr "erreur : %v"
+@@ -3603,7 +3618,7 @@ msgstr "à suivi d'état"
+ msgid "stateless"
+ msgstr "sans suivi d'état"
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ #, fuzzy
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+@@ -3632,6 +3647,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3660,6 +3679,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ #, fuzzy
+ msgid "volume"
+@@ -3728,9 +3751,6 @@ msgstr "oui"
+ #~ msgid "Show all commands (not just interesting ones)"
+ #~ msgstr "Afficher toutes les comandes (pas seulement les plus intéressantes)"
+ 
+-#~ msgid "Show client version"
+-#~ msgstr "Afficher la version du client"
+-
+ #~ msgid "Unable to find help2man."
+ #~ msgstr "Impossible de trouver help2man."
+ 
+diff --git a/po/hi.po b/po/hi.po
+index 52a4e18b..711eb1e0 100644
+--- a/po/hi.po
++++ b/po/hi.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/id.po b/po/id.po
+index 2c26085b..4cccc3aa 100644
+--- a/po/id.po
++++ b/po/id.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/it.po b/po/it.po
+index 8d3436b0..d4d68b38 100644
+--- a/po/it.po
++++ b/po/it.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2017-08-18 14:22+0000\n"
+ "Last-Translator: Alberto Donato <alberto.donato@gmail.com>\n"
+ "Language-Team: Italian <https://hosted.weblate.org/projects/linux-containers/"
+@@ -331,7 +331,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr "Proprietà errata: %s"
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -421,6 +421,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr "Certificato del client salvato dal server: "
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -652,7 +657,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -695,7 +700,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -910,7 +915,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -982,13 +987,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ #, fuzzy
+ msgid "Ignore the container state"
+ msgstr "Creazione del container in corso"
+@@ -1082,7 +1087,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "numero errato di argomenti del sottocomando"
+@@ -1528,7 +1533,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1942,7 +1947,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1994,6 +1999,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2082,6 +2092,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2143,7 +2157,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2157,7 +2171,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr "Creazione del container in corso"
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2167,7 +2181,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2221,7 +2235,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ #, fuzzy
+ msgid "Store the container state"
+ msgstr "Creazione del container in corso"
+@@ -2294,7 +2308,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2314,7 +2328,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2340,7 +2354,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2682,7 +2696,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3231,7 +3245,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr "senza stato"
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3256,6 +3270,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3284,6 +3302,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ #, fuzzy
+ msgid "volume"
+diff --git a/po/ja.po b/po/ja.po
+index c7a8ef46..798862d1 100644
+--- a/po/ja.po
++++ b/po/ja.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: LXD\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2018-03-01 17:11+0000\n"
+ "Last-Translator: KATOH Yasufumi <karma@jazz.email.ne.jp>\n"
+ "Language-Team: Japanese <https://hosted.weblate.org/projects/linux-"
+@@ -315,7 +315,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr "不正なイメージプロパティ形式: %s"
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr "--all とコンテナ名を両方同時に指定することはできません"
+ 
+@@ -407,6 +407,11 @@ msgstr "証明書のフィンガープリント: %s"
+ msgid "Client certificate stored at server: "
+ msgstr "クライアント証明書がサーバに格納されました: "
+ 
++#: lxc/version.go:37
++#, fuzzy, c-format
++msgid "Client version: %s\n"
++msgstr "クライアントのバージョンを表示します"
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -665,7 +670,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr "ストレージボリュームの移動中: %s"
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -708,7 +713,7 @@ msgstr "ストレージボリュームの移動中: %s"
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -942,7 +947,7 @@ msgstr "強制的に擬似端末を割り当てます"
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr "コンテナを強制シャットダウンします"
+ 
+@@ -1017,13 +1022,13 @@ msgstr "IPV6"
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr "初めてこのマシンで LXD を使う場合、lxd init と実行する必要があります"
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ #, fuzzy
+ msgid "Ignore the container state"
+ msgstr "コンテナの状態を無視します (startのみ)"
+@@ -1118,7 +1123,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ #, fuzzy
+ msgid "Invalid number of arguments"
+ msgstr "不正な引数 %s"
+@@ -1683,7 +1688,7 @@ msgstr "ストレージボリュームの移動中: %s"
+ msgid "Must run as root to import from directory"
+ msgstr "ディレクトリからのインポートは root で実行する必要があります"
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr "コンテナ名を指定する必要があります: "
+ 
+@@ -2111,7 +2116,7 @@ msgstr "コンテナのコンソールログを取得します"
+ msgid "Retrieving image: %s"
+ msgstr "イメージの取得中: %s"
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr "すべてのコンテナに対してコマンドを実行します"
+ 
+@@ -2163,6 +2168,11 @@ msgstr "認証後、サーバが我々を信用していません"
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr "サーバのプロトコル (lxd or simplestreams)"
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ #, fuzzy
+ msgid "Set container device configuration keys"
+@@ -2263,6 +2273,11 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr "全てのコマンドを表示します (主なコマンドだけではなく)"
+ 
++#: lxc/version.go:21 lxc/version.go:22
++#, fuzzy
++msgid "Show local and remote versions"
++msgstr "クライアントのバージョンを表示します"
++
+ #: lxc/network.go:988 lxc/network.go:989
+ #, fuzzy
+ msgid "Show network configurations"
+@@ -2330,7 +2345,7 @@ msgstr "サイズ: %.2fMB"
+ msgid "Snapshots:"
+ msgstr "スナップショット:"
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr "一部のコンテナで %s が失敗しました"
+@@ -2344,7 +2359,7 @@ msgstr "取得元:"
+ msgid "Start containers"
+ msgstr "コンテナを起動します。"
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr "%s を起動中"
+@@ -2354,7 +2369,7 @@ msgstr "%s を起動中"
+ msgid "Status: %s"
+ msgstr "状態: %s"
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ #, fuzzy
+ msgid "Stop containers"
+ msgstr "コンテナを停止します。"
+@@ -2409,7 +2424,7 @@ msgstr "ストレージボリュームのコピーが成功しました!"
+ msgid "Storage volume moved successfully!"
+ msgstr "ストレージボリュームの移動が成功しました!"
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ #, fuzzy
+ msgid "Store the container state"
+ msgstr "コンテナの状態を保存します (stopのみ)"
+@@ -2488,7 +2503,7 @@ msgstr ""
+ "publish 先にはイメージ名は指定できません。\"--alias\" オプションを使ってくだ"
+ "さい。"
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr "コンテナを強制停止するまでの時間"
+ 
+@@ -2510,7 +2525,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr "コンソールから切り離すには <ctrl>+a q を押します"
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ "初めてコンテナを起動するには、\"lxc launch ubuntu:16.04\" と実行してみてくだ"
+@@ -2540,7 +2555,7 @@ msgstr "コンテナを転送中: %s"
+ msgid "Transferring image: %s"
+ msgstr "イメージを転送中: %s"
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr "更に情報を得るために `lxc info --show-log %s` を実行してみてください"
+@@ -2906,7 +2921,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr "有効"
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr "エラー: %v"
+@@ -3530,7 +3545,7 @@ msgstr "ステートフル"
+ msgid "stateless"
+ msgstr "ステートレス"
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ #, fuzzy
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+@@ -3559,6 +3574,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3587,6 +3606,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ #, fuzzy
+ msgid "volume"
+@@ -3653,9 +3676,6 @@ msgstr ""
+ #~ msgid "Show all commands (not just interesting ones)"
+ #~ msgstr "全てコマンドを表示します (主なコマンドだけではなく)"
+ 
+-#~ msgid "Show client version"
+-#~ msgstr "クライアントのバージョンを表示します"
+-
+ #~ msgid "Unable to find help2man."
+ #~ msgstr "help2man が見つかりません。"
+ 
+diff --git a/po/lxd.pot b/po/lxd.pot
+index fa142923..d8a3d8d4 100644
+--- a/po/lxd.pot
++++ b/po/lxd.pot
+@@ -7,7 +7,7 @@
+ msgid   ""
+ msgstr  "Project-Id-Version: lxd\n"
+         "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-        "POT-Creation-Date: 2018-03-29 15:37-0400\n"
++        "POT-Creation-Date: 2018-03-30 11:25-0400\n"
+         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+         "Language-Team: LANGUAGE <LL@li.org>\n"
+@@ -296,7 +296,7 @@ msgstr  ""
+ msgid   "Bad property: %s"
+ msgstr  ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid   "Both --all and container name given"
+ msgstr  ""
+ 
+@@ -384,6 +384,11 @@ msgstr  ""
+ msgid   "Client certificate stored at server: "
+ msgstr  ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid   "Client version: %s\n"
++msgstr  ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992 lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576 lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287 lxc/storage_volume.go:429 lxc/storage_volume.go:504 lxc/storage_volume.go:730 lxc/storage_volume.go:856 lxc/storage_volume.go:998 lxc/storage_volume.go:1028 lxc/storage_volume.go:1092 lxc/storage_volume.go:1175 lxc/storage_volume.go:1244
+ msgid   "Cluster member name"
+ msgstr  ""
+@@ -600,7 +605,7 @@ msgstr  ""
+ msgid   "Delete storage volumes"
+ msgstr  ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91 lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147 lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142 lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88 lxc/config.go:289 lxc/config.go:355 lxc/config.go:452 lxc/config.go:560 lxc/config_device.go:24 lxc/config_device.go:76 lxc/config_device.go:179 lxc/config_device.go:252 lxc/config_device.go:318 lxc/config_device.go:405 lxc/config_device.go:493 lxc/config_device.go:582 lxc/config_device.go:650 lxc/config_metadata.go:29 lxc/config_metadata.go:54 lxc/config_metadata.go:176 lxc/config_template.go:30 lxc/config_template.go:67 lxc/config_template.go:110 lxc/config_template.go:152 lxc/config_template.go:236 lxc/config_template.go:298 lxc/config_trust.go:30 lxc/config_trust.go:59 lxc/config_trust.go:115 lxc/config_trust.go:197 lxc/console.go:32 lxc/copy.go:35 lxc/delete.go:30 lxc/exec.go:39 lxc/file.go:40 lxc/file.go:73 lxc/file.go:122 lxc/file.go:185 lxc/file.go:324 lxc/image.go:42 lxc/image.go:131 lxc/image.go:261 lxc/image.go:312 lxc/image.go:435 lxc/image.go:571 lxc/image.go:776 lxc/image.go:890 lxc/image.go:1212 lxc/image.go:1285 lxc/image_alias.go:26 lxc/image_alias.go:59 lxc/image_alias.go:106 lxc/image_alias.go:149 lxc/image_alias.go:250 lxc/info.go:29 lxc/init.go:35 lxc/launch.go:22 lxc/list.go:48 lxc/main.go:46 lxc/manpage.go:19 lxc/monitor.go:31 lxc/move.go:31 lxc/network.go:32 lxc/network.go:104 lxc/network.go:177 lxc/network.go:250 lxc/network.go:320 lxc/network.go:367 lxc/network.go:452 lxc/network.go:537 lxc/network.go:660 lxc/network.go:719 lxc/network.go:808 lxc/network.go:873 lxc/network.go:920 lxc/network.go:989 lxc/network.go:1051 lxc/operation.go:25 lxc/operation.go:54 lxc/operation.go:98 lxc/operation.go:174 lxc/profile.go:30 lxc/profile.go:102 lxc/profile.go:163 lxc/profile.go:241 lxc/profile.go:297 lxc/profile.go:348 lxc/profile.go:396 lxc/profile.go:520 lxc/profile.go:568 lxc/profile.go:632 lxc/profile.go:705 lxc/profile.go:753 lxc/profile.go:812 lxc/profile.go:866 lxc/publish.go:34 lxc/query.go:27 lxc/remote.go:34 lxc/remote.go:84 lxc/remote.go:380 lxc/remote.go:414 lxc/remote.go:487 lxc/remote.go:549 lxc/remote.go:598 lxc/remote.go:636 lxc/rename.go:20 lxc/restore.go:24 lxc/snapshot.go:21 lxc/storage.go:33 lxc/storage.go:89 lxc/storage.go:161 lxc/storage.go:208 lxc/storage.go:328 lxc/storage.go:383 lxc/storage.go:491 lxc/storage.go:573 lxc/storage.go:645 lxc/storage.go:729 lxc/storage_volume.go:34 lxc/storage_volume.go:122 lxc/storage_volume.go:201 lxc/storage_volume.go:283 lxc/storage_volume.go:426 lxc/storage_volume.go:501 lxc/storage_volume.go:561 lxc/storage_volume.go:643 lxc/storage_volume.go:724 lxc/storage_volume.go:853 lxc/storage_volume.go:918 lxc/storage_volume.go:994 lxc/storage_volume.go:1025 lxc/storage_volume.go:1089 lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90 lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147 lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142 lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88 lxc/config.go:289 lxc/config.go:355 lxc/config.go:452 lxc/config.go:560 lxc/config_device.go:24 lxc/config_device.go:76 lxc/config_device.go:179 lxc/config_device.go:252 lxc/config_device.go:318 lxc/config_device.go:405 lxc/config_device.go:493 lxc/config_device.go:582 lxc/config_device.go:650 lxc/config_metadata.go:29 lxc/config_metadata.go:54 lxc/config_metadata.go:176 lxc/config_template.go:30 lxc/config_template.go:67 lxc/config_template.go:110 lxc/config_template.go:152 lxc/config_template.go:236 lxc/config_template.go:298 lxc/config_trust.go:30 lxc/config_trust.go:59 lxc/config_trust.go:115 lxc/config_trust.go:197 lxc/console.go:32 lxc/copy.go:35 lxc/delete.go:30 lxc/exec.go:39 lxc/file.go:40 lxc/file.go:73 lxc/file.go:122 lxc/file.go:185 lxc/file.go:324 lxc/image.go:42 lxc/image.go:131 lxc/image.go:261 lxc/image.go:312 lxc/image.go:435 lxc/image.go:571 lxc/image.go:776 lxc/image.go:890 lxc/image.go:1212 lxc/image.go:1285 lxc/image_alias.go:26 lxc/image_alias.go:59 lxc/image_alias.go:106 lxc/image_alias.go:149 lxc/image_alias.go:250 lxc/info.go:29 lxc/init.go:35 lxc/launch.go:22 lxc/list.go:48 lxc/main.go:46 lxc/manpage.go:19 lxc/monitor.go:31 lxc/move.go:31 lxc/network.go:32 lxc/network.go:104 lxc/network.go:177 lxc/network.go:250 lxc/network.go:320 lxc/network.go:367 lxc/network.go:452 lxc/network.go:537 lxc/network.go:660 lxc/network.go:719 lxc/network.go:808 lxc/network.go:873 lxc/network.go:920 lxc/network.go:989 lxc/network.go:1051 lxc/operation.go:25 lxc/operation.go:54 lxc/operation.go:98 lxc/operation.go:174 lxc/profile.go:30 lxc/profile.go:102 lxc/profile.go:163 lxc/profile.go:241 lxc/profile.go:297 lxc/profile.go:348 lxc/profile.go:396 lxc/profile.go:520 lxc/profile.go:568 lxc/profile.go:632 lxc/profile.go:705 lxc/profile.go:753 lxc/profile.go:812 lxc/profile.go:866 lxc/publish.go:34 lxc/query.go:27 lxc/remote.go:34 lxc/remote.go:84 lxc/remote.go:380 lxc/remote.go:414 lxc/remote.go:487 lxc/remote.go:549 lxc/remote.go:598 lxc/remote.go:636 lxc/rename.go:20 lxc/restore.go:24 lxc/snapshot.go:21 lxc/storage.go:33 lxc/storage.go:89 lxc/storage.go:161 lxc/storage.go:208 lxc/storage.go:328 lxc/storage.go:383 lxc/storage.go:491 lxc/storage.go:573 lxc/storage.go:645 lxc/storage.go:729 lxc/storage_volume.go:34 lxc/storage_volume.go:122 lxc/storage_volume.go:201 lxc/storage_volume.go:283 lxc/storage_volume.go:426 lxc/storage_volume.go:501 lxc/storage_volume.go:561 lxc/storage_volume.go:643 lxc/storage_volume.go:724 lxc/storage_volume.go:853 lxc/storage_volume.go:918 lxc/storage_volume.go:994 lxc/storage_volume.go:1025 lxc/storage_volume.go:1089 lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid   "Description"
+ msgstr  ""
+ 
+@@ -811,7 +816,7 @@ msgstr  ""
+ msgid   "Force removing a member, even if degraded"
+ msgstr  ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid   "Force the container to shutdown"
+ msgstr  ""
+ 
+@@ -883,11 +888,11 @@ msgstr  ""
+ msgid   "ISSUE DATE"
+ msgstr  ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid   "If this is your first time running LXD on this machine, you should also run: lxd init"
+ msgstr  ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid   "Ignore the container state"
+ msgstr  ""
+ 
+@@ -978,7 +983,7 @@ msgstr  ""
+ msgid   "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr  ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid   "Invalid number of arguments"
+ msgstr  ""
+ 
+@@ -1392,7 +1397,7 @@ msgstr  ""
+ msgid   "Must run as root to import from directory"
+ msgstr  ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid   "Must supply container name for: "
+ msgstr  ""
+ 
+@@ -1798,7 +1803,7 @@ msgstr  ""
+ msgid   "Retrieving image: %s"
+ msgstr  ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid   "Run command against all containers"
+ msgstr  ""
+ 
+@@ -1850,6 +1855,11 @@ msgstr  ""
+ msgid   "Server protocol (lxd or simplestreams)"
+ msgstr  ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid   "Server version: %s\n"
++msgstr  ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid   "Set container device configuration keys"
+ msgstr  ""
+@@ -1938,6 +1948,10 @@ msgstr  ""
+ msgid   "Show less common commands"
+ msgstr  ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid   "Show local and remote versions"
++msgstr  ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid   "Show network configurations"
+ msgstr  ""
+@@ -1999,7 +2013,7 @@ msgstr  ""
+ msgid   "Snapshots:"
+ msgstr  ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid   "Some containers failed to %s"
+ msgstr  ""
+@@ -2012,7 +2026,7 @@ msgstr  ""
+ msgid   "Start containers"
+ msgstr  ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid   "Starting %s"
+ msgstr  ""
+@@ -2022,7 +2036,7 @@ msgstr  ""
+ msgid   "Status: %s"
+ msgstr  ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid   "Stop containers"
+ msgstr  ""
+ 
+@@ -2076,7 +2090,7 @@ msgstr  ""
+ msgid   "Storage volume moved successfully!"
+ msgstr  ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid   "Store the container state"
+ msgstr  ""
+ 
+@@ -2142,7 +2156,7 @@ msgstr  ""
+ msgid   "There is no \"image name\".  Did you want an alias?"
+ msgstr  ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid   "Time to wait for the container before killing it"
+ msgstr  ""
+ 
+@@ -2162,7 +2176,7 @@ msgstr  ""
+ msgid   "To detach from the console, press: <ctrl>+a q"
+ msgstr  ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid   "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr  ""
+ 
+@@ -2188,7 +2202,7 @@ msgstr  ""
+ msgid   "Transferring image: %s"
+ msgstr  ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid   "Try `lxc info --show-log %s` for more info"
+ msgstr  ""
+@@ -2517,7 +2531,7 @@ msgstr  ""
+ msgid   "enabled"
+ msgstr  ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid   "error: %v"
+ msgstr  ""
+@@ -3024,7 +3038,7 @@ msgstr  ""
+ msgid   "stateless"
+ msgstr  ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid   "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr  ""
+ 
+@@ -3049,6 +3063,10 @@ msgstr  ""
+ msgid   "trust"
+ msgstr  ""
+ 
++#: lxc/version.go:48
++msgid   "unreachable"
++msgstr  ""
++
+ #: lxc/config_device.go:648
+ msgid   "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr  ""
+@@ -3077,6 +3095,10 @@ msgstr  ""
+ msgid   "used by"
+ msgstr  ""
+ 
++#: lxc/version.go:20
++msgid   "version [<remote>:]"
++msgstr  ""
++
+ #: lxc/storage_volume.go:32
+ msgid   "volume"
+ msgstr  ""
+diff --git a/po/nb_NO.po b/po/nb_NO.po
+index 29290104..3a847b2c 100644
+--- a/po/nb_NO.po
++++ b/po/nb_NO.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/nl.po b/po/nl.po
+index cc8fd163..b729d880 100644
+--- a/po/nl.po
++++ b/po/nl.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/pa.po b/po/pa.po
+index b7b42397..d1f5737b 100644
+--- a/po/pa.po
++++ b/po/pa.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/pl.po b/po/pl.po
+index 070ff76c..e6f94e82 100644
+--- a/po/pl.po
++++ b/po/pl.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/pt_BR.po b/po/pt_BR.po
+index fc982d7a..fecb480c 100644
+--- a/po/pt_BR.po
++++ b/po/pt_BR.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2018-03-08 09:21+0000\n"
+ "Last-Translator: Paulo Coghi <paulo@coghi.com.br>\n"
+ "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+@@ -322,7 +322,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -411,6 +411,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -640,7 +645,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -683,7 +688,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -897,7 +902,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -969,13 +974,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1068,7 +1073,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1508,7 +1513,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1920,7 +1925,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1972,6 +1977,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2060,6 +2070,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2121,7 +2135,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2134,7 +2148,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2144,7 +2158,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2198,7 +2212,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2269,7 +2283,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2289,7 +2303,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2315,7 +2329,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2655,7 +2669,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3204,7 +3218,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3229,6 +3243,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3257,6 +3275,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/ru.po b/po/ru.po
+index ff9abca0..3ce4c83d 100644
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: 2017-09-05 16:48+0000\n"
+ "Last-Translator: Ilya Yakimavets <ilya.yakimavets@backend.expert>\n"
+ "Language-Team: Russian <https://hosted.weblate.org/projects/linux-containers/"
+@@ -393,7 +393,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -484,6 +484,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr "Сертификат клиента хранится на сервере: "
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -721,7 +726,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr "Копирование образа: %s"
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -764,7 +769,7 @@ msgstr "Копирование образа: %s"
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -981,7 +986,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -1053,13 +1058,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ #, fuzzy
+ msgid "Ignore the container state"
+ msgstr "Невозможно добавить имя контейнера в список"
+@@ -1154,7 +1159,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1604,7 +1609,7 @@ msgstr "Копирование образа: %s"
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -2021,7 +2026,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -2073,6 +2078,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2163,6 +2173,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2224,7 +2238,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, fuzzy, c-format
+ msgid "Some containers failed to %s"
+ msgstr "Невозможно добавить имя контейнера в список"
+@@ -2237,7 +2251,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2247,7 +2261,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ #, fuzzy
+ msgid "Stop containers"
+ msgstr "Невозможно добавить имя контейнера в список"
+@@ -2302,7 +2316,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ #, fuzzy
+ msgid "Store the container state"
+ msgstr "Невозможно добавить имя контейнера в список"
+@@ -2374,7 +2388,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2394,7 +2408,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2420,7 +2434,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2773,7 +2787,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3354,7 +3368,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ #, fuzzy
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+@@ -3383,6 +3397,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3411,6 +3429,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ #, fuzzy
+ msgid "volume"
+diff --git a/po/sr.po b/po/sr.po
+index ae46b359..980c5a88 100644
+--- a/po/sr.po
++++ b/po/sr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/sv.po b/po/sv.po
+index 6bc1fe11..02514fb9 100644
+--- a/po/sv.po
++++ b/po/sv.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/tr.po b/po/tr.po
+index 838f2318..abc05177 100644
+--- a/po/tr.po
++++ b/po/tr.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/uk.po b/po/uk.po
+index e9a1cf5f..e8670f5d 100644
+--- a/po/uk.po
++++ b/po/uk.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/zh.po b/po/zh.po
+index d3be45d3..a2ba0a91 100644
+--- a/po/zh.po
++++ b/po/zh.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""
+diff --git a/po/zh_Hans.po b/po/zh_Hans.po
+index d38426f5..03cbc97c 100644
+--- a/po/zh_Hans.po
++++ b/po/zh_Hans.po
+@@ -7,7 +7,7 @@ msgid ""
+ msgstr ""
+ "Project-Id-Version: lxd\n"
+ "Report-Msgid-Bugs-To: lxc-devel@lists.linuxcontainers.org\n"
+-"POT-Creation-Date: 2018-03-29 15:37-0400\n"
++"POT-Creation-Date: 2018-03-30 11:25-0400\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: Automatically generated\n"
+ "Language-Team: none\n"
+@@ -305,7 +305,7 @@ msgstr ""
+ msgid "Bad property: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:212
++#: lxc/action.go:210
+ msgid "Both --all and container name given"
+ msgstr ""
+ 
+@@ -394,6 +394,11 @@ msgstr ""
+ msgid "Client certificate stored at server: "
+ msgstr ""
+ 
++#: lxc/version.go:37
++#, c-format
++msgid "Client version: %s\n"
++msgstr ""
++
+ #: lxc/network.go:253 lxc/network.go:663 lxc/network.go:923 lxc/network.go:992
+ #: lxc/network.go:1054 lxc/storage.go:92 lxc/storage.go:331 lxc/storage.go:576
+ #: lxc/storage.go:649 lxc/storage.go:732 lxc/storage_volume.go:287
+@@ -623,7 +628,7 @@ msgstr ""
+ msgid "Delete storage volumes"
+ msgstr ""
+ 
+-#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:91
++#: lxc/action.go:30 lxc/action.go:49 lxc/action.go:69 lxc/action.go:90
+ #: lxc/alias.go:23 lxc/alias.go:55 lxc/alias.go:99 lxc/alias.go:147
+ #: lxc/alias.go:198 lxc/cluster.go:26 lxc/cluster.go:59 lxc/cluster.go:142
+ #: lxc/cluster.go:192 lxc/cluster.go:238 lxc/config.go:29 lxc/config.go:88
+@@ -666,7 +671,7 @@ msgstr ""
+ #: lxc/storage_volume.go:724 lxc/storage_volume.go:853
+ #: lxc/storage_volume.go:918 lxc/storage_volume.go:994
+ #: lxc/storage_volume.go:1025 lxc/storage_volume.go:1089
+-#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241
++#: lxc/storage_volume.go:1166 lxc/storage_volume.go:1241 lxc/version.go:22
+ msgid "Description"
+ msgstr ""
+ 
+@@ -880,7 +885,7 @@ msgstr ""
+ msgid "Force removing a member, even if degraded"
+ msgstr ""
+ 
+-#: lxc/action.go:121
++#: lxc/action.go:119
+ msgid "Force the container to shutdown"
+ msgstr ""
+ 
+@@ -952,13 +957,13 @@ msgstr ""
+ msgid "ISSUE DATE"
+ msgstr ""
+ 
+-#: lxc/main.go:264
++#: lxc/main.go:268
+ msgid ""
+ "If this is your first time running LXD on this machine, you should also run: "
+ "lxd init"
+ msgstr ""
+ 
+-#: lxc/action.go:117
++#: lxc/action.go:115
+ msgid "Ignore the container state"
+ msgstr ""
+ 
+@@ -1051,7 +1056,7 @@ msgid ""
+ "Invalid name in '%s', empty string is only allowed when defining maxWidth"
+ msgstr ""
+ 
+-#: lxc/main.go:346
++#: lxc/main.go:350
+ msgid "Invalid number of arguments"
+ msgstr ""
+ 
+@@ -1491,7 +1496,7 @@ msgstr ""
+ msgid "Must run as root to import from directory"
+ msgstr ""
+ 
+-#: lxc/action.go:147
++#: lxc/action.go:145
+ msgid "Must supply container name for: "
+ msgstr ""
+ 
+@@ -1903,7 +1908,7 @@ msgstr ""
+ msgid "Retrieving image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:112
++#: lxc/action.go:110
+ msgid "Run command against all containers"
+ msgstr ""
+ 
+@@ -1955,6 +1960,11 @@ msgstr ""
+ msgid "Server protocol (lxd or simplestreams)"
+ msgstr ""
+ 
++#: lxc/version.go:58
++#, c-format
++msgid "Server version: %s\n"
++msgstr ""
++
+ #: lxc/config_device.go:492 lxc/config_device.go:493
+ msgid "Set container device configuration keys"
+ msgstr ""
+@@ -2043,6 +2053,10 @@ msgstr ""
+ msgid "Show less common commands"
+ msgstr ""
+ 
++#: lxc/version.go:21 lxc/version.go:22
++msgid "Show local and remote versions"
++msgstr ""
++
+ #: lxc/network.go:988 lxc/network.go:989
+ msgid "Show network configurations"
+ msgstr ""
+@@ -2104,7 +2118,7 @@ msgstr ""
+ msgid "Snapshots:"
+ msgstr ""
+ 
+-#: lxc/action.go:242
++#: lxc/action.go:240
+ #, c-format
+ msgid "Some containers failed to %s"
+ msgstr ""
+@@ -2117,7 +2131,7 @@ msgstr ""
+ msgid "Start containers"
+ msgstr ""
+ 
+-#: lxc/launch.go:62
++#: lxc/launch.go:63
+ #, c-format
+ msgid "Starting %s"
+ msgstr ""
+@@ -2127,7 +2141,7 @@ msgstr ""
+ msgid "Status: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:90 lxc/action.go:91
++#: lxc/action.go:89 lxc/action.go:90
+ msgid "Stop containers"
+ msgstr ""
+ 
+@@ -2181,7 +2195,7 @@ msgstr ""
+ msgid "Storage volume moved successfully!"
+ msgstr ""
+ 
+-#: lxc/action.go:115
++#: lxc/action.go:113
+ msgid "Store the container state"
+ msgstr ""
+ 
+@@ -2252,7 +2266,7 @@ msgstr ""
+ msgid "There is no \"image name\".  Did you want an alias?"
+ msgstr ""
+ 
+-#: lxc/action.go:122
++#: lxc/action.go:120
+ msgid "Time to wait for the container before killing it"
+ msgstr ""
+ 
+@@ -2272,7 +2286,7 @@ msgstr ""
+ msgid "To detach from the console, press: <ctrl>+a q"
+ msgstr ""
+ 
+-#: lxc/main.go:265
++#: lxc/main.go:269
+ msgid "To start your first container, try: lxc launch ubuntu:16.04"
+ msgstr ""
+ 
+@@ -2298,7 +2312,7 @@ msgstr ""
+ msgid "Transferring image: %s"
+ msgstr ""
+ 
+-#: lxc/action.go:181 lxc/launch.go:80
++#: lxc/action.go:179 lxc/launch.go:81
+ #, c-format
+ msgid "Try `lxc info --show-log %s` for more info"
+ msgstr ""
+@@ -2638,7 +2652,7 @@ msgstr ""
+ msgid "enabled"
+ msgstr ""
+ 
+-#: lxc/action.go:234
++#: lxc/action.go:232
+ #, c-format
+ msgid "error: %v"
+ msgstr ""
+@@ -3187,7 +3201,7 @@ msgstr ""
+ msgid "stateless"
+ msgstr ""
+ 
+-#: lxc/action.go:89
++#: lxc/action.go:88
+ msgid "stop [<remote>:]<container> [[<remote>:]<container>...]"
+ msgstr ""
+ 
+@@ -3212,6 +3226,10 @@ msgstr ""
+ msgid "trust"
+ msgstr ""
+ 
++#: lxc/version.go:48
++msgid "unreachable"
++msgstr ""
++
+ #: lxc/config_device.go:648
+ msgid "unset [<remote>:]<container|profile> <device> <key>"
+ msgstr ""
+@@ -3240,6 +3258,10 @@ msgstr ""
+ msgid "used by"
+ msgstr ""
+ 
++#: lxc/version.go:20
++msgid "version [<remote>:]"
++msgstr ""
++
+ #: lxc/storage_volume.go:32
+ msgid "volume"
+ msgstr ""

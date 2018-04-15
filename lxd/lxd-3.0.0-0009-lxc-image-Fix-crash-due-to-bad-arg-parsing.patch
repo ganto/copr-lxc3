@@ -1,0 +1,20 @@
+commit c47a6a924e08035e4f5b692468318b679e9fe0ac
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Mon Apr 2 01:11:43 2018 -0400
+
+    lxc/image: Fix crash due to bad arg parsing
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/lxc/image.go b/lxc/image.go
+index 26e633ef..7baac50d 100644
+--- a/lxc/image.go
++++ b/lxc/image.go
+@@ -642,7 +642,6 @@ func (c *cmdImageImport) Run(cmd *cobra.Command, args []string) error {
+ 
+ 	if imageFile == "" {
+ 		imageFile = args[0]
+-		properties = properties[1:]
+ 	}
+ 
+ 	if shared.PathExists(shared.HostPath(filepath.Clean(imageFile))) {
