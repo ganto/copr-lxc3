@@ -1058,6 +1058,11 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sun Apr 15 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.2
+- Add bundled modules to devel
+- Use new LXD_SOCKET option and set it to /run/lxd.socket
+- Add upstream patches according to lxd-3.0.0-0ubuntu3
+
 * Mon Apr 02 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
 - Update to 3.0.0
 - Build with bundled go dependencies by default
