@@ -1,72 +1,89 @@
-Name:       lxcfs
-Version:    3.0.0
-Release:    0.1%{?dist}
-Summary:    FUSE filesystem for LXC
+Name:		  lxcfs
+Version:	  3.0.0
+Release:	  0.2%{?dist}
+Summary:	  FUSE based filesystem for LXC
+License:	  ASL 2.0
+URL:		  https://linuxcontainers.org/lxcfs
+Source0:	  https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	  gcc
+BuildRequires:	  gawk
+BuildRequires:	  make
+BuildRequires:	  fuse-devel
+BuildRequires:	  help2man
+BuildRequires:	  systemd
+Requires(post):	  systemd
+Requires(preun):  systemd
+Requires(postun): systemd
+# for /usr/share/lxc/config/common.conf.d:
+Requires:	  lxc-templates
 
-License:    ASL 2.0
-URL:        https://linuxcontainers.org
-Source0:    https://github.com/lxc/lxcfs/archive/%{name}-%{version}.tar.gz
-Patch0:     lxcfs-2.0.5-Fix-systemd-unit-directory.patch
-Patch1:     lxcfs-2.0.5-Fix-fusermount-path.patch
-
-BuildRequires: autoconf
-BuildRequires: automake
-BuildRequires: help2man
-BuildRequires: libtool
-BuildRequires: pkgconfig
-BuildRequires: pkgconfig(fuse)
-BuildRequires: systemd
-
-%{?systemd_requires}
-
-AutoProv:      no
 
 %description
-LXCFS is a simple userspace filesystem designed to work
-around some current limitations of the Linux kernel.
+LXCFS is a simple userspace filesystem designed to work around some
+current limitations of the Linux kernel.
 
 Specifically, it's providing two main things
 
-- A set of files which can be bind-mounted over their
-  /proc originals to provide CGroup-aware values.
-- A cgroupfs-like tree which is container aware. The
-  code is pretty simple, written in C using libfuse
-  and glib.
+- A set of files which can be bind-mounted over their /proc originals
+  to provide CGroup-aware values.
+
+- A cgroupfs-like tree which is container aware.
+
+The code is pretty simple, written in C using libfuse.
+
+The main driver for this work was the need to run systemd based
+containers as a regular unprivileged user while still allowing systemd
+inside the container to interact with cgroups.
+
+Now with the introduction of the cgroup namespace in the Linux kernel,
+that part is no longer necessary on recent kernels and focus is now on
+making containers feel more like a real independent system through the
+proc masking feature.
+
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%autosetup
+
 
 %build
-autoreconf --force --install
-# RHEL still defaults to sysvinit
-%configure --with-init-script=systemd
+%configure
 make %{?_smp_mflags}
 
+
 %install
-make install DESTDIR=%{buildroot} %{?_smp_mflags}
-install -d -m 0755 %{buildroot}%{_localstatedir}/lib/%{name}/
-rm -f %{buildroot}%{_libdir}/%{name}/liblxcfs.la
+%make_install SYSTEMD_UNIT_DIR=%{_unitdir}
+mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
+
 
 %post
 %systemd_post %{name}.service
 
+
 %preun
 %systemd_preun %{name}.service
+
 
 %postun
 %systemd_postun %{name}.service
 
+
 %files
-%defattr(-,root,root)
 %doc AUTHORS
+# empty:
+#doc ChangeLog NEWS README
 %license COPYING
-%{_bindir}/*
-%{_datadir}/lxc
-%{_datadir}/%{name}
-%{_libdir}/%{name}
-%{_mandir}/man1/*
+%{_bindir}/lxcfs
+%dir %{_libdir}/%{name}
+%{_libdir}/%{name}/lib%{name}.so
+%exclude %{_libdir}/%{name}/lib%{name}.la
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/lxc.mount.hook
+%{_datadir}/%{name}/lxc.reboot.hook
+%{_mandir}/man1/%{name}.1*
 %{_unitdir}/%{name}.service
-%dir %{_localstatedir}/lib/%{name}
+%{_datadir}/lxc/config/common.conf.d/00-lxcfs.conf
+%dir %{_sharedstatedir}/%{name}
+
 
 %changelog
 * Sat Mar 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
