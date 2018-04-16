@@ -1,0 +1,7 @@
+# -*- python -*-
+
+# This line is mandatory to access the configuration functions
+from Config import *
+
+# Disable spell checking to avoid warning about 'proc' and 'cgroup(s)'
+setOption("UseEnchant", False)
