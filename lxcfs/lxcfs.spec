@@ -87,6 +87,9 @@ mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
 
 %changelog
+* Tue Apr 17 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.3
+- Always enforce systemd init, fixes build failure on CentOS
+
 * Mon Apr 16 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.2
 - Adjust to "official" lxcfs-3.0.0-1 by thm in updates-testing
 
