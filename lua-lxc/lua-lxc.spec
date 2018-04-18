@@ -52,4 +52,7 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Wed Apr 18 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
+- Initial package
+
 
