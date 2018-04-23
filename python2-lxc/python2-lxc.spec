@@ -38,4 +38,7 @@ BuildRequires:  python2-devel
 %{python2_sitearch}/*
 
 %changelog
+* Mon Apr 23 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.1+git20180214.b7ec757-0.1
+- Initial package
+
 
