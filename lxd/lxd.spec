@@ -1113,6 +1113,11 @@ exit 0
 %doc doc/*
 
 %changelog
+* Tue Apr 24 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.3
+- Add upstream patches according to lxd-3.0.0-0ubuntu4
+- Add new sub-package lxd-p2c
+- Fix lxd.socket path in systemd .service and .socket
+
 * Tue Apr 24 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
 - Add upstream patches according to lxd-3.0.0-0ubuntu4
 - Add new sub-package lxd-p2c
