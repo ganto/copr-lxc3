@@ -1,0 +1,24 @@
+commit c9f3a1034612a19b5418c91a7973d22e578e494f
+Author: Christian Brauner <christian.brauner@ubuntu.com>
+Date:   Wed Apr 11 17:00:04 2018 +0200
+
+    devices: fail if Nvidia device minor is missing
+    
+    Closes #4441.
+    
+    Signed-off-by: Christian Brauner <christian.brauner@ubuntu.com>
+
+diff --git a/lxd/devices.go b/lxd/devices.go
+index b023f3db..8aa057dc 100644
+--- a/lxd/devices.go
++++ b/lxd/devices.go
+@@ -211,6 +211,9 @@ func deviceLoadGpu() ([]gpuDevice, []nvidiaGpuDevices, error) {
+ 				}
+ 				strBuf := strings.TrimSpace(string(buf))
+ 				idx := strings.Index(strBuf, "Device Minor:")
++				if idx == -1 {
++					return nil, nil, fmt.Errorf("No device minor index detected")
++				}
+ 				idx += len("Device Minor:")
+ 				strBuf = strBuf[idx:]
+ 				strBuf = strings.TrimSpace(strBuf)

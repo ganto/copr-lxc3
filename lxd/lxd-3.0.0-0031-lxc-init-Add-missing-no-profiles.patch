@@ -1,0 +1,33 @@
+commit 56d77caf7b9a3d4f3869fda1e267312f502a9afa
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Tue Apr 10 00:41:46 2018 +0200
+
+    lxc/init: Add missing --no-profiles
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/lxc/copy.go b/lxc/copy.go
+index 6ad33550..b3836e1e 100644
+--- a/lxc/copy.go
++++ b/lxc/copy.go
+@@ -43,7 +43,7 @@ func (c *cmdCopy) Command() *cobra.Command {
+ 	cmd.Flags().BoolVar(&c.flagContainerOnly, "container-only", false, i18n.G("Copy the container without its snapshots"))
+ 	cmd.Flags().BoolVar(&c.flagStateless, "stateless", false, i18n.G("Copy a stateful container stateless"))
+ 	cmd.Flags().StringVar(&c.flagTarget, "target", "", i18n.G("Cluster member name")+"``")
+-	cmd.Flags().BoolVar(&c.flagNoProfiles, "no-profiles", false, "Create the container with no profiles applied")
++	cmd.Flags().BoolVar(&c.flagNoProfiles, "no-profiles", false, i18n.G("Create the container with no profiles applied"))
+ 
+ 	return cmd
+ }
+diff --git a/lxc/init.go b/lxc/init.go
+index 4c965c59..755b0c44 100644
+--- a/lxc/init.go
++++ b/lxc/init.go
+@@ -46,6 +46,7 @@ func (c *cmdInit) Command() *cobra.Command {
+ 	cmd.Flags().StringVarP(&c.flagStorage, "storage", "s", "", i18n.G("Storage pool name")+"``")
+ 	cmd.Flags().StringVarP(&c.flagType, "type", "t", "", i18n.G("Instance type")+"``")
+ 	cmd.Flags().StringVar(&c.flagTarget, "target", "", i18n.G("Cluster member name")+"``")
++	cmd.Flags().BoolVar(&c.flagNoProfiles, "no-profiles", false, i18n.G("Create the container with no profiles applied"))
+ 
+ 	return cmd
+ }

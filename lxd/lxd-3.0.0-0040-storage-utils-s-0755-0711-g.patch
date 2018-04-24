@@ -1,0 +1,25 @@
+commit 1714eba1f985e74328cde46af073f8543fbb3c29
+Author: Christian Brauner <christian.brauner@ubuntu.com>
+Date:   Tue Apr 10 14:55:26 2018 +0200
+
+    storage utils: s/0755/0711/g
+    
+    Closes #4433.
+    
+    Signed-off-by: Christian Brauner <christian.brauner@ubuntu.com>
+
+diff --git a/lxd/storage_utils.go b/lxd/storage_utils.go
+index 581f213f..b4fe2b39 100644
+--- a/lxd/storage_utils.go
++++ b/lxd/storage_utils.go
+@@ -158,8 +158,8 @@ func storageConfigDiff(oldConfig map[string]string, newConfig map[string]string)
+ }
+ 
+ // Default permissions for folders in ${LXD_DIR}
+-const containersDirMode os.FileMode = 0755
+-const customDirMode os.FileMode = 0755
++const containersDirMode os.FileMode = 0711
++const customDirMode os.FileMode = 0711
+ const imagesDirMode os.FileMode = 0700
+ const snapshotsDirMode os.FileMode = 0700
+ 

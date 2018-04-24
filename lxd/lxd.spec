@@ -43,7 +43,7 @@
 
 Name:           lxd
 Version:        3.0.0
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -57,7 +57,7 @@ Source6:        shutdown
 Source7:        lxd.sysctl
 Source8:        lxd.wrapper
 Source9:        lxd.profile
-# Add patches from lxd-3.0.0-0ubuntu3
+# Add patches from lxd-3.0.0-0ubuntu4
 Patch0:         lxd-3.0.0-0001-lxc-Fix-mistakenly-hidden-commands.patch
 Patch1:         lxd-3.0.0-0002-lxd-main-Add-version-subcommand.patch
 Patch2:         lxd-3.0.0-0003-lxd-main-Add-version-subcommand.patch
@@ -83,11 +83,38 @@ Patch21:        lxd-3.0.0-0022-lxd-init-Consistency.patch
 Patch22:        lxd-3.0.0-0023-Make-new-gofmt-happy.patch
 Patch23:        lxd-3.0.0-0024-lxc-file-Allow-using-r-to-follow-symlinks.patch
 Patch24:        lxd-3.0.0-0025-lxc-config-Fix-adding-trust-cert-on-snap.patch
-Patch25:        lxd-3.0.0-0026-client-Introduce-LXD_SOCKET.patch
-# Work-around test issue
-%if 0%{?fedora} == 27
-Patch26:        lxd-2.20-000-Fix-TestEndpoints_LocalUnknownUnixGroup-test.patch
-%endif
+Patch25:        lxd-3.0.0-0026-lxc-alias-Fix-example-in-help-message.patch
+Patch26:        lxd-3.0.0-0027-i18n-Update-translation-templates.patch
+Patch27:        lxd-3.0.0-0028-client-Introduce-LXD_SOCKET.patch
+Patch28:        lxd-3.0.0-0029-Makefile-Add-a-manifest.patch
+Patch29:        lxd-3.0.0-0030-containers-fix-snapshot-deletion.patch
+Patch30:        lxd-3.0.0-0031-lxc-init-Add-missing-no-profiles.patch
+Patch31:        lxd-3.0.0-0032-i18n-Update-translations.patch
+Patch32:        lxd-3.0.0-0033-lxc-file-Fix-pull-target-logic.patch
+Patch33:        lxd-3.0.0-0034-doc-Fix-example-in-userns-idmap.patch
+Patch34:        lxd-3.0.0-0035-devices-fail-if-Nvidia-device-minor-is-missing.patch
+Patch35:        lxd-3.0.0-0036-Add-db.ContainersNodeList.patch
+Patch36:        lxd-3.0.0-0037-storage-createContainerMountpoint-fix-perms.patch
+Patch37:        lxd-3.0.0-0038-ceph-s-0755-0711-g.patch
+Patch38:        lxd-3.0.0-0039-lvm-s-0755-0711-g.patch
+Patch39:        lxd-3.0.0-0040-storage-utils-s-0755-0711-g.patch
+Patch40:        lxd-3.0.0-0041-zfs-s-0755-0711-g.patch
+Patch41:        lxd-3.0.0-0042-patches-add-storage_api_path_permissions.patch
+Patch42:        lxd-3.0.0-0043-sys-fs-s-MkdirAll-Mkdir-g.patch
+Patch43:        lxd-3.0.0-0044-btrfs-fix-permissions.patch
+Patch44:        lxd-3.0.0-0045-Pass-a-logger-to-raft-http.patch
+Patch45:        lxd-3.0.0-0046-Add-new-cluster.Promote-function-to-turn-a-non-datab.patch
+Patch46:        lxd-3.0.0-0047-Add-new-cluster.Rebalance-function-to-check-if-we-ne.patch
+Patch47:        lxd-3.0.0-0048-Notify-the-cluster-leader-after-a-node-removal-so-it.patch
+Patch48:        lxd-3.0.0-0049-Add-integration-test.patch
+Patch49:        lxd-3.0.0-0050-doc-Tweak-backup.md.patch
+Patch50:        lxd-3.0.0-0051-lxd-init-Require-root-for-interactive-cluster-join.patch
+Patch51:        lxd-3.0.0-0052-Disable-flaky-unit-tests-for-now.patch
+Patch52:        lxd-3.0.0-0053-Log-the-error-that-made-Daemon.Init-fail.patch
+Patch53:        lxd-3.0.0-0054-client-Expose-http-URL-in-ConnectionInfo.patch
+Patch54:        lxd-3.0.0-0055-lxc-query-Add-support-for-non-JSON-endpoints.patch
+# Fix issue with TestEndpoints on Fedora 27
+Patch55:        lxd-2.20-000-Fix-TestEndpoints_LocalUnknownUnixGroup-test.patch
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -791,7 +818,7 @@ with %{import_path} prefix.
 %endif
 
 %package client
-Summary:       Container hypervisor based on LXC - Client
+Summary:        Container hypervisor based on LXC - Client
 
 %description client
 LXD offers a REST API to remotely manage containers over the network,
@@ -800,7 +827,7 @@ using an image based work-flow and with support for live migration.
 This package contains the command line client.
 
 %package tools
-Summary:       Container hypervisor based on LXC - Extra Tools
+Summary:        Container hypervisor based on LXC - Extra Tools
 
 %if 0%{?rhel}
 BuildRequires:  python34-lxc
@@ -819,6 +846,21 @@ This package contains extra tools provided with LXD.
  - lxc-to-lxd - A tool to migrate LXC containers to LXD
  - lxd-benchmark - A LXD benchmark utility
 
+%package p2c
+Summary:        A physical to container migration tool
+#Requires:       netcat
+Requires:       rsync
+
+%description p2c
+Physical to container migration tool
+
+This tool lets you turn any Linux filesystem (including your current one)
+into a LXD container on a remote LXD host.
+
+It will setup a clean mount tree made of the root filesystem and any
+additional mount you list, then transfer this through LXD's migration
+API to create a new container from it.
+
 %package doc
 Summary:        Container hypervisor based on LXC - Documentation
 BuildArch:      noarch
@@ -830,7 +872,11 @@ using an image based work-flow and with support for live migration.
 This package contains user documentation.
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%setup -q -n %{name}-%{version}
+%{lua:for i=0,54 do print(string.format("%%patch%u -p1\n", i)) end}
+%if 0%{?fedora} == 27
+%patch55 -p1
+%endif
 
 %build
 %if 0%{?with_bundled}
@@ -867,12 +913,14 @@ BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
 %gobuild -o _bin/lxc %{import_path}/lxc
 %gobuild -o _bin/fuidshift %{import_path}/fuidshift
 %gobuild -o _bin/lxd-benchmark %{import_path}/lxd-benchmark
+%gobuild -o _bin/lxd-p2c %{import_path}/lxd-p2c
 
 # generate man-pages
 LD_LIBRARY_PATH=dist/sqlite/.libs _bin/lxd manpage .
 _bin/lxc manpage .
 help2man _bin/fuidshift -n "uid/gid shifter" --no-info > fuidshift.1
 help2man _bin/lxd-benchmark -n "The container lightervisor - benchmark" --no-info --version-string=%{version} --no-discard-stderr > lxd-benchmark.1
+help2man _bin/lxd-p2c -n "Physical to container migration tool" --no-info --version-string=%{version} > lxd-p2c.1
 help2man scripts/lxc-to-lxd -n "Convert LXC containers to LXD" --no-info --version-string=%{version} > lxc-to-lxd.1
 
 %install
@@ -880,6 +928,7 @@ help2man scripts/lxc-to-lxd -n "Convert LXC containers to LXD" --no-info --versi
 install -D -p -m 0755 _bin/lxc %{buildroot}%{_bindir}/lxc
 install -D -p -m 0755 _bin/fuidshift %{buildroot}%{_bindir}/fuidshift
 install -D -p -m 0755 _bin/lxd-benchmark %{buildroot}%{_bindir}/lxd-benchmark
+install -D -p -m 0755 _bin/lxd-p2c %{buildroot}%{_bindir}/lxd-p2c
 install -D -p -m 0755 _bin/lxd %{buildroot}%{_libexecdir}/%{name}/lxd
 
 # install extra script
@@ -914,6 +963,7 @@ cp -p lxd.1 %{buildroot}%{_mandir}/man1/
 cp -p lxc*.1 %{buildroot}%{_mandir}/man1/
 cp -p fuidshift.1 %{buildroot}%{_mandir}/man1/
 cp -p lxd-benchmark.1 %{buildroot}%{_mandir}/man1/
+cp -p lxd-p2c.1 %{buildroot}%{_mandir}/man1/
 cp -p lxc-to-lxd.1 %{buildroot}%{_mandir}/man1/
 
 # cache and log directories
@@ -1053,11 +1103,21 @@ exit 0
 %{_mandir}/man1/lxd-benchmark.1.gz
 %{_mandir}/man1/lxc-to-lxd.1.gz
 
+%files p2c
+%license COPYING
+%{_bindir}/lxd-p2c
+%{_mandir}/man1/lxd-p2c.1.gz
+
 %files doc
 %license COPYING
 %doc doc/*
 
 %changelog
+* Tue Apr 24 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+- Add upstream patches according to lxd-3.0.0-0ubuntu4
+- Add new sub-package lxd-p2c
+- Fix lxd.socket path in systemd service and socket
+
 * Sun Apr 15 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.2
 - Add bundled modules to devel
 - Use new LXD_SOCKET option and set it to /run/lxd.socket

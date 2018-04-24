@@ -1,0 +1,78 @@
+commit bd47a493090f77ddcde2db40320135ecfb88e6d5
+Author: Stéphane Graber <stgraber@ubuntu.com>
+Date:   Mon Apr 16 13:44:45 2018 -0400
+
+    lxc/query: Add support for non-JSON endpoints
+    
+    This should handle the file and image endpoints that don't return JSON
+    by attempting to perform a direct http query when a LXD API query fails.
+    
+    Closes: #4452
+    
+    Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+
+diff --git a/lxc/query.go b/lxc/query.go
+index 1c8efc75..5e8f948a 100644
+--- a/lxc/query.go
++++ b/lxc/query.go
+@@ -1,8 +1,11 @@
+ package main
+ 
+ import (
++	"bytes"
+ 	"encoding/json"
+ 	"fmt"
++	"io/ioutil"
++	"net/http"
+ 
+ 	"github.com/spf13/cobra"
+ 
+@@ -80,7 +83,47 @@ func (c *cmdQuery) Run(cmd *cobra.Command, args []string) error {
+ 	// Perform the query
+ 	resp, _, err := d.RawQuery(c.flagAction, path, data, "")
+ 	if err != nil {
+-		return err
++		cleanErr := err
++
++		// Lets assume the endpoint is raw output
++		// Get a raw http client
++		httpClient, err := d.GetHTTPClient()
++		if err != nil {
++			return err
++		}
++
++		// Get the URL prefix
++		httpInfo, err := d.GetConnectionInfo()
++		if err != nil {
++			return err
++		}
++
++		// Setup the request
++		req, err := http.NewRequest(c.flagAction, fmt.Sprintf("%s%s", httpInfo.URL, path), bytes.NewReader([]byte(c.flagData)))
++		if err != nil {
++			return err
++		}
++
++		// Set the encoding accordingly
++		req.Header.Set("Content-Type", "plain/text")
++
++		resp, err := httpClient.Do(req)
++		if err != nil {
++			return err
++		}
++
++		if resp.StatusCode != http.StatusOK {
++			return cleanErr
++		}
++
++		content, err := ioutil.ReadAll(resp.Body)
++		if err != nil {
++			return err
++		}
++
++		fmt.Print(string(content))
++
++		return nil
+ 	}
+ 
+ 	if c.flagRespWait && resp.Operation != "" {
