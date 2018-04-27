@@ -43,7 +43,7 @@
 
 Name:           lxd
 Version:        3.0.0
-Release:        0.3%{?dist}
+Release:        0.4%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -1013,6 +1013,9 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %if ! 0%{?gotest:1}
 %global gotest go test
 %endif
+
+# Tests must ignore potential LXD_SOCKET from environment
+unset LXD_SOCKET
 
 %gotest %{import_path}/lxc
 %gotest %{import_path}/lxd
