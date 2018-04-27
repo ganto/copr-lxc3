@@ -1116,6 +1116,12 @@ exit 0
 %doc doc/*
 
 %changelog
+* Fri Apr 27 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.4
+- Make sure LXD_SOCKET is not set when running %%check
+
+* Fri Apr 27 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+- Make sure LXD_SOCKET is not set when running %%check
+
 * Tue Apr 24 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.3
 - Add upstream patches according to lxd-3.0.0-0ubuntu4
 - Add new sub-package lxd-p2c
