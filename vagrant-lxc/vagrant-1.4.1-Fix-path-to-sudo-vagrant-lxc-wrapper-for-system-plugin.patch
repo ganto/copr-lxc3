@@ -1,0 +1,19 @@
+commit 1072fd0addd918743edec65b4b4c9102042233ee
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Fri May 4 23:01:27 2018 +0200
+
+    Fix path to sudo 'vagrant-lxc-wrapper' for system plugin
+
+diff --git a/lib/vagrant-lxc/sudo_wrapper.rb b/lib/vagrant-lxc/sudo_wrapper.rb
+index 910d6ff..c5ea468 100644
+--- a/lib/vagrant-lxc/sudo_wrapper.rb
++++ b/lib/vagrant-lxc/sudo_wrapper.rb
+@@ -7,7 +7,7 @@ module Vagrant
+       attr_reader :wrapper_path
+ 
+       def self.dest_path
+-        "/usr/local/bin/vagrant-lxc-wrapper"
++        "/usr/share/vagrant/gems/gems/vagrant-lxc-1.4.1/scripts/vagrant-lxc-wrapper"
+       end
+ 
+       def initialize(privileged: true)

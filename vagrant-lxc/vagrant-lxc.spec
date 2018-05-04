@@ -1,8 +1,8 @@
 %global vagrant_plugin_name vagrant-lxc
 
 Name: %{vagrant_plugin_name}
-Version: 1.1.0
-Release: 13%{?dist}
+Version: 1.4.1
+Release: 0.1%{?dist}
 Summary: LXC provider for vagrant
 Group: Development/Languages
 License: MIT
@@ -13,7 +13,7 @@ Source0: https://rubygems.org/gems/%{vagrant_plugin_name}-%{version}.gem
 # part of this srpm
 Source1: create_wrapper.rb
 
-Patch1: vagrant-lxc-sudo-wrapper.patch
+Patch1: vagrant-1.4.1-Fix-path-to-sudo-vagrant-lxc-wrapper-for-system-plugin.patch
 
 Requires(pre): shadow-utils
 Requires: ruby(release)
@@ -89,11 +89,10 @@ getent group vagrant >/dev/null || groupadd -r vagrant
 %exclude %{vagrant_plugin_instdir}/.rspec
 %exclude %{vagrant_plugin_instdir}/.travis.yml
 %exclude %{vagrant_plugin_instdir}/.vimrc
-%{vagrant_plugin_instdir}/Gemfile.lock
 %dir %{vagrant_plugin_instdir}/scripts
 %{vagrant_plugin_instdir}/scripts/lxc-template
 %{vagrant_plugin_instdir}/scripts/pipework
-%attr(555, root, root) %{vagrant_plugin_instdir}/scripts/vagrant-lxc-wrapper
+%attr(755, root, root) %{vagrant_plugin_instdir}/scripts/vagrant-lxc-wrapper
 %dir %{vagrant_plugin_instdir}/templates
 %{vagrant_plugin_instdir}/templates/sudoers.rb.erb
 
