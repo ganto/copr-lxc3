@@ -113,6 +113,9 @@ getent group vagrant >/dev/null || groupadd -r vagrant
 %{vagrant_plugin_instdir}/vagrant-spec.config.rb
 
 %changelog
+* Fri May 04 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.4.1-0.1
+- Update to 1.4.1.
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
