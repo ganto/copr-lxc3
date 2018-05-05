@@ -2,7 +2,7 @@
 
 Name: %{vagrant_plugin_name}
 Version: 1.4.1
-Release: 0.1%{?dist}
+Release: 0.2%{?dist}
 Summary: LXC provider for vagrant
 Group: Development/Languages
 License: MIT
@@ -13,7 +13,7 @@ Source0: https://rubygems.org/gems/%{vagrant_plugin_name}-%{version}.gem
 # part of this srpm
 Source1: create_wrapper.rb
 
-Patch1: vagrant-1.4.1-Fix-path-to-sudo-vagrant-lxc-wrapper-for-system-plugin.patch
+Patch1: vagrant-1.4.1-Fix-sudo-wrapper-for-use-in-system-wide-plugin.patch
 
 Requires(pre): shadow-utils
 Requires: ruby(release)

@@ -1,0 +1,42 @@
+commit d0c8c2fe5fe369b0ae23c4a805f00a4fb236c0d8
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Fri May 4 23:01:27 2018 +0200
+
+    Fix sudo wrapper for use in system-wide plugin
+    
+    - different path for wrapper
+    - prefixes PATH with /usr/bin
+    - fix script interpreter in template
+
+diff --git a/lib/vagrant-lxc/sudo_wrapper.rb b/lib/vagrant-lxc/sudo_wrapper.rb
+index 910d6ff..c5ea468 100644
+--- a/lib/vagrant-lxc/sudo_wrapper.rb
++++ b/lib/vagrant-lxc/sudo_wrapper.rb
+@@ -7,7 +7,7 @@ module Vagrant
+       attr_reader :wrapper_path
+ 
+       def self.dest_path
+-        "/usr/local/bin/vagrant-lxc-wrapper"
++        "/usr/share/vagrant/gems/gems/vagrant-lxc-1.4.1/scripts/vagrant-lxc-wrapper"
+       end
+ 
+       def initialize(privileged: true)
+diff --git a/templates/sudoers.rb.erb b/templates/sudoers.rb.erb
+index e3e731a..52eea90 100644
+--- a/templates/sudoers.rb.erb
++++ b/templates/sudoers.rb.erb
+@@ -1,4 +1,4 @@
+-#!<%= cmd_paths['ruby'] %>
++#!/usr/bin/ruby
+ # Automatically created by vagrant-lxc
+ 
+ class Whitelist
+@@ -31,7 +31,7 @@ class Whitelist
+ 
+     def run!(argv)
+       begin
+-        command, args = `which #{argv.shift}`.chomp, argv || []
++        command, args = `PATH=/usr/bin:$PATH which #{argv.shift}`.chomp, argv || []
+         check!(command, args)
+         system "#{command} #{args.join(" ")}"
+ 
