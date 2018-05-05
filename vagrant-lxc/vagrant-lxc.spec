@@ -113,6 +113,9 @@ getent group vagrant >/dev/null || groupadd -r vagrant
 %{vagrant_plugin_instdir}/vagrant-spec.config.rb
 
 %changelog
+* Sat May 05 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.4.1-0.2
+- Update patch for vagrant-lxc-wrapper fixes
+
 * Fri May 04 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.4.1-0.1
 - Update to 1.4.1.
 
