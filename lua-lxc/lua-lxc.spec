@@ -6,19 +6,23 @@
 
 Name:       lua-lxc
 Version:    3.0.0
-Release:    0.1%{?dist}
+Release:    0.2%{?dist}
 Summary:    Lua bindings for liblxc
 
 License:    LGPLv2+
 URL:        https://linuxcontainers.org/lxc
 Source0:    https://linuxcontainers.org/downloads/lxc/%{name}-%{version}.tar.gz
 
+Patch0:     lua-lxc-3.0.0-Make-sure-compatibility-macros-are-defined-before-use.patch
+
 BuildRequires:  gcc
 BuildRequires:  libtool
 BuildRequires:  lua-devel
 BuildRequires:  lxc-devel >= 3.0.0
 BuildRequires:  make
+BuildRequires:  pkgconfig(lua)
 Requires:       lua(abi) = %{lua_version}
+Requires:       lua-filesystem
 Requires:       lxc-libs >= 3.0.0
 
 %description
@@ -27,6 +31,7 @@ This package provides Lua bindings for the LXC container API.
 
 %prep
 %setup -q
+%patch0 -p1
 
 
 %build
