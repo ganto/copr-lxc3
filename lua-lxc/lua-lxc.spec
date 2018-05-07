@@ -57,6 +57,10 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Mon May 07 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.2
+- Fix missing dependencies
+- Add patch to fix build on CentOS 7
+
 * Wed Apr 18 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.1
 - Initial package
 
