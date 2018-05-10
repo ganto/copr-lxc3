@@ -1,0 +1,37 @@
+commit 3186b980f36eafdc8d3054429ca2dd76a5f2c595
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Thu May 10 07:23:43 2018 +0200
+
+    lxd/callhook: Respect LXD_SOCKET environment variable
+    
+    First check the LXD_SOCKET environment variable which might
+    contain a user provided Unix socket before trying to connect
+    to default LXD socket.
+    
+    Signed-off-by: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+
+diff --git a/lxd/main_callhook.go b/lxd/main_callhook.go
+index 7d463808..cf64860f 100644
+--- a/lxd/main_callhook.go
++++ b/lxd/main_callhook.go
+@@ -3,6 +3,7 @@ package main
+ import (
+ 	"fmt"
+ 	"os"
++	"path/filepath"
+ 	"time"
+ 
+ 	"github.com/spf13/cobra"
+@@ -54,7 +55,11 @@ func (c *cmdCallhook) Run(cmd *cobra.Command, args []string) error {
+ 	}
+ 
+ 	// Connect to LXD
+-	d, err := lxd.ConnectLXDUnix(fmt.Sprintf("%s/unix.socket", path), nil)
++	socket := os.Getenv("LXD_SOCKET")
++	if socket == "" {
++		socket = filepath.Join(path, "unix.socket")
++	}
++	d, err := lxd.ConnectLXDUnix(socket, nil)
+ 	if err != nil {
+ 		return err
+ 	}

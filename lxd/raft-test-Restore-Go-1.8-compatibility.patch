@@ -1,0 +1,315 @@
+commit 8b6e49ad4ff423a598be69ef11a1902bf27cc7cf
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Tue May 8 19:34:02 2018 +0200
+
+    Revert "Drop Go 1.8 compatibility"
+    
+    This reverts commit 22441a088d5630ddd2e971eae68074d2b645f1b7.
+
+diff --git a/cluster.go b/cluster.go
+index 0fbfea3..cb93b81 100644
+--- a/cluster.go
++++ b/cluster.go
+@@ -47,7 +47,10 @@ import (
+ // values unchanged. A value greater than 1.0 increases the default timeouts by
+ // that factor. See also the Duration and Latency helpers.
+ func Cluster(t testing.TB, fsms []raft.FSM, knobs ...Knob) ([]*raft.Raft, *Control) {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	// Create a set of default dependencies for each node.
+ 	n := len(fsms)
+@@ -117,7 +120,10 @@ type Knob func([]*node)
+ // Shutdown all the given raft nodes and fail the test if any of them errors
+ // out while doing so.
+ func Shutdown(t testing.TB, rafts []*raft.Raft) {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	// Trigger the shutdown on all the nodes.
+ 	futures := make([]raft.Future, len(rafts))
+@@ -166,7 +172,10 @@ type node struct {
+ 
+ // Create default dependencies for a single raft node.
+ func newDefaultNode(t testing.TB, i int) *node {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	// Use the node's index as its server address.
+ 	addr := strconv.Itoa(i)
+@@ -223,7 +232,10 @@ func scaleTimeouts(nodes []*node) {
+ // Bootstrap the cluster, by connecting the appropriate nodes to each other and
+ // setting up their initial configuration.
+ func bootstrapCluster(t testing.TB, nodes []*node) {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	// Figure out which nodes should be part of the initial configuration,
+ 	// and connect their transports to each other.
+@@ -282,7 +294,10 @@ func bootstrapCluster(t testing.TB, nodes []*node) {
+ 
+ // Create notification channels for all nodes.
+ func createNotifyChs(t testing.TB, nodes []*node) []chan bool {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	notifyChs := make([]chan bool, len(nodes))
+ 	for i, node := range nodes {
+@@ -310,7 +325,10 @@ func createLogWrappers(nodes []*node) []*logWrapper {
+ 
+ // Detect loopback transports from nodes that have them.
+ func detectLoobackTransports(t testing.TB, nodes []*node) []raft.LoopbackTransport {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	transports := make([]raft.LoopbackTransport, len(nodes))
+ 	for i, node := range nodes {
+@@ -344,3 +362,8 @@ func (w *testingWriter) Write(p []byte) (n int, err error) {
+ 	w.t.Logf(string(p))
+ 	return len(p), nil
+ }
++
++// For compatibility with Go <1.9
++type testingHelper interface {
++	Helper()
++}
+diff --git a/control.go b/control.go
+index 91a627a..097daeb 100644
+--- a/control.go
++++ b/control.go
+@@ -369,7 +369,10 @@ func WaitLeader(t testing.TB, raft *raft.Raft, timeout time.Duration) {
+ }
+ 
+ func waitLeader(ctx context.Context, t testing.TB, raft *raft.Raft) {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	check := func() bool {
+ 		return raft.Leader() != ""
+@@ -380,7 +383,10 @@ func waitLeader(ctx context.Context, t testing.TB, raft *raft.Raft) {
+ // Poll the given function at the given internval, until it returns true, or
+ // the given context expires.
+ func wait(ctx context.Context, t testing.TB, f func() bool, interval time.Duration, message string) {
+-	t.Helper()
++	helper, ok := t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	start := time.Now()
+ 	for {
+commit d03a1df995711c45b1aa05cb5fa3691e6821c37a
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Tue May 8 20:57:55 2018 +0200
+
+    Restore Go 1.8 compatibility
+
+diff --git a/control.go b/control.go
+index 097daeb..2ffec42 100644
+--- a/control.go
++++ b/control.go
+@@ -36,7 +36,10 @@ type Control struct {
+ //
+ // It must be called by every test creating a test cluster with Cluster().
+ func (c *Control) Close() {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	c.t.Logf("raft-test: shutdown cluster")
+ 
+@@ -47,7 +50,10 @@ func (c *Control) Close() {
+ 
+ // Index returns the index of the given raft instance.
+ func (c *Control) Index(raft *raft.Raft) int {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	for i := range c.rafts {
+ 		if c.rafts[i] == raft {
+@@ -86,7 +92,10 @@ func (c *Control) Other(rafts ...*raft.Raft) *raft.Raft {
+ // In case GO_RAFT_TEST_LATENCY is set, the timeout will be transparently
+ // scaled by that factor.
+ func (c *Control) LeadershipAcquired(timeout time.Duration) *raft.Raft {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	timeout = Duration(timeout)
+ 	c.t.Logf("raft-test: wait for a non-leader node to acquire leadership within %s", timeout)
+@@ -124,7 +133,10 @@ func (c *Control) LeadershipAcquired(timeout time.Duration) *raft.Raft {
+ // In case GO_RAFT_TEST_LATENCY is set, the timeout will be transparently
+ // scaled by that factor.
+ func (c *Control) LeadershipLost(r *raft.Raft, timeout time.Duration) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	timeout = Duration(timeout)
+ 
+@@ -154,7 +166,10 @@ func (c *Control) LeadershipLost(r *raft.Raft, timeout time.Duration) {
+ //
+ // Requires that the transports to implement LoopbackTransports.
+ func (c *Control) Disconnect(r *raft.Raft) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	i := c.Index(r)
+ 	c.t.Logf("raft-test: node %d: disconnect", i)
+@@ -169,7 +184,10 @@ func (c *Control) Disconnect(r *raft.Raft) {
+ //
+ // Requires that the transports to implement LoopbackTransports.
+ func (c *Control) Reconnect(r *raft.Raft) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	i := c.Index(r)
+ 	c.t.Logf("raft-test: node %d: reconnect", i)
+@@ -216,7 +234,10 @@ func (c *Control) AppliedIndex(r *raft.Raft) uint64 {
+ // In case GO_RAFT_TEST_LATENCY is set, the timeout will be transparently
+ // scaled by that factor.
+ func (c *Control) WaitIndex(r *raft.Raft, index uint64, timeout time.Duration) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	i := c.Index(r)
+ 	c.t.Logf("raft-test: node %d: wait for FSM to apply index %d", i, index)
+@@ -265,7 +286,10 @@ func (c *Control) WaitIndex(r *raft.Raft, index uint64, timeout time.Duration) {
+ // In case GO_RAFT_TEST_LATENCY is set, the timeout will be transparently
+ // scaled by that factor.
+ func (c *Control) WaitSnapshot(r *raft.Raft, n int, timeout time.Duration) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	timeout = Duration(timeout)
+ 
+@@ -315,7 +339,10 @@ func (c *Control) WaitSnapshot(r *raft.Raft, n int, timeout time.Duration) {
+ // In case GO_RAFT_TEST_LATENCY is set, the timeout will be transparently
+ // scaled by that factor.
+ func (c *Control) WaitRestore(r *raft.Raft, n int, timeout time.Duration) {
+-	c.t.Helper()
++	helper, ok := c.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	timeout = Duration(timeout)
+ 
+diff --git a/scenarios.go b/scenarios.go
+index 7c0bd99..81c2aac 100644
+--- a/scenarios.go
++++ b/scenarios.go
+@@ -49,7 +49,10 @@ type ScenarioStage func(*raft.Raft)
+ //  - Invoke the third stage, passing it the above follower.
+ func ReplicationScenario() Scenario {
+ 	return func(control *Control, stages ...ScenarioStage) {
+-		control.t.Helper()
++		helper, ok := control.t.(testingHelper)
++		if ok {
++			helper.Helper()
++		}
+ 
+ 		scenarioAssertPreconditions(control, "ReplicationScenario", 3, stages)
+ 
+@@ -97,7 +100,10 @@ func ReplicationScenario() Scenario {
+ //  - Invoke the fifth stage passing it the above raft instance.
+ func NotLeaderScenario(index uint64) Scenario {
+ 	return func(control *Control, stages ...ScenarioStage) {
+-		control.t.Helper()
++		helper, ok := control.t.(testingHelper)
++		if ok {
++			helper.Helper()
++		}
+ 
+ 		scenarioAssertPreconditions(control, "NotLeaderScenario", 5, stages)
+ 
+@@ -166,7 +172,10 @@ func NotLeaderScenario(index uint64) Scenario {
+ //  - Invoke the fifth stage passing it the above raft instance.
+ func LeadershipLostScenario() Scenario {
+ 	return func(control *Control, stages ...ScenarioStage) {
+-		control.t.Helper()
++		helper, ok := control.t.(testingHelper)
++		if ok {
++			helper.Helper()
++		}
+ 
+ 		scenarioAssertPreconditions(control, "LeadershipLostScenario", 5, stages)
+ 
+@@ -238,7 +247,10 @@ func LeadershipLostScenario() Scenario {
+ //  - Invoke the fifth stage passing it the above raft instance.
+ func LeadershipLostQuorumSameLeaderScenario(index uint64) Scenario {
+ 	return func(control *Control, stages ...ScenarioStage) {
+-		control.t.Helper()
++		helper, ok := control.t.(testingHelper)
++		if ok {
++			helper.Helper()
++		}
+ 
+ 		scenarioAssertPreconditions(control, "LeadershipLostQuorumSameLeaderScenario", 5, stages)
+ 
+@@ -277,7 +289,10 @@ func LeadershipLostQuorumSameLeaderScenario(index uint64) Scenario {
+ 
+ func LeadershipLostQuorumOtherLeaderScenario(index uint64) Scenario {
+ 	return func(control *Control, stages ...ScenarioStage) {
+-		control.t.Helper()
++		helper, ok := control.t.(testingHelper)
++		if ok {
++			helper.Helper()
++		}
+ 
+ 		scenarioAssertPreconditions(control, "LeadershipLostQuorumOtherLeaderScenario", 5, stages)
+ 
+@@ -318,7 +333,10 @@ func LeadershipLostQuorumOtherLeaderScenario(index uint64) Scenario {
+ }
+ 
+ func scenarioAssertPreconditions(control *Control, scenario string, n int, stages []ScenarioStage) {
+-	control.t.Helper()
++	helper, ok := control.t.(testingHelper)
++	if ok {
++		helper.Helper()
++	}
+ 
+ 	if len(control.rafts) != 3 {
+ 		control.t.Fatalf("%s requires 3 raft instances, but %d were given", scenario, len(control.rafts))

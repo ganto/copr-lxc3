@@ -43,7 +43,7 @@
 
 Name:           lxd
 Version:        3.0.0
-Release:        0.4%{?dist}
+Release:        0.5%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -113,8 +113,12 @@ Patch51:        lxd-3.0.0-0052-Disable-flaky-unit-tests-for-now.patch
 Patch52:        lxd-3.0.0-0053-Log-the-error-that-made-Daemon.Init-fail.patch
 Patch53:        lxd-3.0.0-0054-client-Expose-http-URL-in-ConnectionInfo.patch
 Patch54:        lxd-3.0.0-0055-lxc-query-Add-support-for-non-JSON-endpoints.patch
+Patch55:        lxd-3.0.0-0056-lxd-containers-Fix-lxc.net-check.patch
+Patch56:        lxd-3.0.0-0057-lxd-callhook-Respect-LXD_SOCKET-environment-variable.patch
 # Fix issue with TestEndpoints on Fedora 27
-Patch55:        lxd-2.20-000-Fix-TestEndpoints_LocalUnknownUnixGroup-test.patch
+Patch57:        lxd-2.20-000-Fix-TestEndpoints_LocalUnknownUnixGroup-test.patch
+# Restore Go-1.8 compatibility of CanonicalLtd/raft-test for CentOS 7
+Patch58:        raft-test-Restore-Go-1.8-compatibility.patch
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -873,10 +877,15 @@ This package contains user documentation.
 
 %prep
 %setup -q -n %{name}-%{version}
-%{lua:for i=0,54 do print(string.format("%%patch%u -p1\n", i)) end}
+%{lua:for i=0,56 do print(string.format("%%patch%u -p1\n", i)) end}
+
 %if 0%{?fedora} == 27
-%patch55 -p1
+%patch57 -p1
 %endif
+
+pushd dist/src/github.com/CanonicalLtd/raft-test
+%patch58 -p1
+popd
 
 %build
 %if 0%{?with_bundled}
