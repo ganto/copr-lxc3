@@ -1125,6 +1125,10 @@ exit 0
 %doc doc/*
 
 %changelog
+* Thu May 10 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.5
+- Fix build with golang-1.8.x (e.g. CentOS <=7.4)
+- Experimental patch to fix container startup via LXD_SOCKET
+
 * Fri Apr 27 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.4
 - Make sure LXD_SOCKET is not set when running %%check
 
