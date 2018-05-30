@@ -1,0 +1,28 @@
+commit 113dfed450adca6a3a007bfa1df1d355a1fdb1de
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Wed May 30 06:41:49 2018 +0200
+
+    lxc-to-lxd: Respect LXD_SOCKET environment variable
+    
+    The unix socket path of the LXD service can be customized via
+    LXD_SOCKET variable. Make sure this is also supported when migrating
+    containers from LXC to LXD.
+    
+    Signed-off-by: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+
+diff --git a/scripts/lxc-to-lxd b/scripts/lxc-to-lxd
+index 1aaa964a..4a93a4e1 100755
+--- a/scripts/lxc-to-lxd
++++ b/scripts/lxc-to-lxd
+@@ -601,7 +601,10 @@ if (not args.containers and not args.all) or (args.containers and args.all):
+     parser.error("You must either pass container names or --all")
+ 
+ # Connect to LXD
+-lxd_socket = os.path.join(args.lxdpath, "unix.socket")
++if 'LXD_SOCKET' in os.environ:
++    lxd_socket = os.environ['LXD_SOCKET']
++else:
++    lxd_socket = os.path.join(args.lxdpath, "unix.socket")
+ 
+ if not os.path.exists(lxd_socket):
+     print("LXD isn't running.")
