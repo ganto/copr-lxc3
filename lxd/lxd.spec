@@ -1116,6 +1116,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Thu May 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1-0.3
+- Fix build regression with EPEL 7
+
 * Thu May 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1-0.2
 - Fix build error on Fedora 26
 
