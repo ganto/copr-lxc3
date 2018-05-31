@@ -1116,6 +1116,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Thu May 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1-0.2
+- Fix build error on Fedora 26
+
 * Thu May 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1-0.1
 - Update to 3.1
 - Added LXD_SOCKET override to lxd-containers service (mrd@redhat.com)
