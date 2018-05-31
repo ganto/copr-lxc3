@@ -43,7 +43,7 @@
 
 Name:           lxd
 Version:        3.1
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -868,7 +868,7 @@ This package contains user documentation.
 %prep
 %setup -q -n %{name}-%{version}
 
-%if 0%{?fedora} < 28
+%if 0%{?fedora} && 0%{?fedora} < 28
 %patch0 -p1
 %endif
 
