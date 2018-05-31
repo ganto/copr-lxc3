@@ -43,7 +43,7 @@
 
 Name:           lxd
 Version:        3.1
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -57,7 +57,7 @@ Source6:        shutdown
 Source7:        lxd.sysctl
 Source8:        lxd.wrapper
 Source9:        lxd.profile
-# Fix issue with TestEndpoints on Fedora 27
+# Fix issue with TestEndpoints on Fedora <= 27
 Patch0:         lxd-2.20-000-Fix-TestEndpoints_LocalUnknownUnixGroup-test.patch
 # Fix missing connectivity issue with lxc-to-lxd (GH #4610)
 Patch1:         lxd-3.1-0000-lxc-to-lxd-Respect-LXD_SOCKET-environment-variable.patch
@@ -868,7 +868,7 @@ This package contains user documentation.
 %prep
 %setup -q -n %{name}-%{version}
 
-%if 0%{?fedora} == 27
+%if 0%{?fedora} < 28
 %patch0 -p1
 %endif
 
