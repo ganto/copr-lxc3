@@ -1116,6 +1116,11 @@ exit 0
 %doc doc/*
 
 %changelog
+* Thu May 31 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1-0.1
+- Update to 3.1
+- Added LXD_SOCKET override to lxd-containers service (mrd@redhat.com)
+- Added support for LXD_SOCKET to lxc-to-lxd
+
 * Thu May 10 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.5
 - Fix build with golang-1.8.x (e.g. CentOS <=7.4)
 - Experimental patch to fix container startup via LXD_SOCKET
