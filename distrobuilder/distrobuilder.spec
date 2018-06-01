@@ -29,8 +29,8 @@
 # https://github.com/lxc/distrobuilder
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          406fd5fe7dec4a969ec08bdf799c8ae483d37489
-%global commitdate      20180428
+%global commit          a15b0678860167fd31182f9b4fcaadc6f331c986
+%global commitdate      20180522
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:       %{repo}
@@ -41,7 +41,7 @@ Summary:    System container image builder for LXC and LXD
 License:    ASL 2.0
 URL:        https://%{provider_prefix}
 Source0:    https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
-Source1:    distrobuilder-dist-20180508.tar.gz
+Source1:    distrobuilder-dist-20180601.tar.gz
 Patch0:     distrobuilder-5c6ad30-Disable-online-tests.patch
 
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
@@ -102,6 +102,70 @@ Provides:       golang(%{import_path}/managers) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared) = %{version}-%{release}
 Provides:       golang(%{import_path}/sources) = %{version}-%{release}
 
+%if 0%{?with_bundled}
+Provides:       bundled(golang(github.com/gorilla/websocket))
+Provides:       bundled(golang(github.com/gorilla/websocket/examples/autobahn))
+Provides:       bundled(golang(github.com/gorilla/websocket/examples/chat))
+Provides:       bundled(golang(github.com/gorilla/websocket/examples/command))
+Provides:       bundled(golang(github.com/gorilla/websocket/examples/echo))
+Provides:       bundled(golang(github.com/gorilla/websocket/examples/filewatch))
+Provides:       bundled(golang(github.com/lxc/lxd/client))
+Provides:       bundled(golang(github.com/lxc/lxd/fuidshift))
+Provides:       bundled(golang(github.com/lxc/lxd/lxc))
+Provides:       bundled(golang(github.com/lxc/lxd/lxc/config))
+Provides:       bundled(golang(github.com/lxc/lxd/lxc/utils))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd-benchmark))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd-benchmark/benchmark))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/cluster))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/config))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/db))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/db/cluster))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/db/node))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/db/query))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/db/schema))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/debug))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/endpoints))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/maas))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/migration))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/node))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd-p2c))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/state))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/sys))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/task))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/template))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/types))
+Provides:       bundled(golang(github.com/lxc/lxd/lxd/util))
+Provides:       bundled(golang(github.com/lxc/lxd/shared))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/api))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/cancel))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/cmd))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/eagain))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/i18n))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/idmap))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/ioprogress))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/log15))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/log15/stack))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/log15/term))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/logger))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/logging))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/osarch))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/simplestreams))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/subtest))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/termios))
+Provides:       bundled(golang(github.com/lxc/lxd/shared/version))
+Provides:       bundled(golang(github.com/lxc/lxd/test/deps))
+Provides:       bundled(golang(github.com/lxc/lxd/test/macaroon-identity))
+Provides:       bundled(golang(github.com/pkg/errors))
+Provides:       bundled(golang(github.com/spf13/cobra))
+Provides:       bundled(golang(github.com/spf13/cobra/cobra))
+Provides:       bundled(golang(github.com/spf13/cobra/cobra/cmd))
+Provides:       bundled(golang(github.com/spf13/cobra/doc))
+Provides:       bundled(golang(github.com/spf13/pflag))
+Provides:       bundled(golang(gopkg.in/flosch/pongo2.v3))
+Provides:       bundled(golang(gopkg.in/yaml.v2))
+%endif
+
 %description devel
 %{summary}.
 
@@ -121,6 +185,7 @@ Requires:       %{name}-devel = %{version}-%{release}
 
 %if ! 0%{?with_bundled}
 Requires:       golang(github.com/lxc/lxd/shared)
+Requires:       golang(github.com/lxc/lxd/shared/api)
 Requires:       golang(gopkg.in/flosch/pongo2.v3)
 %endif
 Requires:       gnupg
