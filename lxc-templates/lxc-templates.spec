@@ -1,6 +1,6 @@
 Name:           lxc-templates
 Version:        3.0.0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Old style template scripts for LXC
 
 License:        LGPLv2+
@@ -9,7 +9,7 @@ Source0:        https://linuxcontainers.org/downloads/lxc/%{name}-%{version}.tar
 BuildArch:      noarch
 BuildRequires:  autoconf automake
 
-Requires:       lxc-libs%{?_isa} >= %{version}
+Requires:       lxc-libs%{?_isa} >= 3.0.0
 # Note: Requirements for the template scripts (busybox, dpkg,                       
 # debootstrap, rsync, openssh-server, dhclient, apt, pacman, zypper,
 # ubuntu-cloudimg-query etc...) are not explicitly mentioned here:
