@@ -14,7 +14,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           lxc
-Version:        3.0.0
+Version:        3.0.1
 Release:        %{?prerel:0.}0.1%{?prerel:.%{prerel}}%{?dist}
 Summary:        Linux Resource Containers
 Group:          Applications/System
@@ -276,7 +276,6 @@ make check
 
 * Wed Oct 25 2017 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 2.1.1-0.1
 - Update to 2.1.1.
-
 
 * Wed Sep 27 2017 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 2.1.0-0.1
 - Update to 2.1.0.
