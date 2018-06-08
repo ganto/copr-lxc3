@@ -79,5 +79,5 @@ popd
 
 
 %changelog
-* Fri Jun 08 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> - 1.2.2-0.1
+* Fri Jun 08 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.2.2-0.1
 - Initial package
