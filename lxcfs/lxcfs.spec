@@ -87,6 +87,9 @@ mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
 
 %changelog
+* Fri Jun 08 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.1-0.1
+- Update to 3.0.1.
+
 * Tue Apr 17 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.0-0.3
 - Always enforce systemd init, fixes build failure on CentOS
 
