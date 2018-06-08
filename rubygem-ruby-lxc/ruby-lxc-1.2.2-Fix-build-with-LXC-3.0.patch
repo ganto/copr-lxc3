@@ -1,0 +1,21 @@
+From 0eb378c2914b0a345d3aa321b1a63011dede6150 Mon Sep 17 00:00:00 2001
+From: Jakub Skokan <jakub.skokan@havefun.cz>
+Date: Thu, 12 Apr 2018 12:29:36 +0200
+Subject: [PATCH] Fix build with LXC 3.0
+
+---
+ ext/lxc/lxc.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/ext/lxc/lxc.c b/ext/lxc/lxc.c
+index b45a141..b0ec634 100644
+--- a/ext/lxc/lxc.c
++++ b/ext/lxc/lxc.c
+@@ -6,6 +6,7 @@
+ #include <signal.h>
+ #include <stdint.h>
+ #include <string.h>
++#include <errno.h>
+ 
+ #define SYMBOL(s) ID2SYM(rb_intern(s))
+ 
