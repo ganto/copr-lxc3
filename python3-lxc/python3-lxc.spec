@@ -1,6 +1,6 @@
 Name:           python3-lxc
 Version:        3.0.1
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Python 3 bindings for LXC
 
 Group:          Development/Libraries
@@ -11,6 +11,11 @@ BuildRequires:  lxc-devel >= 3
 BuildRequires:  pkgconfig(python3) >= 3.2
 %if 0%{?rhel} == 7
 BuildRequires:  python34-setuptools
+
+# Make sure it will replace python34-lxc < 3.0
+Provides:       python34-lxc = %{version}-%{release}
+Obsoletes:      python34-lxc < 3.0
+Conflicts:      python34-lxc
 %endif
 
 %description
