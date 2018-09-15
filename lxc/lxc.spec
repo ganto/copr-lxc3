@@ -257,6 +257,10 @@ make check
 
 
 %changelog
+* Sat Sep 15 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.2
+- Add patch to fix build error on CentOS 7
+- Cleanup unused Lua build dependency
+
 * Sat Sep 15 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.1
 - Update to 3.0.2
 
