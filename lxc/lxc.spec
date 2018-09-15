@@ -8,23 +8,13 @@
 %endif
 %endif
 
-# for pre-releases
-#global prerel
-%global commit a467a845443054a9f75d65cf0a73bb4d5ff2ab71
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-
 Name:           lxc
-Version:        3.0.1
-Release:        %{?prerel:0.}0.1%{?prerel:.%{prerel}}%{?dist}
+Version:        3.0.2
+Release:        0.1%{?dist}
 Summary:        Linux Resource Containers
-Group:          Applications/System
 License:        LGPLv2+ and GPLv2
 URL:            http://linuxcontainers.org
-%if 0%{?prerel:1}
-Source0:        https://github.com/lxc/lxc/archive/%{commit}/%{name}-%{commit}.tar.gz
-%else
 Source0:        http://linuxcontainers.org/downloads/%{name}-%{version}.tar.gz
-%endif
 Patch0:         lxc-2.0.6-fix-lxc-net.patch
 BuildRequires:  docbook2X
 BuildRequires:  doxygen
@@ -46,9 +36,6 @@ BuildRequires:  pkgconfig(bash-completion)
 # C and does not depend on the Python3 binding anymore
 Provides:       lxc-extra = %{version}-%{release}
 Obsoletes:      lxc-extra < 1.1.5-3
-%if 0%{?prerel:1}
-BuildRequires:  autoconf automake
-%endif
 
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
@@ -57,19 +44,21 @@ Linux Resource Containers provide process and resource isolation without the
 overhead of full virtualization.
 
 
-%package        libs
-Summary:        Runtime library files for %{name}
-Group:          System Environment/Libraries
-
-%{?systemd_requires}
-# used by lxc-clone
-Requires:       rsync
+%package           libs
+Summary:           Runtime library files for %{name}
+# rsync is called in bdev.c, e.g. by lxc-clone
+Requires:          rsync
+Requires(post):    systemd
+Requires(preun):   systemd
+Requires(postun):  systemd
+Requires(post):    /sbin/ldconfig
+Requires(postun):  /sbin/ldconfig
 # used by download template
-Requires:       gnupg
-Requires:       wget
+Requires:          gnupg
+Requires:          wget
 %if 0%{?fedora}
-Recommends:     dnsmasq
-Recommends:     iptables
+Recommends:        dnsmasq
+Recommends:        iptables
 %endif
 
 
@@ -84,7 +73,6 @@ The %{name}-libs package contains libraries for running %{name} applications.
 
 %package        devel
 Summary:        Development files for %{name}
-Group:          Development/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 
@@ -98,7 +86,6 @@ developing applications that use %{name}.
 
 %package        doc
 Summary:        Documentation for %{name}
-Group:          Documentation
 BuildArch:      noarch
 
 %description    doc
@@ -115,20 +102,18 @@ on the command line.
 
 
 %prep
-%setup -q -n %{name}-%{?!prerel:%{version}}%{?prerel:%{commit}}
+%setup -q -n %{name}-%{version}
 %patch0 -p1
 
 
 %build
-%if 0%{?prerel:1}
-./autogen.sh
-%endif
 %configure --enable-capabilities \
            --enable-doc \
            --enable-api-docs \
            --disable-silent-rules \
            --docdir=%{_pkgdocdir} \
            --disable-rpath \
+           --disable-static \
            --disable-apparmor \
            --enable-pam \
            --enable-selinux \
@@ -150,6 +135,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %{make_install} %{?_smp_mflags}
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
+# docs
 mkdir -p %{buildroot}%{_pkgdocdir}
 cp -a AUTHORS README %{!?_licensedir:COPYING} %{buildroot}%{_pkgdocdir}
 mkdir -p %{buildroot}%{_pkgdocdir}/api
