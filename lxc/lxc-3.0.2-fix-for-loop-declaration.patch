@@ -1,0 +1,28 @@
+commit de071c71ef98feae7f7742ff01fe6004fb5244b8
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Sat Sep 15 21:43:09 2018 +0200
+
+    Declare loop variable outside of 'for' statement
+    
+    This fixes a build failure on CentOS 7:
+      ./macro.h:135:2: error: 'for' loop initial declarations are only
+      allowed in C99 mode
+        for (char *__p = NULL, *__it = strtok_r(__splitme, __separators, &__p); \
+        ^
+    
+    Signed-off-by: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+
+diff --git a/src/lxc/macro.h b/src/lxc/macro.h
+index 75c63c7c1..a2e8e0bb8 100644
+--- a/src/lxc/macro.h
++++ b/src/lxc/macro.h
+@@ -132,7 +132,8 @@ extern int __build_bug_on_failed;
+ #endif
+ 
+ #define lxc_iterate_parts(__iterator, __splitme, __separators)                  \
+-	for (char *__p = NULL, *__it = strtok_r(__splitme, __separators, &__p); \
++	char *__p, *__it;                                                       \
++	for (__p = NULL, __it = strtok_r(__splitme, __separators, &__p);      \
+ 	     (__iterator = __it);                                               \
+ 	     __iterator = __it = strtok_r(NULL, __separators, &__p))
+ 
