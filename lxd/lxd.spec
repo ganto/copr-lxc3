@@ -971,6 +971,11 @@ install -d -m 0755 %{buildroot}%{_localstatedir}/log/%{name}
 
 # source codes for building projects
 %if 0%{?with_devel}
+install -d -p %{buildroot}%{_includedir}/%{name}
+echo "%%dir %%{_includedir}/%%{name}/." >> devel.file-list
+cp -pav dist/sqlite/{sqlite3,sqlite3ext}.h %{buildroot}%{_includedir}/%{name}/
+echo "%%{_includedir}/%%{name}/*.h" >> devel.file-list
+
 install -d -p %{buildroot}/%{gopath}/src/%{import_path}/
 echo "%%dir %%{gopath}/src/%%{import_path}/." >> devel.file-list
 # find all *.go but no *_test.go files and generate devel.file-list
@@ -1012,16 +1017,21 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %if ! 0%{?gotest:1}
 %global gotest go test
 %endif
+%define gotestflags -buildmode pie -compiler gc -v -tags="libsqlite3"
 
 # Tests must ignore potential LXD_SOCKET from environment
 unset LXD_SOCKET
+
+# Test against the libraries which just built
+export CGO_CPPFLAGS="-I%{buildroot}%{_includedir}/%{name}/"
+export CGO_LDFLAGS="-L%{buildroot}%{_libdir}/%{name}/"
+export LD_LIBRARY_PATH="%{buildroot}%{_libdir}/%{name}/"
 
 %gotest %{import_path}/lxc
 # lxc-to-lxd test fails, see ganto/copr-lxc3#10
 #%%gotest %%{import_path}/lxc-to-lxd
 %gotest %{import_path}/lxd
-# Cluster test fails, see ganto/copr-lxc3#7
-#%%gotest %%{import_path}/lxd/cluster
+%gotest %{import_path}/lxd/cluster
 %gotest %{import_path}/lxd/config
 %gotest %{import_path}/lxd/db
 %gotest %{import_path}/lxd/db/cluster
