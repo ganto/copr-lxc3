@@ -96,6 +96,8 @@ Requires(pre): container-selinux >= 2:2.38
 Requires(pre): shadow-utils
 
 Provides: bundled(libsqlite3.so.0())
+# Do not auto-provide .so files in the application-specific library directory
+%global __provides_exclude_from ^%{_libdir}/%{name}/*\\.so$
 
 %description
 Container hypervisor based on LXC
