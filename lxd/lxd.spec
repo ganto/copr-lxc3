@@ -1025,10 +1025,10 @@ sort -u -o devel.file-list devel.file-list
 %if 0%{?with_check} && 0%{?with_unit_test} && 0%{?with_devel}
 export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 
-%if ! 0%{?gotest:1}
-%global gotest go test
-%endif
 %define gotestflags -buildmode pie -compiler gc -v -tags="libsqlite3"
+%if ! 0%{?gotest:1}
+%define gotest go test %{gotestflags}
+%endif
 
 # Tests must ignore potential LXD_SOCKET from environment
 unset LXD_SOCKET
