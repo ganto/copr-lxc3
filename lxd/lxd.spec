@@ -1137,6 +1137,12 @@ exit 0
 %doc doc/*
 
 %changelog
+* Mon Sep 17 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.4-0.1
+- Update to 3.4
+- Run test with 'libsqlite3' tag
+- Install headers of embedded libraries
+- Don't auto-provide embedded libraries (e.g. sqlite)
+
 * Fri Aug 10 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.3-0.1
 - Update to 3.3
 
