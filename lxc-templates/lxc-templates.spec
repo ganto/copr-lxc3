@@ -1,13 +1,17 @@
 Name:           lxc-templates
 Version:        3.0.2
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Old style template scripts for LXC
 
 License:        LGPLv2+
 URL:            https://linuxcontainers.org
 Source0:        https://linuxcontainers.org/downloads/lxc/%{name}-%{version}.tar.gz
 BuildArch:      noarch
-BuildRequires:  autoconf automake
+BuildRequires:  autoconf
+BuildRequires:  automake
+# not actually used, but build will fail due to autoconf check:
+# "configure: error: no acceptable C compiler found in $PATH"
+BuildRequires:  gcc
 
 Requires:       lxc-libs%{?_isa} >= 3.0.0
 # Note: Requirements for the template scripts (busybox, dpkg,                       
