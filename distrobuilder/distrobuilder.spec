@@ -29,8 +29,8 @@
 # https://github.com/lxc/distrobuilder
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          a15b0678860167fd31182f9b4fcaadc6f331c986
-%global commitdate      20180522
+%global commit          7274ea21404772e69de52e398df0d1a502d33669
+%global commitdate      20180707
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:       %{repo}
@@ -41,8 +41,8 @@ Summary:    System container image builder for LXC and LXD
 License:    ASL 2.0
 URL:        https://%{provider_prefix}
 Source0:    https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
-Source1:    distrobuilder-dist-20180601.tar.gz
-Patch0:     distrobuilder-5c6ad30-Disable-online-tests.patch
+Source1:    distrobuilder-dist-20180810.tar.gz
+Patch0:     distrobuilder-7274ea2-Disable-online-tests.patch
 
 # e.g. el6 has ppc64 arch without gcc-go, so EA tag is required
 ExclusiveArch:  %{?go_arches:%{go_arches}}%{!?go_arches:%{ix86} x86_64 %{arm}}

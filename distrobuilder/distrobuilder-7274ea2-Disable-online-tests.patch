@@ -1,8 +1,14 @@
+commit 1906fda093769299d753f76281a158d8dd098dce
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Wed Apr 4 07:48:55 2018 +0200
+
+    Disable some test that need access to GPG keyservers
+
 diff --git a/shared/util_test.go b/shared/util_test.go
-index fdaf068..a2e428d 100644
+index 360be5e..2e62b4c 100644
 --- a/shared/util_test.go
 +++ b/shared/util_test.go
-@@ -3,14 +3,15 @@ package shared
+@@ -3,15 +3,16 @@ package shared
  import (
  	"log"
  	"os"
@@ -14,6 +20,7 @@ index fdaf068..a2e428d 100644
  
 -	lxd "github.com/lxc/lxd/shared"
 +//	lxd "github.com/lxc/lxd/shared"
+ 	"github.com/stretchr/testify/require"
  	"gopkg.in/flosch/pongo2.v3"
  )
  
@@ -21,8 +28,8 @@ index fdaf068..a2e428d 100644
  func TestVerifyFile(t *testing.T) {
  	wd, err := os.Getwd()
  	if err != nil {
-@@ -115,6 +116,7 @@ func TestCreateGPGKeyring(t *testing.T) {
- 	}
+@@ -109,6 +110,7 @@ func TestCreateGPGKeyring(t *testing.T) {
+ 	require.False(t, lxd.PathExists(keyring), "File should not exist")
  	os.RemoveAll(path.Dir(keyring))
  }
 +*/
