@@ -48,6 +48,9 @@ The modern approach to build container images is distrobuilder.
 %{_datadir}/lxc/templates/lxc-*      
 
 %changelog
+* Sat Sep 22 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.2
+- Fix build when no C compiler is in the base bulid environment
+
 * Sat Sep 22 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.1
 - Update to 3.0.2
 
