@@ -99,11 +99,14 @@ Requires: xz
 %{?systemd_requires}
 Requires(pre): container-selinux >= 2:2.38
 Requires(pre): shadow-utils
+# Do not require bundled libraries
+%global __requires_exclude libsqlite3.so.0
+%global __requires_exclude %{__requires_exclude}|libdqlite.so.0
 
 Provides: bundled(libsqlite3.so.0())
 Provides: bundled(libdqlite.so.0())
 # Do not auto-provide .so files in the application-specific library directory
-%global __provides_exclude_from ^%{_libdir}/%{name}/*\\.so$
+%global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
 %description
 Container hypervisor based on LXC
