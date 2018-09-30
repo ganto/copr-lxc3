@@ -42,7 +42,7 @@
 %global import_path     %{provider_prefix}
 
 Name:           lxd
-Version:        3.4
+Version:        3.5
 Release:        0.1%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
