@@ -1143,6 +1143,11 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sun Sep 30 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.5-0.1
+- Update to 3.5
+- Fix rpath of embedded libdqlite.so
+- Finally fix Provides/Requires of embedded libraries
+
 * Mon Sep 17 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.4-0.1
 - Update to 3.4
 - Run test with 'libsqlite3' tag
