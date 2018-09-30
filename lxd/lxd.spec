@@ -72,6 +72,7 @@ ExclusiveArch:  x86_64 aarch64 ppc64le s390x
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
 BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 
+BuildRequires:  chrpath
 BuildRequires:  help2man
 BuildRequires:  libacl-devel
 BuildRequires:  libcap-devel
@@ -968,6 +969,8 @@ install -D -p -m 0755 %{SOURCE8} %{buildroot}%{_bindir}/lxd
 install -d -m 0755 %{buildroot}%{_libdir}/%{name}
 cp -Pp dist/sqlite/.libs/libsqlite3.so* %{buildroot}%{_libdir}/%{name}/
 cp -Pp dist/dqlite/.libs/libdqlite.so* %{buildroot}%{_libdir}/%{name}/
+# fix rpath
+chrpath -r %{_libdir}/%{name} %{buildroot}%{_libdir}/%{name}/libdqlite.so
 
 # install man-pages
 install -d -m 0755 %{buildroot}%{_mandir}/man1
