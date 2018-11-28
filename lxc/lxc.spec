@@ -9,14 +9,13 @@
 %endif
 
 Name:           lxc
-Version:        3.0.2
-Release:        0.2%{?dist}
+Version:        3.0.3
+Release:        0.1%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
 URL:            http://linuxcontainers.org
 Source0:        http://linuxcontainers.org/downloads/%{name}-%{version}.tar.gz
 Patch0:         lxc-2.0.6-fix-lxc-net.patch
-Patch1:         lxc-3.0.2-fix-for-loop-declaration.patch
 BuildRequires:  docbook2X
 BuildRequires:  doxygen
 BuildRequires:  graphviz
@@ -104,7 +103,6 @@ on the command line.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %configure --enable-capabilities \
