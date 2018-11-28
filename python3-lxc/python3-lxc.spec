@@ -1,6 +1,6 @@
 Name:           python3-lxc
-Version:        3.0.2
-Release:        0.2%{?dist}
+Version:        3.0.3
+Release:        0.1%{?dist}
 Summary:        Python 3 bindings for LXC
 
 Group:          Development/Libraries
