@@ -1,6 +1,6 @@
 Name:           lxc-templates
-Version:        3.0.2
-Release:        0.2%{?dist}
+Version:        3.0.3
+Release:        0.1%{?dist}
 Summary:        Old style template scripts for LXC
 
 License:        LGPLv2+
