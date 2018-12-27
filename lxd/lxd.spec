@@ -65,6 +65,7 @@ Source5:        lxd.logrotate
 Source6:        shutdown
 Source7:        lxd.sysctl
 Source8:        lxd.profile
+Patch0:         lxd-3.8-lxd-Fix-go-test.patch
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -904,6 +905,7 @@ This package contains user documentation.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1
 
 %build
 %if 0%{?with_bundled}
@@ -1072,8 +1074,7 @@ export LD_LIBRARY_PATH="%{buildroot}%{_libdir}/%{name}/"
 %gotest %{import_path}/lxc
 # lxc-to-lxd test fails, see ganto/copr-lxc3#10
 #%%gotest %%{import_path}/lxc-to-lxd
-# test fails, see ganto/copr-lxc3#11
-#%%gotest %%{import_path}/lxd
+%gotest %{import_path}/lxd
 %gotest %{import_path}/lxd/cluster
 %gotest %{import_path}/lxd/config
 %gotest %{import_path}/lxd/db
@@ -1088,7 +1089,7 @@ export LD_LIBRARY_PATH="%{buildroot}%{_libdir}/%{name}/"
 %gotest %{import_path}/lxd/util
 %gotest %{import_path}/shared
 %gotest %{import_path}/shared/idmap
-# test fails, see ganto/copr-lxc3#11
+# test fails, see ganto/copr-lxc3#13
 #%%gotest %%{import_path}/shared/generate/db
 #%%gotest %%{import_path}/shared/generate/lex
 %gotest %{import_path}/shared/osarch
