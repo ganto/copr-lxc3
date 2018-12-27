@@ -1191,6 +1191,13 @@ exit 0
 %doc doc/*
 
 %changelog
+* Thu Dec 27 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.8-0.1
+- Update to 3.8
+- Fix build macros for CentOS and simplify build env variables
+- Set --libdir and rpath to avoid LD_LIBRARY_PATH wrapper
+- Add upstream patch to fix test failure in github.com/lxc/lxd/lxd
+- Generate and package gettext translations
+
 * Sun Sep 30 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.5-0.1
 - Update to 3.5
 - Fix rpath of embedded libdqlite.so
