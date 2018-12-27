@@ -66,6 +66,8 @@ Source6:        shutdown
 Source7:        lxd.sysctl
 Source8:        lxd.profile
 Patch0:         lxd-3.8-lxd-Fix-go-test.patch
+Patch1:         lxd-3.8-de-translation-newline-1.patch
+Patch2:         lxd-3.8-ptbr-translation-newline.patch
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -78,6 +80,7 @@ ExclusiveArch:  aarch64 %{arm} ppc64le s390x x86_64
 BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 
 BuildRequires:  chrpath
+BuildRequires:  gettext
 BuildRequires:  help2man
 BuildRequires:  libacl-devel
 BuildRequires:  libcap-devel
@@ -860,6 +863,8 @@ with %{import_path} prefix.
 %package client
 Summary:        Container hypervisor based on LXC - Client
 
+Requires:       gettext
+
 %description client
 LXD offers a REST API to remotely manage containers over the network,
 using an image based work-flow and with support for live migration.
@@ -906,6 +911,8 @@ This package contains user documentation.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %if 0%{?with_bundled}
@@ -957,6 +964,10 @@ BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
 %gobuild -o _bin/lxd-benchmark %{import_path}/lxd-benchmark
 %gobuild -o _bin/lxd-p2c %{import_path}/lxd-p2c
 %gobuild -o _bin/lxc-to-lxd %{import_path}/lxc-to-lxd
+
+# build translations
+rm -f po/zh_Hans.po    # remove invalid locale
+make %{?_smp_mflags} build-mo
 
 # generate man-pages
 _bin/lxd manpage .
@@ -1013,6 +1024,13 @@ cp -p lxc-to-lxd.1 %{buildroot}%{_mandir}/man1/
 # cache and log directories
 install -d -m 0711 %{buildroot}%{_localstatedir}/lib/%{name}
 install -d -m 0755 %{buildroot}%{_localstatedir}/log/%{name}
+
+# language files
+install -d -m 0755 %{buildroot}%{_datadir}/locale
+for mofile in po/*.mo ; do
+install -D -p -m 0644 ${mofile} %{buildroot}%{_datadir}/locale/$(basename ${mofile%%.mo})/LC_MESSAGES/%{name}.mo
+done
+%find_lang lxd
 
 # source codes for building projects
 %if 0%{?with_devel}
@@ -1148,7 +1166,7 @@ exit 0
 %license COPYING
 %endif
 
-%files client
+%files client -f lxd.lang
 %license COPYING
 %{_bindir}/lxc
 %{_datadir}/bash-completion/completions/lxd-client
