@@ -1,4 +1,0 @@
-#!/bin/sh
-# Needed for clustered sqlite3
-export LD_LIBRARY_PATH=/usr/lib64/lxd/
-exec /usr/libexec/lxd/lxd "$@"

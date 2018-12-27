@@ -64,8 +64,7 @@ Source4:        lxd.dnsmasq
 Source5:        lxd.logrotate
 Source6:        shutdown
 Source7:        lxd.sysctl
-Source8:        lxd.wrapper
-Source9:        lxd.profile
+Source8:        lxd.profile
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -912,14 +911,14 @@ src_dir=$(pwd)/dist
 
 # build embedded libsqlite3
 pushd dist/sqlite
-%configure --enable-replication --disable-amalgamation --disable-tcl
+%configure --enable-replication --disable-amalgamation --disable-tcl --libdir=%{_libdir}/%{name}
 make %{?_smp_mflags}
 popd
 
 # build embedded dqlite
 pushd dist/dqlite
 autoreconf -i
-PKG_CONFIG_PATH="${src_dir}/sqlite/" %configure
+PKG_CONFIG_PATH="${src_dir}/sqlite/" %configure --libdir=%{_libdir}/%{name}
 make %{?_smp_mflags} CFLAGS="$RPM_OPT_FLAGS -I${src_dir}/sqlite" LDFLAGS="-L${src_dir}/sqlite"
 popd
 
@@ -947,7 +946,7 @@ unset LDFLAGS
 
 # LXD depends on a patched, bundled sqlite with replication capabilities
 export CGO_CPPFLAGS="-I${src_dir}/sqlite/ -I${src_dir}/dqlite/include/"
-export CGO_LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/dqlite/.libs/"
+export CGO_LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/dqlite/.libs/ -Wl,-rpath,%{_libdir}/%{name}"
 export LD_LIBRARY_PATH="${src_dir}/sqlite/.libs/:${src_dir}/dqlite/.libs/"
 
 BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
@@ -971,14 +970,14 @@ install -D -p -m 0755 _bin/lxc %{buildroot}%{_bindir}/lxc
 install -D -p -m 0755 _bin/fuidshift %{buildroot}%{_bindir}/fuidshift
 install -D -p -m 0755 _bin/lxd-benchmark %{buildroot}%{_bindir}/lxd-benchmark
 install -D -p -m 0755 _bin/lxd-p2c %{buildroot}%{_bindir}/lxd-p2c
-install -D -p -m 0755 _bin/lxd %{buildroot}%{_libexecdir}/%{name}/lxd
+install -D -p -m 0755 _bin/lxd %{buildroot}%{_bindir}/%{name}
 install -D -p -m 0755 _bin/lxc-to-lxd %{buildroot}%{_bindir}/lxc-to-lxd
 
 # extra configs
 install -D -p -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/dnsmasq.d/lxd
 install -D -p -m 0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/logrotate.d/lxd
 install -D -p -m 0644 %{SOURCE7} %{buildroot}%{_sysconfdir}/sysctl.d/10-lxd-inotify.conf
-install -D -p -m 0644 %{SOURCE9} %{buildroot}%{_sysconfdir}/profile.d/lxd.sh
+install -D -p -m 0644 %{SOURCE8} %{buildroot}%{_sysconfdir}/profile.d/lxd.sh
 
 # install bash completion
 install -D -p -m 0644 scripts/bash/lxd-client %{buildroot}%{_datadir}/bash-completion/completions/lxd-client
@@ -989,9 +988,9 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
 install -p -m 0644 %{SOURCE2} %{buildroot}%{_unitdir}/
 install -p -m 0644 %{SOURCE3} %{buildroot}%{_unitdir}/
 
-# install wrapper
-install -D -p -m 0755 %{SOURCE6} %{buildroot}%{_libexecdir}/%{name}
-install -D -p -m 0755 %{SOURCE8} %{buildroot}%{_bindir}/lxd
+# install shutdown wrapper
+install -d -m 0755 %{buildroot}%{_libexecdir}/%{name}
+install -p -m 0755 %{SOURCE6} %{buildroot}%{_libexecdir}/%{name}
 
 # install custom libsqlite3/dqlite
 install -d -m 0755 %{buildroot}%{_libdir}/%{name}
