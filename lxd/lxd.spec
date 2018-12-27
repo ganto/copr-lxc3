@@ -24,13 +24,22 @@
 %global with_unit_test 1
 
 %if 0%{?with_debug}
+%global _find_debuginfo_dwz_opts %{nil}
+# https://bugzilla.redhat.com/show_bug.cgi?id=995136#c12
 %global _dwz_low_mem_die_limit 0
 %else
 %global debug_package   %{nil}
 %endif
 
-%if ! 0%{?gobuild:1}
-%define gobuild(o:) go build -tags="$BUILDTAGS rpm_crashtraceback" -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
+%if 0%{?centos} == 7
+# centos doesn't (yet) define build macros for golang
+%define gobuild(o:) %{expand:
+  go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags %{?__golang_extldflags}'" -a -v -x %{?**};
+}
+# Define commands for testing
+%define gotestflags      -buildmode pie -compiler gc
+%define gotestextldflags %__global_ldflags %{?__golang_extldflags}
+%define gotest() go test %{gotestflags} -ldflags "${LDFLAGS:-} -extldflags '%{gotestextldflags}'" %{?**};
 %endif
 
 %global provider        github
@@ -899,9 +908,10 @@ This package contains user documentation.
 
 %build
 %if 0%{?with_bundled}
+src_dir=$(pwd)/dist
+
 # build embedded libsqlite3
 pushd dist/sqlite
-sqlite_dir=$(pwd)
 %configure --enable-replication --disable-amalgamation --disable-tcl
 make %{?_smp_mflags}
 popd
@@ -909,15 +919,9 @@ popd
 # build embedded dqlite
 pushd dist/dqlite
 autoreconf -i
-export PKG_CONFIG_PATH="${sqlite_dir}"
-export CFLAGS="${CFLAGS} -I${sqlite_dir}"
-export LDFLAGS="-L${sqlite_dir}"
-%configure
-make %{?_smp_mflags}
+PKG_CONFIG_PATH="${src_dir}/sqlite/" %configure
+make %{?_smp_mflags} CFLAGS="$RPM_OPT_FLAGS -I${src_dir}/sqlite" LDFLAGS="-L${src_dir}/sqlite"
 popd
-
-export CGO_CPPFLAGS="-I$(pwd)/dist/sqlite -I$(pwd)/dist/dqlite/include"
-export CGO_LDFLAGS="-L$(pwd)/dist/sqlite/.libs -L$(pwd)/dist/dqlite/.libs"
 
 mkdir _output
 pushd _output
@@ -937,8 +941,14 @@ ln -s ../../../ src/%{import_path}
 export GOPATH=$(pwd):%{gopath}
 %endif
 
-# avoid error when linking lxd: "flag provided but not defined: -Wl,-z,relro"
+# don't use LDFLAGS='-Wl,-z relro ' from redhat-rpm-config to avoid error:
+# "flag provided but not defined: -Wl,-z,relro"
 unset LDFLAGS
+
+# LXD depends on a patched, bundled sqlite with replication capabilities
+export CGO_CPPFLAGS="-I${src_dir}/sqlite/ -I${src_dir}/dqlite/include/"
+export CGO_LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/dqlite/.libs/"
+export LD_LIBRARY_PATH="${src_dir}/sqlite/.libs/:${src_dir}/dqlite/.libs/"
 
 BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
 %gobuild -o _bin/lxc %{import_path}/lxc
@@ -948,7 +958,7 @@ BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
 %gobuild -o _bin/lxc-to-lxd %{import_path}/lxc-to-lxd
 
 # generate man-pages
-LD_LIBRARY_PATH=dist/sqlite/.libs:dist/dqlite/.libs _bin/lxd manpage .
+_bin/lxd manpage .
 _bin/lxc manpage .
 help2man _bin/fuidshift -n "uid/gid shifter" --no-info > fuidshift.1
 help2man _bin/lxd-benchmark -n "The container lightervisor - benchmark" --no-info --version-string=%{version} --no-discard-stderr > lxd-benchmark.1
@@ -1049,10 +1059,8 @@ sort -u -o devel.file-list devel.file-list
 %if 0%{?with_check} && 0%{?with_unit_test} && 0%{?with_devel}
 export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 
-%define gotestflags -buildmode pie -compiler gc -v -tags="libsqlite3"
-%if ! 0%{?gotest:1}
-%define gotest go test %{gotestflags}
-%endif
+# Add libsqlite3 tag to go test
+%define gotestflags -buildmode pie -compiler gc -v -tags libsqlite3
 
 # Tests must ignore potential LXD_SOCKET from environment
 unset LXD_SOCKET
