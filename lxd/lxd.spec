@@ -1222,6 +1222,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sun Feb 03 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.9-0.1
+- Update to 3.9
+
 * Thu Dec 27 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.8-0.1
 - Update to 3.8
 - Fix build macros for CentOS and simplify build env variables
