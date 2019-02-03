@@ -9,7 +9,7 @@
 %endif
 
 Name:           lxc
-Version:        3.0.3
+Version:        3.1.0
 Release:        0.1%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
