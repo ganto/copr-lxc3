@@ -1,11 +1,11 @@
-Name:           lxc-templates
+Name:           lxc-templates-extra
 Version:        3.0.3
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Old style template scripts for LXC
 
 License:        LGPLv2+
 URL:            https://linuxcontainers.org
-Source0:        https://linuxcontainers.org/downloads/lxc/%{name}-%{version}.tar.gz
+Source0:        https://linuxcontainers.org/downloads/lxc/lxc-templates-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -13,7 +13,11 @@ BuildRequires:  automake
 # "configure: error: no acceptable C compiler found in $PATH"
 BuildRequires:  gcc
 
-Requires:       lxc-libs%{?_isa} >= 3.0.0
+Requires:       lxc-templates >= 3.0.3-0.2
+# Package was renamed after lxc-templates-3.0.3-0.1 to not conflict with the
+# Fedora package layout used by lxc-templates-3.0.3-1
+Obsoletes:      lxc-templates = 3.0.3-0.1
+Conflicts:      lxc-templates = 3.0.3-0.1
 # Note: Requirements for the template scripts (busybox, dpkg,                       
 # debootstrap, rsync, openssh-server, dhclient, apt, pacman, zypper,
 # ubuntu-cloudimg-query etc...) are not explicitly mentioned here:
@@ -30,7 +34,7 @@ Requires:       lxc-libs%{?_isa} >= 3.0.0
 The modern approach to build container images is distrobuilder.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n lxc-templates-%{version}
 ./autogen.sh
 %configure
 
