@@ -268,6 +268,9 @@ make check
 
 
 %changelog
+* Sat Feb 09 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.0-0.2
+- Follow template packaging of Fedora lxc.spec
+
 * Sun Feb 03 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.0-0.1
 - Update to 3.1.0
 
