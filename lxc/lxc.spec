@@ -10,11 +10,11 @@
 
 Name:           lxc
 Version:        3.1.0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
-URL:            http://linuxcontainers.org
-Source0:        http://linuxcontainers.org/downloads/%{name}-%{version}.tar.gz
+URL:            https://linuxcontainers.org/lxc
+Source0:        https://linuxcontainers.org/downloads/%{name}-%{version}.tar.gz
 Patch0:         lxc-2.0.6-fix-lxc-net.patch
 BuildRequires:  docbook2X
 BuildRequires:  doxygen
@@ -67,7 +67,17 @@ overhead of full virtualization.
 
 The %{name}-libs package contains libraries for running %{name} applications.
 
-%global __provides_exclude %{?__provides_exclude:%__provides_exclude|}core\\.so\\.0
+
+%package        templates
+Summary:        Templates for %{name}
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+
+%description    templates
+Linux Resource Containers provide process and resource isolation without the
+overhead of full virtualization.
+
+The %{name}-templates package contains templates for creating containers.
 
 
 %package        devel
@@ -195,11 +205,9 @@ make check
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/templates
 %dir %{_datadir}/%{name}/config
-%{_datadir}/%{name}/config/*
 %{_datadir}/%{name}/hooks
 %{_datadir}/%{name}/%{name}-patch.py*
 %{_datadir}/%{name}/selinux
-%{_datadir}/%{name}/templates/lxc-*
 %{_libdir}/liblxc.so.*
 %{_libdir}/%{name}
 %{_libexecdir}/%{name}
@@ -229,6 +237,11 @@ make check
 %{_unitdir}/%{name}@.service
 %{_unitdir}/%{name}-net.service
 %dir %{_localstatedir}/cache/%{name}
+
+
+%files templates
+%{_datadir}/%{name}/templates/lxc-*
+%{_datadir}/%{name}/config/*
 
 
 %files devel
