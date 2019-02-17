@@ -269,6 +269,9 @@ make check
 
 
 %changelog
+* Sun Feb 17 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.0-0.3
+- Fix dependencies for lxc-download template
+
 * Sat Feb 09 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.0-0.2
 - Follow template packaging of Fedora lxc.spec
 
