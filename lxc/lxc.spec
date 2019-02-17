@@ -10,7 +10,7 @@
 
 Name:           lxc
 Version:        3.1.0
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
 URL:            https://linuxcontainers.org/lxc
@@ -52,9 +52,6 @@ Requires(preun):   systemd
 Requires(postun):  systemd
 Requires(post):    /sbin/ldconfig
 Requires(postun):  /sbin/ldconfig
-# used by download template
-Requires:          gnupg
-Requires:          wget
 %if 0%{?fedora}
 Recommends:        dnsmasq
 Recommends:        iptables
@@ -71,6 +68,10 @@ The %{name}-libs package contains libraries for running %{name} applications.
 %package        templates
 Summary:        Templates for %{name}
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+# used by download template
+Requires:       gnupg
+Requires:       wget
+Requires:       xz
 
 
 %description    templates
