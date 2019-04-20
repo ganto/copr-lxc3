@@ -1224,6 +1224,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sat Apr 20 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.12-0.1
+- Update to 3.12
+
 * Sat Mar 09 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.11-0.1
 - Update to 3.11
 
