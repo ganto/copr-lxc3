@@ -51,7 +51,7 @@
 %global import_path     %{provider_prefix}
 
 Name:           lxd
-Version:        3.14
+Version:        3.15
 Release:        0.1%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
@@ -66,6 +66,8 @@ Source6:        shutdown
 Source7:        lxd.sysctl
 Source8:        lxd.profile
 Patch0:         lxd-3.8-de-translation-newline-1.patch
+# Fixes build failure on CentOS7: lxc/lxd#5993
+Patch1:         lxd-3.15-lxd-seccomp-Only-define-Go-arch.patch
 
 # If go_arches not defined fall through to implicit golang archs
 %if 0%{?go_arches:1}
@@ -109,10 +111,14 @@ Requires(pre): container-selinux >= 2:2.38
 Requires(pre): shadow-utils
 # Do not require bundled libraries
 %global __requires_exclude libsqlite3.so.0
+%global __requires_exclude %{__requires_exclude}|libco.so
+%global __requires_exclude %{__requires_exclude}|libraft.so.0
 %global __requires_exclude %{__requires_exclude}|libdqlite.so.0
 
-Provides: bundled(libsqlite3.so.0())
-Provides: bundled(libdqlite.so.0())
+Provides:       bundled(libsqlite3.so.0()) = 3c5e6afb3d8330485563387bc9b9492b4fd3d88d
+Provides:       bundled(libco.so()) = 5c5bba807e460a680d049b5e1e84002a5a8f14c6
+Provides:       bundled(libraft.so.0()) = 610235bddf7b34e5429575cf279984587ca7237b
+Provides:       bundled(libdqlite.so.0()) = 57dc4c4ec38de36aff9bd5da0bebbefb760161e1
 # Do not auto-provide .so files in the application-specific library directory
 %global __provides_exclude_from %{_libdir}/%{name}/.*\\.so
 
@@ -137,17 +143,25 @@ Provides:       golang(%{import_path}/client) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxc/config) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxc/utils) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/cluster) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/cluster/raft) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/config) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/db) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/db/cluster) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/db/node) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/db/query) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/db/schema) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/device) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/dnsmasq) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/endpoints) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/iptables) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/maas) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/migration) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/node) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/project) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/rbac) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/resources) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/state) = %{version}-%{release}
+Provides:       golang(%{import_path}/lxd/storage/quota) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/sys) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/task) = %{version}-%{release}
 Provides:       golang(%{import_path}/lxd/template) = %{version}-%{release}
@@ -158,6 +172,7 @@ Provides:       golang(%{import_path}/shared) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/api) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/cancel) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/cmd) = %{version}-%{release}
+Provides:       golang(%{import_path}/shared/containerwriter) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/dnsutil) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/eagain) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/generate/db) = %{version}-%{release}
@@ -173,10 +188,9 @@ Provides:       golang(%{import_path}/shared/logger) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/logging) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/netutils) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/osarch) = %{version}-%{release}
-Provides:       golang(%{import_path}/shared/rbac) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/simplestreams) = %{version}-%{release}
-Provides:       golang(%{import_path}/shared/subtest) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/termios) = %{version}-%{release}
+Provides:       golang(%{import_path}/shared/units) = %{version}-%{release}
 Provides:       golang(%{import_path}/shared/version) = %{version}-%{release}
 
 %if 0%{?with_bundled}
@@ -185,106 +199,59 @@ Autoprov:       0
 Provides:       lxd-devel = %{version}-%{release}
 
 # generated from dist/MANIFEST
-Provides:       bundled(golang(github.com/armon/go-metrics)) = ec5e00d3c878b2a97bbe0884ef45ffd1b4f669f5
-Provides:       bundled(golang(github.com/armon/go-metrics/circonus)) = ec5e00d3c878b2a97bbe0884ef45ffd1b4f669f5
-Provides:       bundled(golang(github.com/armon/go-metrics/datadog)) = ec5e00d3c878b2a97bbe0884ef45ffd1b4f669f5
-Provides:       bundled(golang(github.com/armon/go-metrics/prometheus)) = ec5e00d3c878b2a97bbe0884ef45ffd1b4f669f5
 Provides:       bundled(golang(github.com/boltdb/bolt)) = fd01fc79c553a8e99d512a07e8e0c63d4a3ccfc5
-Provides:       bundled(golang(github.com/CanonicalLtd/candidclient)) = 8244cb2283c0c2f3a2323eb23816976e774290b8
-Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/candidtest)) = 8244cb2283c0c2f3a2323eb23816976e774290b8
-Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/params)) = 8244cb2283c0c2f3a2323eb23816976e774290b8
-Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/ussodischarge)) = 8244cb2283c0c2f3a2323eb23816976e774290b8
-Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/ussologin)) = 8244cb2283c0c2f3a2323eb23816976e774290b8
-Provides:       bundled(golang(github.com/CanonicalLtd/go-dqlite)) = 3eab944668d7af5d0fc69ddb387ffda76300541c
-Provides:       bundled(golang(github.com/CanonicalLtd/go-dqlite/recover)) = 3eab944668d7af5d0fc69ddb387ffda76300541c
-Provides:       bundled(golang(github.com/CanonicalLtd/go-dqlite/recover/delete)) = 3eab944668d7af5d0fc69ddb387ffda76300541c
-Provides:       bundled(golang(github.com/CanonicalLtd/go-dqlite/recover/dump)) = 3eab944668d7af5d0fc69ddb387ffda76300541c
-Provides:       bundled(golang(github.com/CanonicalLtd/raft-http)) = c97137f045068bb39b582e1c45f27dd4a77d2282
-Provides:       bundled(golang(github.com/CanonicalLtd/raft-membership)) = 3846634b0164affd0b3dfba1fdd7f9da6387e501
-Provides:       bundled(golang(github.com/CanonicalLtd/raft-test)) = ecdf110973a40c4c94fa1423b6fb6e37df90f2c5
+Provides:       bundled(golang(github.com/CanonicalLtd/candidclient)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/candidtest)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/params)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/ussodischarge)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(github.com/CanonicalLtd/candidclient/ussologin)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(github.com/CanonicalLtd/go-dqlite)) = acd13354ed4ee1b3127e6d9b3a66068b8f5f8142
 Provides:       bundled(golang(github.com/cpuguy83/go-md2man)) = f79a8a8ca69da163eee19ab442bedad7a35bba5a
 Provides:       bundled(golang(github.com/cpuguy83/go-md2man/md2man)) = f79a8a8ca69da163eee19ab442bedad7a35bba5a
 Provides:       bundled(golang(github.com/dustinkirkland/golang-petname)) = 11339a705ed2dfd341d0b99e95b478dd0d8366ef
-Provides:       bundled(golang(github.com/flosch/pongo2)) = 8914e1cf9164420c91423cdefc7d978a76c38213
-Provides:       bundled(golang(github.com/gogo/protobuf/codec)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/conformance)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/gogoproto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/gogoreplace)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/io)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/jsonpb)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/jsonpb/jsonpb_test_proto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/compare)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/defaultcheck)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/description)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/embedcheck)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/enumstringer)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/equal)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/face)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/gostring)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/marshalto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/oneofcheck)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/populate)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/size)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/stringer)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/testgen)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/union)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/plugin/unmarshal)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/proto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-combo)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gofast)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogo)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogo/descriptor)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogofast)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogofaster)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogo/generator)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogo/grpc)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogo/plugin)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogoslick)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gogotypes)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-gen-gostring)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/protoc-min-version)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/proto/proto3_proto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/proto/test_proto)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/sortkeys)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/types)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/vanity)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/vanity/command)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/gogo/protobuf/version)) = dadb625850898f31a8e40e83492f4a7132e520a2
-Provides:       bundled(golang(github.com/golang/protobuf/descriptor)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/jsonpb)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/jsonpb/jsonpb_test_proto)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/proto)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/descriptor)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/generator)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/grpc)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/plugin)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/proto/proto3_proto)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/proto/test_proto)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/any)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/duration)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/empty)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/struct)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/timestamp)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
-Provides:       bundled(golang(github.com/golang/protobuf/ptypes/wrappers)) = b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
+Provides:       bundled(golang(github.com/flosch/pongo2)) = bbf5a6c351f4d4e883daa40046a404d7553e0a00
+Provides:       bundled(golang(github.com/golang/protobuf/descriptor)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/jsonpb)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/jsonpb/jsonpb_test_proto)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/proto)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/descriptor)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/generator)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/grpc)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/protoc-gen-go/plugin)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/proto/proto3_proto)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/proto/test_proto)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/any)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/duration)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/empty)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/struct)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/timestamp)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/golang/protobuf/ptypes/wrappers)) = 6c65a5562fc06764971b7c5d05c76c75e84bdbf7
+Provides:       bundled(golang(github.com/google/gopacket)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/afpacket)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/bsdbpf)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/bytediff)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/defrag/lcmdefrag)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/dumpcommand)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/ip4defrag)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/layers)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/macs)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/pcap)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/pcapgo)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/pcap/gopacket_benchmark)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/pfring)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/reassembly)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/routing)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/tcpassembly)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
+Provides:       bundled(golang(github.com/google/gopacket/tcpassembly/tcpreader)) = ce2e696dc0c9917ecdebd800c892b839f06b2949
 Provides:       bundled(golang(github.com/google/uuid)) = c2e93f3ae59f2904160ceaab466009f965df46d6
-Provides:       bundled(golang(github.com/gorilla/mux)) = ed099d42384823742bba0bf9a72b53b55c9e2e38
-Provides:       bundled(golang(github.com/gorilla/websocket)) = 80c2d40e9b91f2ef7a9c1a403aeec64d1b89a9a6
+Provides:       bundled(golang(github.com/gorilla/mux)) = d83b6ffe499a29cc05fc977988d0392851779620
+Provides:       bundled(golang(github.com/gorilla/websocket)) = ae1634f6a98965ded3b8789c626cb4e0bd78c3de
 Provides:       bundled(golang(github.com/gosexy/gettext)) = 74466a0a0c4a62fea38f44aa161d4bbfbe79dd6b
 Provides:       bundled(golang(github.com/gosexy/gettext/go-xgettext)) = 74466a0a0c4a62fea38f44aa161d4bbfbe79dd6b
-Provides:       bundled(golang(github.com/hashicorp/go-hclog)) = f1d61ad5398ffe4f2eb61eacb088340d44e99672
-Provides:       bundled(golang(github.com/hashicorp/go-hclog/hclogvet)) = f1d61ad5398ffe4f2eb61eacb088340d44e99672
-Provides:       bundled(golang(github.com/hashicorp/go-immutable-radix)) = 0146a9aba1948ded4ed290cfd3fded2c15313f63
-Provides:       bundled(golang(github.com/hashicorp/golang-lru)) = 59383c442f7d7b190497e9bb8fc17a48d06cd03f
-Provides:       bundled(golang(github.com/hashicorp/golang-lru/simplelru)) = 59383c442f7d7b190497e9bb8fc17a48d06cd03f
 Provides:       bundled(golang(github.com/hashicorp/go-msgpack/codec)) = ad60660ecf9c5a1eae0ca32182ed72bab5807961
-Provides:       bundled(golang(github.com/hashicorp/logutils)) = a335183dfd075f638afcc820c90591ca3c97eba6
-Provides:       bundled(golang(github.com/hashicorp/raft)) = 3bea0253bccd9eacf1938c1e1ba4c4988fed1053
-Provides:       bundled(golang(github.com/hashicorp/raft/bench)) = 3bea0253bccd9eacf1938c1e1ba4c4988fed1053
-Provides:       bundled(golang(github.com/hashicorp/raft-boltdb)) = ef2e128ed477fd15f4a9a7092e4a9a8408008fb5
-Provides:       bundled(golang(github.com/hashicorp/raft/fuzzy)) = 3bea0253bccd9eacf1938c1e1ba4c4988fed1053
-Provides:       bundled(golang(github.com/jaypipes/pcidb)) = 92fa8668ddf5bb76cfc75243a6dea3a22814a2a1
+Provides:       bundled(golang(github.com/jaypipes/pcidb)) = 98ef3ee36c69f20650fe7855047ad042338c6983
 Provides:       bundled(golang(github.com/juju/clock)) = 9c5c9712527c7986f012361e7d13756b4d99543d
 Provides:       bundled(golang(github.com/juju/clock/monotonic)) = 9c5c9712527c7986f012361e7d13756b4d99543d
 Provides:       bundled(golang(github.com/juju/clock/testclock)) = 9c5c9712527c7986f012361e7d13756b4d99543d
@@ -313,8 +280,8 @@ Provides:       bundled(golang(github.com/juju/go4/types)) = 40d72ab9641a2a8c36a
 Provides:       bundled(golang(github.com/juju/go4/wkfs)) = 40d72ab9641a2a8c36a9c46a51e28367115c8e59
 Provides:       bundled(golang(github.com/juju/go4/wkfs/gcs)) = 40d72ab9641a2a8c36a9c46a51e28367115c8e59
 Provides:       bundled(golang(github.com/juju/go4/writerutil)) = 40d72ab9641a2a8c36a9c46a51e28367115c8e59
-Provides:       bundled(golang(github.com/juju/gomaasapi)) = 8a8cec793ba70659ba95f1b9a491ba807169bfc3
-Provides:       bundled(golang(github.com/juju/gomaasapi/templates)) = 8a8cec793ba70659ba95f1b9a491ba807169bfc3
+Provides:       bundled(golang(github.com/juju/gomaasapi)) = 65f2e261f089fd379297df942bf12193bd300825
+Provides:       bundled(golang(github.com/juju/gomaasapi/templates)) = 65f2e261f089fd379297df942bf12193bd300825
 Provides:       bundled(golang(github.com/juju/httprequest)) = 77d36ac4b71a6095506c0617d5881846478558cb
 Provides:       bundled(golang(github.com/juju/loggo)) = 6e530bcce5d8e1b51b8e5ee7f08a455cd0a8c2e5
 Provides:       bundled(golang(github.com/juju/loggo/loggocolor)) = 6e530bcce5d8e1b51b8e5ee7f08a455cd0a8c2e5
@@ -356,134 +323,134 @@ Provides:       bundled(golang(github.com/juju/utils/zip)) = bf9cc5bdd62dabc40b7
 Provides:       bundled(golang(github.com/juju/version)) = b64dbd566305c836274f0268fa59183a52906b36
 Provides:       bundled(golang(github.com/juju/webbrowser)) = efb9432b2bcb671b0cf2237468e209d10e2ac373
 Provides:       bundled(golang(github.com/julienschmidt/httprouter)) = 26a05976f9bf5c3aa992cc20e8588c359418ee58
-Provides:       bundled(golang(github.com/mattn/go-colorable)) = 8029fb3788e5a4a9c00e415f586a6d033f5d38b3
-Provides:       bundled(golang(github.com/mattn/go-isatty)) = 1311e847b0cb909da63b5fecfb5370aa66236465
+Provides:       bundled(golang(github.com/mattn/go-colorable)) = c52ace132bf44798a21f16fdafaaafbf329519e2
+Provides:       bundled(golang(github.com/mattn/go-isatty)) = da60ac76bf7019a8b005f8dd1ad9d1a0e6434155
 Provides:       bundled(golang(github.com/mattn/go-runewidth)) = 703b5e6b11ae25aeb2af9ebb5d5fdf8fa2575211
-Provides:       bundled(golang(github.com/mattn/go-sqlite3)) = 070b17a2fdf5109d2dd54acb6bbfb507872115cf
-Provides:       bundled(golang(github.com/mattn/go-sqlite3/upgrade)) = 070b17a2fdf5109d2dd54acb6bbfb507872115cf
-Provides:       bundled(golang(github.com/miekg/dns)) = ee62c8b0866df3cc788d181485c483bf46808a00
-Provides:       bundled(golang(github.com/miekg/dns/dnsutil)) = ee62c8b0866df3cc788d181485c483bf46808a00
+Provides:       bundled(golang(github.com/mattn/go-sqlite3)) = fba062bdb60d06bdd3b8cc9fcd824fb179941e9d
+Provides:       bundled(golang(github.com/mattn/go-sqlite3/upgrade)) = fba062bdb60d06bdd3b8cc9fcd824fb179941e9d
+Provides:       bundled(golang(github.com/mdlayher/eui64)) = eee6532bb9adf30c2a17e9963ed90aa14161dae9
+Provides:       bundled(golang(github.com/miekg/dns)) = b13675009d59c97f3721247d9efa8914e1866a5b
+Provides:       bundled(golang(github.com/miekg/dns/dnsutil)) = b13675009d59c97f3721247d9efa8914e1866a5b
 Provides:       bundled(golang(github.com/mitchellh/go-homedir)) = af06845cf3004701891bf4fdb884bfe4920b3727
 Provides:       bundled(golang(github.com/mpvl/subtest)) = f6e4cfd4b9ea1beb9fb5d53afba8c30804a02ae7
-Provides:       bundled(golang(github.com/olekukonko/tablewriter)) = 195002e6e56a4077c291aef35ff88ff39b8a074d
-Provides:       bundled(golang(github.com/olekukonko/tablewriter/csv2table)) = 195002e6e56a4077c291aef35ff88ff39b8a074d
+Provides:       bundled(golang(github.com/olekukonko/tablewriter)) = cc27d85e17cec9768d2ac401ea5d619a9628f16d
+Provides:       bundled(golang(github.com/olekukonko/tablewriter/csv2table)) = cc27d85e17cec9768d2ac401ea5d619a9628f16d
 Provides:       bundled(golang(github.com/pborman/uuid)) = 8b1b92947f46224e3b97bb1a3a5b0382be00d31e
 Provides:       bundled(golang(github.com/pkg/errors)) = 27936f6d90f9c8e1145f11ed52ffffbfdb9e0af7
 Provides:       bundled(golang(github.com/Rican7/retry)) = 272ad122d6e5ce1be757544007cf8bcd1c9c9ab0
 Provides:       bundled(golang(github.com/Rican7/retry/backoff)) = 272ad122d6e5ce1be757544007cf8bcd1c9c9ab0
 Provides:       bundled(golang(github.com/Rican7/retry/jitter)) = 272ad122d6e5ce1be757544007cf8bcd1c9c9ab0
 Provides:       bundled(golang(github.com/Rican7/retry/strategy)) = 272ad122d6e5ce1be757544007cf8bcd1c9c9ab0
-Provides:       bundled(golang(github.com/rogpeppe/fastuuid)) = f8cc0d34a06cb01497e9d3d8aadfdcb9cb271242
-Provides:       bundled(golang(github.com/ryanfaerman/fsm)) = 3dc1bc0980272fd56d81167a48a641dab8356e29
-Provides:       bundled(golang(github.com/spf13/cobra)) = f2b07da1e2c38d5f12845a4f607e2e1018cbb1f5
-Provides:       bundled(golang(github.com/spf13/cobra/cobra)) = f2b07da1e2c38d5f12845a4f607e2e1018cbb1f5
-Provides:       bundled(golang(github.com/spf13/cobra/cobra/tpl)) = f2b07da1e2c38d5f12845a4f607e2e1018cbb1f5
-Provides:       bundled(golang(github.com/spf13/cobra/doc)) = f2b07da1e2c38d5f12845a4f607e2e1018cbb1f5
+Provides:       bundled(golang(github.com/rogpeppe/fastuuid)) = 10c3923834d38e951ae8f627bfec2dc632c5b6cb
+Provides:       bundled(golang(github.com/spf13/cobra)) = 21f39ca07ee7bf0c29e1bbdb2ab35df70c64b4b2
+Provides:       bundled(golang(github.com/spf13/cobra/cobra)) = 21f39ca07ee7bf0c29e1bbdb2ab35df70c64b4b2
+Provides:       bundled(golang(github.com/spf13/cobra/cobra/tpl)) = 21f39ca07ee7bf0c29e1bbdb2ab35df70c64b4b2
+Provides:       bundled(golang(github.com/spf13/cobra/doc)) = 21f39ca07ee7bf0c29e1bbdb2ab35df70c64b4b2
 Provides:       bundled(golang(github.com/spf13/pflag)) = 24fa6976df40757dce6aea913e7b81ade90530e1
-Provides:       bundled(golang(github.com/stretchr/testify)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
-Provides:       bundled(golang(github.com/stretchr/testify/assert)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
-Provides:       bundled(golang(github.com/stretchr/testify/http)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
-Provides:       bundled(golang(github.com/stretchr/testify/mock)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
-Provides:       bundled(golang(github.com/stretchr/testify/require)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
-Provides:       bundled(golang(github.com/stretchr/testify/suite)) = 34c6fa2dc70986bccbbffcc6130f6920a924b075
+Provides:       bundled(golang(github.com/stretchr/testify)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
+Provides:       bundled(golang(github.com/stretchr/testify/assert)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
+Provides:       bundled(golang(github.com/stretchr/testify/http)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
+Provides:       bundled(golang(github.com/stretchr/testify/mock)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
+Provides:       bundled(golang(github.com/stretchr/testify/require)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
+Provides:       bundled(golang(github.com/stretchr/testify/suite)) = 221dbe5ed46703ee255b1da0dec05086f5035f62
 Provides:       bundled(golang(github.com/syndtr/gocapability/capability)) = d98352740cb2c55f81556b63d4a1ec64c5a319c2
 Provides:       bundled(golang(github.com/syndtr/gocapability/capability/enumgen)) = d98352740cb2c55f81556b63d4a1ec64c5a319c2
-Provides:       bundled(golang(golang.org/x/crypto/acme)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/acme/autocert)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/argon2)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/bcrypt)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/blake2b)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/blake2s)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/blowfish)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/bn256)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/cast5)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/chacha20poly1305)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/cryptobyte)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/cryptobyte/asn1)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/curve25519)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ed25519)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/hkdf)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/md4)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/nacl/auth)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/nacl/box)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/nacl/secretbox)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/nacl/sign)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ocsp)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/armor)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/clearsign)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/elgamal)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/errors)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/packet)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/openpgp/s2k)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/otr)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/pbkdf2)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/pkcs12)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/poly1305)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ripemd160)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/salsa20)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/salsa20/salsa)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/scrypt)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/sha3)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ssh)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ssh/agent)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ssh/knownhosts)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/ssh/terminal)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/tea)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/twofish)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/xtea)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/crypto/xts)) = 5c40567a22f818bd14a1ea7245dad9f8ef0691aa
-Provides:       bundled(golang(golang.org/x/net/bpf)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/context)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/context/ctxhttp)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/dict)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/dns/dnsmessage)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/html)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/html/atom)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/html/charset)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http2)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http2/h2c)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http2/h2demo)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http2/h2i)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http2/hpack)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http/httpguts)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/http/httpproxy)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/icmp)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/idna)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/ipv4)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/ipv6)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/lif)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/nettest)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/netutil)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/proxy)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/publicsuffix)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/route)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/trace)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/webdav)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/websocket)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/net/xsrftoken)) = d28f0bde5980168871434b95cfc858db9f2a7a99
-Provides:       bundled(golang(golang.org/x/sys/cpu)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/plan9)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/unix)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/unix/linux)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows/registry)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows/svc)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows/svc/debug)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows/svc/eventlog)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(golang.org/x/sys/windows/svc/mgr)) = 5ed2794edfdc1c54dfb61d619c5944285f35d444
-Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1)) = 8d331dd5664bea29ab3762e226b14cfc49fbe22a
-Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/candidtest)) = 8d331dd5664bea29ab3762e226b14cfc49fbe22a
-Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/params)) = 8d331dd5664bea29ab3762e226b14cfc49fbe22a
-Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/ussodischarge)) = 8d331dd5664bea29ab3762e226b14cfc49fbe22a
-Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/ussologin)) = 8d331dd5664bea29ab3762e226b14cfc49fbe22a
+Provides:       bundled(golang(golang.org/x/crypto/acme)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/acme/autocert)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/argon2)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/bcrypt)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/blake2b)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/blake2s)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/blowfish)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/bn256)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/cast5)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/chacha20poly1305)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/cryptobyte)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/cryptobyte/asn1)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/curve25519)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ed25519)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/hkdf)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/md4)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/nacl/auth)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/nacl/box)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/nacl/secretbox)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/nacl/sign)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ocsp)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/armor)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/clearsign)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/elgamal)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/errors)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/packet)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/openpgp/s2k)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/otr)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/pbkdf2)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/pkcs12)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/poly1305)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ripemd160)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/salsa20)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/salsa20/salsa)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/scrypt)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/sha3)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ssh)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ssh/agent)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ssh/knownhosts)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/ssh/terminal)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/tea)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/twofish)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/xtea)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/crypto/xts)) = 4def268fd1a49955bfb3dda92fe3db4f924f2285
+Provides:       bundled(golang(golang.org/x/net/bpf)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/context)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/context/ctxhttp)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/dict)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/dns/dnsmessage)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/html)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/html/atom)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/html/charset)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http2)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http2/h2c)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http2/h2demo)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http2/h2i)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http2/hpack)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http/httpguts)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/http/httpproxy)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/icmp)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/idna)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/ipv4)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/ipv6)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/lif)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/nettest)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/netutil)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/proxy)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/publicsuffix)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/route)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/trace)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/webdav)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/websocket)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/net/xsrftoken)) = da137c7871d730100384dbcf36e6f8fa493aef5b
+Provides:       bundled(golang(golang.org/x/sys/cpu)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/plan9)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/unix)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/unix/linux)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows/registry)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows/svc)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows/svc/debug)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows/svc/eventlog)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(golang.org/x/sys/windows/svc/mgr)) = 6ec70d6a5542cba804c6d16ebe8392601a0b7b60
+Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/candidtest)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/params)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/ussodischarge)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
+Provides:       bundled(golang(gopkg.in/CanonicalLtd/candidclient.v1/ussologin)) = 9e7b01e0301d648a4cd58ea71c0c0b8ee1882e07
 Provides:       bundled(golang(gopkg.in/errgo.v1)) = 08dc5b27f5ced65786776ec936b4298445ec70cf
 Provides:       bundled(golang(gopkg.in/fsnotify.v0)) = ea925a0a47d225b2ca7f9932b01d2ed4f3ec74f6
 Provides:       bundled(golang(gopkg.in/httprequest.v1)) = 7f3c32e65ad57476ba9675100248f4f87f6ffb9c
 Provides:       bundled(golang(gopkg.in/juju/environschema.v1)) = d79e96fb1039e808c217847f4c45cce48e6ff2a5
 Provides:       bundled(golang(gopkg.in/juju/environschema.v1/form)) = d79e96fb1039e808c217847f4c45cce48e6ff2a5
 Provides:       bundled(golang(gopkg.in/juju/names.v2)) = fd59336b4621bc2a70bf96d9e2f49954115ad19b
-Provides:       bundled(golang(gopkg.in/lxc/go-lxc.v2)) = 338b57928035f0474dbadd0d8ce4a59d2e8992ce
+Provides:       bundled(golang(gopkg.in/lxc/go-lxc.v2)) = f4822c6bba64fd060f8e96393540d6525a7ceb95
 Provides:       bundled(golang(gopkg.in/macaroon-bakery.v2/bakery)) = a0743b6619d68bbf8dc5cabbb49738b846f06080
 Provides:       bundled(golang(gopkg.in/macaroon-bakery.v2/bakery/checkers)) = a0743b6619d68bbf8dc5cabbb49738b846f06080
 Provides:       bundled(golang(gopkg.in/macaroon-bakery.v2/bakery/dbrootkeystore)) = a0743b6619d68bbf8dc5cabbb49738b846f06080
@@ -589,6 +556,7 @@ This package contains user documentation.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %if 0%{?with_bundled}
@@ -600,11 +568,23 @@ pushd dist/sqlite
 make %{?_smp_mflags}
 popd
 
+# build embedded libco
+pushd dist/libco
+make %{?_smp_mflags}
+popd
+
+# build embedded raft
+pushd dist/raft
+autoreconf -i
+%configure --libdir=%{_libdir}/%{name}
+make %{?_smp_mflags}
+popd
+
 # build embedded dqlite
 pushd dist/dqlite
 autoreconf -i
-PKG_CONFIG_PATH="${src_dir}/sqlite/" %configure --libdir=%{_libdir}/%{name}
-make %{?_smp_mflags} CFLAGS="$RPM_OPT_FLAGS -I${src_dir}/sqlite" LDFLAGS="-L${src_dir}/sqlite"
+PKG_CONFIG_PATH="${src_dir}/sqlite/:${src_dir}/libco/:${src_dir}/raft/" %configure --libdir=%{_libdir}/%{name}
+make %{?_smp_mflags} CFLAGS="$RPM_OPT_FLAGS -I${src_dir}/sqlite/ -I${src_dir}/libco/ -I${src_dir}/raft/include/" LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/libco/ -L${src_dir}/raft/.libs/"
 popd
 
 mkdir _output
@@ -632,9 +612,9 @@ export GOPATH=$(pwd):%{gopath}
 unset LDFLAGS
 
 # LXD depends on a patched, bundled sqlite with replication capabilities
-export CGO_CPPFLAGS="-I${src_dir}/sqlite/ -I${src_dir}/dqlite/include/"
-export CGO_LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/dqlite/.libs/ -Wl,-rpath,%{_libdir}/%{name}"
-export LD_LIBRARY_PATH="${src_dir}/sqlite/.libs/:${src_dir}/dqlite/.libs/"
+export CGO_CFLAGS="-I${src_dir}/sqlite/ -I${src_dir}/libco/ -I${src_dir}/raft/include/ -I${src_dir}/dqlite/include/"
+export CGO_LDFLAGS="-L${src_dir}/sqlite/.libs/ -L${src_dir}/libco/ -L${src_dir}/raft/.libs/ -L${src_dir}/dqlite/.libs/ -Wl,-rpath,%{_libdir}/%{name}"
+export LD_LIBRARY_PATH="${src_dir}/sqlite/.libs/:${src_dir}/libco/:${src_dir}/raft/.libs/:${src_dir}/dqlite/.libs/"
 
 BUILDTAGS="libsqlite3" %gobuild -o _bin/lxd %{import_path}/lxd
 %gobuild -o _bin/lxc %{import_path}/lxc
@@ -686,6 +666,8 @@ install -p -m 0755 %{SOURCE6} %{buildroot}%{_libexecdir}/%{name}
 # install custom libsqlite3/dqlite
 install -d -m 0755 %{buildroot}%{_libdir}/%{name}
 cp -Pp dist/sqlite/.libs/libsqlite3.so* %{buildroot}%{_libdir}/%{name}/
+cp -Pp dist/libco/libco.so* %{buildroot}%{_libdir}/%{name}/
+cp -Pp dist/raft/.libs/libraft.so* %{buildroot}%{_libdir}/%{name}/
 cp -Pp dist/dqlite/.libs/libdqlite.so* %{buildroot}%{_libdir}/%{name}/
 # fix rpath
 chrpath -r %{_libdir}/%{name} %{buildroot}%{_libdir}/%{name}/libdqlite.so
@@ -715,6 +697,8 @@ done
 install -d -p %{buildroot}%{_includedir}/%{name}
 echo "%%dir %%{_includedir}/%%{name}/." >> devel.file-list
 cp -pav dist/sqlite/{sqlite3,sqlite3ext}.h %{buildroot}%{_includedir}/%{name}/
+cp -pav dist/libco/libco.h %{buildroot}%{_includedir}/%{name}/
+cp -pav dist/raft/include/raft.h %{buildroot}%{_includedir}/%{name}/
 cp -pav dist/dqlite/include/dqlite.h %{buildroot}%{_includedir}/%{name}/
 echo "%%{_includedir}/%%{name}/*.h" >> devel.file-list
 
@@ -740,7 +724,7 @@ done
 %if 0%{?with_unit_test} && 0%{?with_devel}
 install -d -p %{buildroot}/%{gopath}/src/%{import_path}/
 # find all *_test.go files and generate unit-test.file-list
-for file in $(find . -iname "*_test.go" -o -type f -wholename "./test/deps/s*"); do
+for file in $(find . -iname "*_test.go" -o -type f -wholename "./test/deps/s*" -o -type f -wholename ".*/testdata/*"); do
     echo "%%dir %%{gopath}/src/%%{import_path}/$(dirname $file)" >> devel.file-list
     install -d -p %{buildroot}/%{gopath}/src/%{import_path}/$(dirname $file)
     cp -pav $file %{buildroot}/%{gopath}/src/%{import_path}/$file
@@ -761,6 +745,9 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 
 # Tests must ignore potential LXD_SOCKET from environment
 unset LXD_SOCKET
+
+# Enable sqlite/dqlite multi-thread support when running unit tests
+export GO_DQLITE_MULTITHREAD=1
 
 # Test against the libraries which just built
 export CGO_CPPFLAGS="-I%{buildroot}%{_includedir}/%{name}/"
