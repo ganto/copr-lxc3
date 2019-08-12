@@ -272,6 +272,9 @@ make check
 
 
 %changelog
+* Mon Aug 12 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.2.1-0.2
+- Fix cpuset cgroup regression (see GH lxc/lxc#3108)
+
 * Mon Aug 12 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.2.1-0.1
 - Update to 3.2.1
 - Build against openssl for template checksumming
