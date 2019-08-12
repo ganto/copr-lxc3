@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(libseccomp)
 %endif # with_seccomp
 BuildRequires:  libcap-devel
 BuildRequires:  libtool
+BuildRequires:  openssl-devel
 BuildRequires:  pam-devel
 BuildRequires:  systemd
 %if 0%{?fedora} || 0%{?rhel} >= 7
