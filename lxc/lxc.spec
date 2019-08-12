@@ -10,12 +10,13 @@
 
 Name:           lxc
 Version:        3.2.1
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
 URL:            https://linuxcontainers.org/lxc
 Source0:        https://linuxcontainers.org/downloads/%{name}-%{version}.tar.gz
 Patch0:         lxc-2.0.6-fix-lxc-net.patch
+Patch1:         lxc-3.2.1-cgroups-initialize-cpuset-properly.patch
 BuildRequires:  docbook2X
 BuildRequires:  doxygen
 BuildRequires:  graphviz
@@ -115,6 +116,7 @@ on the command line.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure --enable-capabilities \
