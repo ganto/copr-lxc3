@@ -87,6 +87,9 @@ mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
 
 %changelog
+* Mon Aug 12 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.2-0.1
+- Update to 3.1.2
+
 * Sat Jun 29 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.4-0.1
 - Update to 3.0.4
 
