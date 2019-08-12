@@ -270,6 +270,10 @@ make check
 
 
 %changelog
+* Mon Aug 12 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.2.1-0.1
+- Update to 3.2.1
+- Build against openssl for template checksumming
+
 * Sun Feb 17 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.1.0-0.3
 - Fix dependencies for lxc-download template
 
