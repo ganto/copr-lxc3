@@ -1,14 +1,13 @@
 %global gem_name ruby-lxc
 
 Name:       rubygem-%{gem_name}
-Version:    1.2.2
+Version:    1.2.3
 Release:    0.1%{?dist}
 Summary:    Ruby bindings for liblxc
 License:    LGPLv2+
 URL:        https://github.com/lxc/ruby-lxc
 Source0:    https://rubygems.org/gems/%{gem_name}-%{version}.gem
 Source1:    README.md
-Patch0:     ruby-lxc-1.2.2-Fix-build-with-LXC-3.0.patch
 
 BuildRequires: ruby(release)
 BuildRequires: rubygems-devel
@@ -33,15 +32,13 @@ Documentation for %{name}.
 
 %prep
 gem unpack %{SOURCE0}
+gem spec %{SOURCE0} -l --ruby > %{gem_name}-%{version}.gemspec
 
 %setup -q -D -T -n  %{gem_name}-%{version}
-%patch0 -p1
-
-gem spec %{SOURCE0} -l --ruby > %{gem_name}.gemspec
 
 %build
 # Create the gem as gem install only works on a gem file
-gem build %{gem_name}.gemspec
+gem build ../%{gem_name}-%{version}.gemspec
 
 # %%gem_install compiles any C extensions and installs the gem into ./%%gem_dir
 # by default, so that we can move it into the buildroot in %%install
@@ -53,7 +50,12 @@ cp -a .%{gem_dir}/* \
         %{buildroot}%{gem_dir}/
 
 mkdir -p %{buildroot}%{gem_extdir_mri}
-cp -a .%{gem_extdir_mri}/{gem.build_complete,lxc} %{buildroot}%{gem_extdir_mri}/
+%if 0%{?rhel} == 7
+mkdir -p %{buildroot}%{gem_extdir_mri}/lib/lxc
+mv %{buildroot}%{gem_dir}/gems/%{gem_name}-%{version}/lib/lxc/lxc.so %{buildroot}%{gem_extdir_mri}/lib/lxc/
+%else
+cp -a ./%{gem_extdir_mri}/lxc %{buildroot}%{gem_extdir_mri}/
+%endif
 
 # Prevent dangling symlink in -debuginfo (rhbz#878863).
 rm -rf %{buildroot}%{gem_instdir}/ext/
