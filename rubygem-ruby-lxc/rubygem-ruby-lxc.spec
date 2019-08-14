@@ -81,5 +81,9 @@ popd
 
 
 %changelog
+* Wed Aug 14 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.2.3-0.1
+- Update to 1.2.3
+- Fix build failure on CentOS 7
+
 * Fri Jun 08 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.2.2-0.1
 - Initial package
