@@ -851,6 +851,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Wed Aug 14 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.16-0.1
+- Update to 3.16
+
 * Fri Jul 26 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.15-0.1
 - Update to 3.15
 
