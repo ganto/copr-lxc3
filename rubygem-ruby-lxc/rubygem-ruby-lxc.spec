@@ -87,6 +87,10 @@ popd
 
 
 %changelog
+* Wed Aug 14 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.2.3-0.2
+- Add LICENSE file
+- Fix error with module lookup on Fedora
+
 * Wed Aug 14 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.2.3-0.1
 - Update to 1.2.3
 - Fix build failure on CentOS 7
