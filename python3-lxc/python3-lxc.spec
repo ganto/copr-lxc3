@@ -97,6 +97,11 @@ chmod -x examples/*
 %endif
 
 %changelog
+* Thu Aug 15 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.4-0.1
+- Update to 3.0.4
+- Build Python 3.4 and 3.6 packages for CentOS
+- Install examples
+
 * Wed Nov 28 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.3-0.1
 - Update to 3.0.3
 
