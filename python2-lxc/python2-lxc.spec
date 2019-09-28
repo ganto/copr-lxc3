@@ -38,6 +38,9 @@ BuildRequires:  python2-devel
 %{python2_sitearch}/*
 
 %changelog
+* Sat Sep 28 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.1+git20180214.b7ec757-0.2
+- Rebuild for EPEL-8
+
 * Mon Apr 23 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.1+git20180214.b7ec757-0.1
 - Initial package
 
