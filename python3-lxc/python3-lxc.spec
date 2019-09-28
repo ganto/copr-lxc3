@@ -97,6 +97,9 @@ chmod -x examples/*
 %endif
 
 %changelog
+* Sat Sep 28 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.4-0.2
+- Rebuild for EPEL-8
+
 * Thu Aug 15 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.4-0.1
 - Update to 3.0.4
 - Build Python 3.4 and 3.6 packages for CentOS
