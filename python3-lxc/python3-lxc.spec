@@ -29,7 +29,7 @@ Name:           python36-lxc
 Name:           %{srcname}
 %endif
 Version:        3.0.4
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Python 3 bindings for LXC
 
 Group:          Development/Libraries
