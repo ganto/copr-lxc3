@@ -5,7 +5,7 @@
 
 Name:           python2-lxc
 Version:        0.1+git%{commitdate}.%{shortcommit}
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Python 2 bindings for LXC
 
 Group:          Development/Libraries
