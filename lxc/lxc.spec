@@ -10,7 +10,7 @@
 
 Name:           lxc
 Version:        3.2.1
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        Linux Resource Containers
 License:        LGPLv2+ and GPLv2
 URL:            https://linuxcontainers.org/lxc
