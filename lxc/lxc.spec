@@ -272,6 +272,9 @@ make check
 
 
 %changelog
+* Sat Sep 28 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.2.1-0.3
+- Rebuild for EPEL-8
+
 * Mon Aug 12 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.2.1-0.2
 - Fix cpuset cgroup regression (see GH lxc/lxc#3108)
 
