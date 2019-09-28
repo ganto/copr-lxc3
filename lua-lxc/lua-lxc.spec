@@ -54,6 +54,9 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Sat Sep 28 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.2
+- Rebuild for EPEL-8
+
 * Sat Sep 22 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.0.2-0.1
 - Update to 3.0.2
 
