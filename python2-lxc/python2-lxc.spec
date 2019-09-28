@@ -5,13 +5,14 @@
 
 Name:           python2-lxc
 Version:        0.1+git%{commitdate}.%{shortcommit}
-Release:        0.2%{?dist}
+Release:        0.3%{?dist}
 Summary:        Python 2 bindings for LXC
 
 Group:          Development/Libraries
 License:        LGPLv2+
 URL:            https://linuxcontainers.org/lxc
 Source0:        https://github.com/lxc/%{name}/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+BuildRequires:  gcc
 BuildRequires:  lxc-devel >= 3
 BuildRequires:  python2-devel
 
