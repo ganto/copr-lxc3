@@ -6,7 +6,7 @@
 
 Name:       lua-lxc
 Version:    3.0.2
-Release:    0.1%{?dist}
+Release:    0.2%{?dist}
 Summary:    Lua bindings for liblxc
 
 License:    LGPLv2+
