@@ -31,7 +31,7 @@
 %global debug_package   %{nil}
 %endif
 
-%if 0%{?centos} == 7
+%if 0%{?centos}
 # centos doesn't (yet) define build macros for golang
 %define gobuild(o:) %{expand:
   go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags %{?__golang_extldflags}'" -a -v -x %{?**};
@@ -52,7 +52,7 @@
 
 Name:           lxd
 Version:        3.17
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
@@ -133,7 +133,10 @@ Summary:        Container hypervisor based on LXC - Source Libraries
 BuildArch:      noarch
 
 %if 0%{?with_check}
+# CentOS 8 doesn't support Btrfs
+%if 0%{?fedora} || ( 0%{?centos} && 0%{?centos} < 8 )
 BuildRequires:  btrfs-progs
+%endif
 BuildRequires:  dnsmasq
 %endif
 
