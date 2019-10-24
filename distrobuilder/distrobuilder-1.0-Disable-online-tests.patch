@@ -1,15 +1,15 @@
-commit 1906fda093769299d753f76281a158d8dd098dce
+commit 9a66522b93d565d2ad950de202f18551f81d7c25
 Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
 Date:   Wed Apr 4 07:48:55 2018 +0200
 
     Disable some test that need access to GPG keyservers
 
 diff --git a/shared/util_test.go b/shared/util_test.go
-index 360be5e..2e62b4c 100644
+index 994eae3..24c09fa 100644
 --- a/shared/util_test.go
 +++ b/shared/util_test.go
-@@ -3,15 +3,16 @@ package shared
- import (
+@@ -5,15 +5,16 @@ import (
+ 	"io"
  	"log"
  	"os"
 -	"path"
@@ -28,7 +28,7 @@ index 360be5e..2e62b4c 100644
  func TestVerifyFile(t *testing.T) {
  	wd, err := os.Getwd()
  	if err != nil {
-@@ -109,6 +110,7 @@ func TestCreateGPGKeyring(t *testing.T) {
+@@ -111,6 +112,7 @@ func TestCreateGPGKeyring(t *testing.T) {
  	require.False(t, lxd.PathExists(keyring), "File should not exist")
  	os.RemoveAll(path.Dir(keyring))
  }
