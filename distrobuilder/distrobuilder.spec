@@ -450,6 +450,10 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/Godeps/_workspace:%{gopath}
 %endif
 
 %changelog
+* Thu Oct 24 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 1.0-0.1
+- Update to 1.0
+- Add man-page through help2man
+
 * Wed Jul 10 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0-0.1.20190710gitd686c88
 - Update to commit d686c88 from July 10, 2019
 
