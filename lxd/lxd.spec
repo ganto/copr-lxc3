@@ -865,6 +865,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Fri Oct 25 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.18-0.1
+- Update to 3.18
+
 * Mon Oct 21 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.17-0.2
 - Rebuild for EPEL-8
 
