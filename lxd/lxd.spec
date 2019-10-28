@@ -679,7 +679,7 @@ ln -s libco.so.0.1.0 %{buildroot}%{_libdir}/%{name}/libco.so.0
 cp -Pp _dist/deps/raft/.libs/libraft.so* %{buildroot}%{_libdir}/%{name}/
 cp -Pp _dist/deps/dqlite/.libs/libdqlite.so* %{buildroot}%{_libdir}/%{name}/
 # fix rpath
-chrpath -r %{_libdir}/%{name} %{buildroot}%{_libdir}/%{name}/libdqlite.so
+chrpath %{buildroot}%{_libdir}/%{name}/libdqlite.so && chrpath -r %{_libdir}/%{name} %{buildroot}%{_libdir}/%{name}/libdqlite.so
 
 # install man-pages
 install -d -m 0755 %{buildroot}%{_mandir}/man1
