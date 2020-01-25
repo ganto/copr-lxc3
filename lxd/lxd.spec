@@ -76,7 +76,6 @@ ExclusiveArch:  aarch64 %{arm} ppc64le s390x x86_64
 # If go_compiler is not set to 1, there is no virtual provide. Use golang instead.
 BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 
-BuildRequires:  chrpath
 BuildRequires:  gettext
 BuildRequires:  help2man
 BuildRequires:  libacl-devel
@@ -678,8 +677,6 @@ ln -s libco.so.0.1.0 %{buildroot}%{_libdir}/%{name}/libco.so
 ln -s libco.so.0.1.0 %{buildroot}%{_libdir}/%{name}/libco.so.0
 cp -Pp _dist/deps/raft/.libs/libraft.so* %{buildroot}%{_libdir}/%{name}/
 cp -Pp _dist/deps/dqlite/.libs/libdqlite.so* %{buildroot}%{_libdir}/%{name}/
-# fix rpath
-chrpath -r %{_libdir}/%{name} %{buildroot}%{_libdir}/%{name}/libdqlite.so
 
 # install man-pages
 install -d -m 0755 %{buildroot}%{_mandir}/man1
