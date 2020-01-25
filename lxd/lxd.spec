@@ -793,17 +793,17 @@ exit 0
 %post
 %systemd_post %{name}.socket
 %systemd_post %{name}.service
-%systemd_post %{name}-container.service
+%systemd_post %{name}-containers.service
 
 %preun
 %systemd_preun %{name}.socket
 %systemd_preun %{name}.service
-%systemd_preun %{name}-container.service
+%systemd_preun %{name}-containers.service
 
 %postun
 %systemd_postun %{name}.socket
 %systemd_postun %{name}.service
-%systemd_postun %{name}-container.service
+%systemd_postun %{name}-containers.service
 
 #define license tag if not already defined
 %{!?_licensedir:%global license %doc}
