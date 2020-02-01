@@ -862,6 +862,10 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sat Feb 01 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.18-0.2
+- Fix typo when calling systemd macros for lxd-containers service
+- Remove redundant chrpath to fix build on aarch64 (gsfjohnson@gmail.com)
+
 * Fri Oct 25 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.18-0.1
 - Update to 3.18
 
