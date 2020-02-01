@@ -52,7 +52,7 @@
 
 Name:           lxd
 Version:        3.18
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        Container hypervisor based on LXC
 License:        ASL 2.0
 URL:            https://linuxcontainers.org/lxd
