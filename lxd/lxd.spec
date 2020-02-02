@@ -966,6 +966,11 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sun Feb 02 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.19-0.1
+- Update to 3.19
+- Add new sub-package lxd-agent
+- Depend on >kernel-headers-3.10 (e.g. ELRepo) when building for CentOS 7
+
 * Sat Feb 01 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.18-0.2
 - Fix typo when calling systemd macros for lxd-containers service
 - Remove redundant chrpath to fix build on aarch64 (gsfjohnson@gmail.com)
