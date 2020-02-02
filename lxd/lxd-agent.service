@@ -1,0 +1,14 @@
+[Unit]
+Description=LXD - agent
+ConditionPathExists=/dev/virtio-ports/org.linuxcontainers.lxd
+Requires=lxd-agent-9p.service
+After=lxd-agent-9p.service
+Before=cloud-init.target
+
+[Service]
+Type=simple
+WorkingDirectory=/run/lxd_config/9p
+ExecStart=/run/lxd_config/9p/lxd-agent
+
+[Install]
+WantedBy=multi-user.target
