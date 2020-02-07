@@ -1,0 +1,28 @@
+From a611ee439dc84923c9be135622cb2a74b854d915 Mon Sep 17 00:00:00 2001
+From: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date: Sun, 2 Feb 2020 23:26:07 +0100
+Subject: [PATCH] Define MS_LAZYTIME for compatibility with old glibc
+
+glibc-2.17 as used in e.g. CentOS 7 doesn't know about MS_LAZYTIME
+yet.
+
+Signed-off-by: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+---
+ lxd/seccomp/seccomp.go | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/lxd/seccomp/seccomp.go b/lxd/seccomp/seccomp.go
+index b9695b792a..d8761e64c9 100644
+--- a/lxd/seccomp/seccomp.go
++++ b/lxd/seccomp/seccomp.go
+@@ -248,6 +248,10 @@ static void prepare_seccomp_iovec(struct iovec *iov,
+ 	iov[3].iov_base = cookie;
+ 	iov[3].iov_len = SECCOMP_COOKIE_SIZE;
+ }
++
++#ifndef MS_LAZYTIME
++#define MS_LAZYTIME (1<<25)
++#endif
+ */
+ import "C"
+ 

@@ -1,0 +1,55 @@
+From 3dcf2e9d273c02bcd3afd35bab583a00b43d4bff Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?St=C3=A9phane=20Graber?= <stgraber@ubuntu.com>
+Date: Fri, 7 Feb 2020 13:19:24 -0500
+Subject: [PATCH] lxd/util: Fix IP/host tests on other distros
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Closes #6842
+
+Signed-off-by: Stéphane Graber <stgraber@ubuntu.com>
+---
+ lxd/util/net_test.go | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+
+diff --git a/lxd/util/net_test.go b/lxd/util/net_test.go
+index dbc52923e2..6c75a06ed0 100644
+--- a/lxd/util/net_test.go
++++ b/lxd/util/net_test.go
+@@ -52,11 +52,13 @@ func TestCanonicalNetworkAddress(t *testing.T) {
+ }
+ 
+ func TestIsAddressCovered(t *testing.T) {
+-	cases := []struct {
++	type testCase struct {
+ 		address1 string
+ 		address2 string
+ 		covered  bool
+-	}{
++	}
++
++	cases := []testCase{
+ 		{"127.0.0.1:8443", "127.0.0.1:8443", true},
+ 		{"garbage", "127.0.0.1:8443", false},
+ 		{"127.0.0.1:8444", "garbage", false},
+@@ -69,8 +71,17 @@ func TestIsAddressCovered(t *testing.T) {
+ 		{"[::1]:8443", ":8443", true},
+ 		{":8443", "[::]:8443", true},
+ 		{"0.0.0.0:8443", "[::]:8443", true},
+-		{"127.0.0.1:8443", "localhost:8443", true},
+-		{"[::1]:8443", "ip6-localhost:8443", true},
++	}
++
++	// Test some localhost cases too
++	ips, err := net.LookupHost("localhost")
++	if err == nil && len(ips) > 0 && ips[0] == "127.0.0.1" {
++		cases = append(cases, testCase{"127.0.0.1:8443", "localhost:8443", true})
++	}
++
++	ips, err = net.LookupHost("ip6-localhost")
++	if err == nil && len(ips) > 0 && ips[0] == "::1" {
++		cases = append(cases, testCase{"[::1]:8443", "ip6-localhost:8443", true})
+ 	}
+ 
+ 	for _, c := range cases {
