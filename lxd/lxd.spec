@@ -959,6 +959,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Fri Feb 07 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.20-0.1
+- Update to 3.20
+
 * Sun Feb 02 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.19-0.1
 - Update to 3.19
 - Add new sub-package lxd-agent
