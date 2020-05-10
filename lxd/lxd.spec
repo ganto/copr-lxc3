@@ -956,6 +956,9 @@ exit 0
 %doc doc/*
 
 %changelog
+* Sun May 10 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.22-0.1
+- Update to 3.22
+
 * Thu Feb 20 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 3.21-0.1
 - Update to 3.21
 
